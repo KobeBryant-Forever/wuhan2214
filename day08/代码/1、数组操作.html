@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、创建数组
+        // 1.1、使用字面量创建  []中指定元素的内容， 一旦创建系统会自动为每一个元素分配一个数字下标
+        var arr = ['a', 'b', 'c'];
+        console.log(arr)
+        // 1.2、使用new关键字创建数组
+        // 不传递参数表示创建空数组 传递参数 设置每一个元素的值
+        var arr2 = new Array('a', 'b', 'c');
+        console.log(arr2);
+        // 2、数组操作
+        // 2.1、访问元素
+        arr = ['a', 'b', 'c'];
+        // arr[0]直接获取下标为0的元素
+        arr[0] = 'aa'; //修改指定元素的内容
+        // 添加数组元素 可以使用arr[下标] 但是一般不使用此方式
+        // arr[5] = 'f';
+
+        // 删除元素 delete 数组变[下标]  delete本身的函数是删除对象下的属性，但是数组也是对象，所以可以使用 一般不使用此方式
+        delete arr[1];
+        // 清空 
+        arr.length = 0
+        console.log(arr);
+        // 3、数组遍历
+        // 使用 for语句进行遍历 是因为数组中元素下标是连续的
+        arr = ['a', 'b', 'c'];
+        for (var i = 0; i < arr.length; i++) {
+            console.log('i变量表示数组下标',arr[i]);
+        }
+        // for in语句进行变量 for in 本身是遍历对象下的属性
+        for(var key in arr){
+            // var  key 是创建临时变量 in 为固定关键字 arr表示要遍历的数组
+            // 每次将数组中每一个元素取出 并且将下标 设置到key变量中
+            console.log('数组下标'+key,'对应的值为'+arr[key])
+        }
+
+        var obj = {
+            name:'kitty',
+            color:'white'
+        }
+        // 系统会自动的将obj下的每一个属性取出来，并且将属性名称 赋值给key变量
+        for(var key in obj){
+            // 当操作对象下的属性时，如果属性名称写在变量值中 一定要使用数组格式，
+            // 如果直接 变量名称.key 表示在对象下找一个叫做key的属性
+            console.log('key的值为:'+key+'对应的属性值为'+obj[key])
+         
+        }
+    </script>
+</body>
+
+</html>

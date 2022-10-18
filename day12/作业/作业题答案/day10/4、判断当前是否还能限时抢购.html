@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 判断当前是否还能限时抢购，开始时间："2022-9-20"，结束时间："2022-9-30"
+        var timer = Date.now();
+        // 开始的时间戳
+        var start = Date.parse('2022-09-20');
+        // 结束的时间戳
+        var end = Date.parse('2022-09-30');
+        if (timer >= start && timer <= end) {
+            console.log('缺货')
+        } else {
+            console.log('还未开始或者已经结束')
+        }
+    </script>
+</body>
+
+</html>

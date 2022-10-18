@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="common.js"></script>
+    <script>
+        document.onkeydown = function(e){
+            var event = e || window.event;
+            // 获取按键码
+            // console.log(event.key,event.keyCode,event.which);
+            // 组合按键 使用的组合键 alt、ctrl、shift
+            // 组合按键的使用方式  先按住其中一个按键不松手  再按下一个其他的按键
+            // 如果按下了某一个组合按键 将对应的属性设置为true
+            // ctrlKey 、altKey、shiftKey true表示按下了 false 表示没有按下
+            console.log(event)
+            if(event.ctrlKey && event.key == 'c'){
+                console.log('ctrl+c按下  结束游戏')
+            }
+
+        }   
+    </script>
+</body>
+</html>

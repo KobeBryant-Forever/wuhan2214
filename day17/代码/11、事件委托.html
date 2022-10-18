@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li class="one">汝妻吾养之就是委托了</li>
+        <li>二仙桥</li>
+        <p>法外狂徒</p>
+    </ul>
+    <button>添加元素</button>
+    <script>
+        // 因为页面被加载 针对已有的两个li标签已经绑定了点击事件。后期添加的元素 没有点击事件
+        // document.querySelectorAll('li').forEach(function (dom) {
+        //     dom.onclick = function () {
+        //         console.log(this.innerHTML);
+        //     }
+        // })
+        // 虽然是绑定的ur但是 li标签上触发了点击事件 可以上升到ur标签上
+        document.querySelector('ul').onclick = function (event) {
+            // 在事件对象中target属性记录着事件源的dom对象
+            // 兼容性 srcElement 也是事件源
+            // console.log(event.target.innerHTML)
+            // 在使用事件委托时，经常需要区分事件源 可能不同类型的事件源处理策略不一样 因此就需要根据事件源本身进行判断，一般判断条件会使用标签名称或者是class值进行判断
+            // 获取标签名称
+            // console.log(event.target.nodeName,event.target.tagName)
+            // 获取class
+            // console.log(event.target.className)
+            if (event.target.nodeName == 'LI') {
+                // 证明现在点击的是li标签
+                console.log(event.target.innerHTML)
+            } else if (event.target.nodeName == 'P') {
+                console.log('张三')
+            }
+            // 在事件委托中 this表示当前绑定事件的标签dom对象
+            console.log(this);
+        }
+        document.querySelector('button').onclick = function () {
+            var liDom = document.createElement('li');
+            liDom.innerHTML = '腰马合一';
+            document.querySelector('ul').appendChild(liDom)
+        }
+    </script>
+</body>
+
+</html>

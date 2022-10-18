@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // \ 转义符 转义符 所修饰的是原因的字符串含义
+        console.log(/1\./.test('1.abc'))
+        // | 或者
+        console.log(/163|qq/.test('qq'))
+        // () 从多个直接量中选择一个，分组
+        console.log(/(163|qq)\.com/.test('163.com'));
+        // 匹配连续4个数字 并且规律 1122 
+        // 反向引用
+        // ()后正则会对规则匹配到的内容进行保存，并且设置序号，后期使用\数字 可以将前面匹配到的结果取出来再次使用
+        // console.log(/(\d)\1(\d)\2/.test('78899'));
+        // [] 字符串用中括号括起来，表示匹配其中的任一字符
+        // [abcdef]匹配一个字符 这个字符可以是abcdef 中任何一个
+        console.log(/[abcdef]bc/.test('pbc'));
+        // - 到  如果需要表示到 一定是ASCII连续的
+        console.log(/[a-z]bc/.test('1bc'));
+        console.log(/[a-zA-Z]bc/.test('1bc'));
+        // [\u4e00-\u9fa5] 检查中文
+        // [^]匹配除中括号以内的内容
+        console.log(/[^a-z]bc/.test('1bc'))
+    </script>
+</body>
+</html>

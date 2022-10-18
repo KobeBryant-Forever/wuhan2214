@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    var k = 0;
+    /*
+        var  res = k++ + ++k + k + k++;
+        var a = k++;  a = 0  k = 1
+        var b = ++k;  b = 2  k = 2
+        var c = k;    c = 2  k = 2
+        var d = k++;  d = 2  k = 3
+        等价于  var res = a +b + c +d
+
+    */
+    console.log(k++ + ++k + k + k++) // 结果是多少？为什么？
+    console.log(k)
+</script>
+
+</html>

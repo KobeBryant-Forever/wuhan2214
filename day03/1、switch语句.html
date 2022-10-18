@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 一般直接判断值相等的 就使用switch语句
+        var day = prompt('输入星期几 可以使用1-7');
+        console.log(typeof day);
+        // day是一个变量 可能只为1-7直接
+        // 特别特别注意：在switch语句中 在判断相等使用的是全等判断
+        // switch (day-0) {
+        //     case 1:
+        //         console.log('开需求会');
+        //         break;
+        //     case 2:
+        //         console.log('查阅文档，后端沟通');
+        //         break;
+        //     case 3:
+        //         console.log('代码需求的开发');
+        //         break
+        //     case 4:
+        //         console.log('提交测试');
+        //         break;
+        //     case 5:
+        //         console.log('发布上线');
+        //         break;
+        //     default:
+        //         console.log('加班');
+        //         break;
+        // }
+
+        // 2、switch的穿透
+
+        // switch (day-0) {
+        //     case 1:
+        //         console.log('开需求会');
+        //         break;
+        //     case 2:
+        //         console.log('查阅文档，后端沟通');
+        //         // 由于没有break switch没有被终止 继续执行到下一个case 此时不会判断case是否相等
+        //     case 3:
+        //         console.log('代码需求的开发');
+        //         // break
+        //     case 4:
+        //         console.log('提交测试');
+        //         break;
+        //     case 5:
+        //         console.log('发布上线');
+        //         break;
+        //     default:
+        //         console.log('加班');
+        //         break;
+        // }
+        
+
+        switch(day-0){
+            // 当day为1-5时候 都统一执行一种策略
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5: 
+                console.log('写代码');
+                break;
+            case 6:
+                console.log('申请离职');
+                break;
+            case 7:
+                console.log('删库跑路');
+                break;
+        }
+    </script>
+</body>
+
+</html>

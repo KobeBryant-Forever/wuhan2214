@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function formatYear(year) {
+            var returnStr = '';
+            // 将数组年份转换为字符串
+            var str = String(year);
+            // 针对字符串中每一个字符进行变量
+            for (var i = 0; i < String(year).length; i++) {
+                // str[i] 是每一个具体的数字
+                returnStr += chinese[str[i]]
+            }
+            return returnStr;
+        }
+
+        function format(number) {
+            /*
+                传递的number 只有可能是0-60之间的值
+                如果number<10 直接显示对应的中文
+                如果number = 10 显示固定的十
+                如果 10<number<20  显示十X
+                如果number>=20 
+                    如果第二个数是0 显示第一个数加上十
+                    如果第二个数不是0 显示 第一个数加上十加上第二个数
+            */
+            if (number < 10) {
+                return chinese[number];
+            } else if (number == 10) {
+                return '十';
+            } else if (number < 20) {
+                return '十' + chinese[number % 10];
+            } else {
+                number = String(number);
+                // number[0] 是第一个数字
+                var str = chinese[number[0]] + '十'
+                number[1] != 0 && (str += chinese[number[1]])
+                return str;
+            }
+        }
+
+        
+        var date = '2022-09-23 12:23:23';
+        // 1、设置数字0-9与中文零到九之间的对应
+        var chinese = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+        console.log(format(23));
+        // 2、提取数字
+        var d = new Date(date);
+        // 获取年份
+        var year = formatYear(d.getFullYear());
+        // 获取月份
+        var month = format(d.getMonth() + 1);
+        // 获取日期
+        var day = format(d.getDate());
+        // 获取小时
+        var hours = format(d.getHours())
+        // 获取分钟
+        var minutes = format(d.getMinutes());
+        // 获取秒
+        var seconds = format(d.getSeconds());
+        console.log(year + '年' + month + '月' + day + '日' + hours + '点' + minutes + '分' + seconds + '秒')
+        // 二零二二年九月二十三号十二点二十三分二十三秒
+    </script>
+</body>
+
+</html>

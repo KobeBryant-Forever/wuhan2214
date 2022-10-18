@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="start">开始</button>
+    <button id="pause">停止</button>
+    <script>
+        var timer;
+        start.onclick = function () {
+            // 传递有名称的函数时一定要注意使用要使用() 函数名称 就是地址 函数名称() 传递的就是函数的返回值
+            // 一旦创建完成，系统后期每1秒钟就会自动将传递的函数调用起来
+            timer = setInterval(function () {
+                console.log(this)
+                console.log('鸡你太美');
+            }, 1000);
+        }
+        pause.onclick = function(){
+            // 在停止定时器时一定注意作用域 是否能够访问到保存定时器的标识
+            clearInterval(timer)
+        }
+    </script>
+</body>
+
+</html>

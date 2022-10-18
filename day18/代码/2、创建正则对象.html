@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、使用字面量方式 /匹配规则/模式  模式是可以选择使用 匹配规则需要使用一些符号表示
+        var reg = /1/
+        console.log(reg)
+        console.log(typeof reg)
+        // 2、使用new 关键字  new RegExp(匹配规则，模式) 传递的两个参数都需要使用字符串
+        var reg2 = new RegExp('1')
+        console.log(reg2)
+    </script>
+</body>
+</html>

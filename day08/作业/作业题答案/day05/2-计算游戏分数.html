@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 一个游戏，前20关是每一关自身的分数，21-30关每一关是10分 31-40关，每一关是20分 41-49关，每一关是30分,50关，是100分。编写一个函数，输入你现在闯到的关卡数，求你现在拥有的分数
+
+
+    function total(number) {
+        var score = 0;
+        for (var i = 1; i <= number; i++) {
+            // 调用一个自定义的函数 计算 第i关的分数
+            score += getScoreByNumber(i);
+        }
+        return score;
+    }
+    console.log(getScoreByNumber(21));
+    // 根据指定的关数获取到当前关分数
+    function getScoreByNumber(number) {
+
+        var obj = {
+            "1-20": 1,
+            "21-30": 10,
+            "31-40": 20,
+            "41-49": 30,
+            "50-50": 100
+        };
+        for (var key in obj) {
+            var score = 0;
+            let range = key.split('-');
+            if (number >= range[0] && number <= range[1]) {
+                if (obj[key] == 1) {
+                    score = number
+                } else {
+                    score = obj[key];
+                }
+                return score;
+            }
+        }
+
+        // if (number <= 20) {
+        //     return number
+        // } else if (number <= 30) {
+        //     return 10;
+        // } else if (number <= 40) {
+        //     return 20;
+        // } else if (number < 50) {
+        //     return 30;
+        // } else if (number == 50) {
+        //     return 100;
+        // }
+    }
+    // console.log(total(20))
+</script>
+
+</html>

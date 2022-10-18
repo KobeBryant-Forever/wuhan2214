@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="clone">克隆元素</div>
+    <div id="app"></div>
+    <button>克隆</button>
+    <button class="del">删除</button>
+    <script>
+        document.querySelector('button').onclick = function(){
+            // 只有克隆方法是使用当前对象调用 传递true表示子元素也克隆
+            var fb  = document.querySelector('.clone').cloneNode(true)
+            console.log(fb)
+            document.querySelector('#app').appendChild(fb);
+        }
+        document.querySelector('.del').onclick = function(){
+            document.body.removeChild(document.querySelector('.clone'))
+        }
+        // 获取到父级的元素对象
+        console.log(document.querySelector('.clone').parentElement)
+        console.log(document.querySelector('.clone').parentNode)
+    </script>
+</body>
+</html>

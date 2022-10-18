@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <script>
+        // 使用节点操作 在页面上根据数据显示出表格，并且实现删除功能
+        // 可以选择性实现一下编辑功能
+        var arr = [{
+            name: 'Jack',
+            age: 18,
+            gender: '男'
+        }, {
+            name: 'Rose',
+            age: 20,
+            gender: '女'
+        }, {
+            name: 'Top',
+            age: 22,
+            gender: '男'
+        }];
+        // 1、创建table标签
+        var tableDom = document.createElement('table');
+        // 2、创建表头
+        var trHeadDom = document.createElement('tr');
+        // 3、创建四个td单元格
+        var tdHeadDom1 = document.createElement('td');
+        tdHeadDom1.innerHTML = '姓名'
+        trHeadDom.appendChild(tdHeadDom1)
+        var tdHeadDom2 = document.createElement('td');
+        tdHeadDom2.innerHTML = '年龄'
+        trHeadDom.appendChild(tdHeadDom2)
+        var tdHeadDom3 = document.createElement('td');
+        tdHeadDom3.innerHTML = '性别'
+        trHeadDom.appendChild(tdHeadDom3)
+        var tdHeadDom4 = document.createElement('td');
+        tdHeadDom4.innerHTML = '操作'
+        trHeadDom.appendChild(tdHeadDom4)
+
+        tableDom.appendChild(trHeadDom)
+        // 4、根据数据创建标签
+        arr.forEach(function (item) {
+            // 创建tr标签
+            var trDom = document.createElement('tr');
+            for (var key in item) {
+                // 每一次遍历 key 表示 name、age 字符串
+                var tdDom = document.createElement('td');
+                tdDom.innerHTML = item[key]
+                trDom.appendChild(tdDom)
+            }
+            // 设置删除按钮td单元格
+            var deleteTdDom = document.createElement('td');
+            // 设置删除按钮
+            deleteTdDom.innerHTML = '<button onclick = "deleteData(this)">删除</button>'
+            trDom.appendChild(deleteTdDom)
+
+            tableDom.appendChild(trDom)
+
+        })
+
+        document.body.appendChild(tableDom);
+
+
+        // 删除的函数
+        function deleteData(obj) {
+            // obj 表示当前点击按钮的dom对象
+            tableDom.removeChild(obj.parentElement.parentElement)
+        }
+    </script>
+</body>
+
+</html>

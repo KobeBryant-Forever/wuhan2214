@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .left,.right,.middle{ float: left;}
+        .left,.right{ border: 1px solid #eee; width: 100px; height: 200px; line-height: 28px; text-align: center;}
+        .active{ background-color: #eee;}
+    </style>
+</head>
+<body>
+    <div class="left">
+        <div class="active">张三</div>
+        <div>李四</div>
+        <div>王五</div>
+        <div>赵六</div>
+        <div>孙七</div>
+        <div>王八</div>
+    </div>
+    <div class="middle">
+        <input type="button" value=">" />
+    </div>
+    <div class="right">
+
+    </div>
+    <script>
+        // 1、为左侧的div绑定点击事件
+        document.querySelectorAll('.left>div').forEach(function(dom){
+            dom.onclick = function(){
+                // 将所有的div的样式移除
+                document.querySelectorAll('.left>div').forEach(function(item){
+                    item.className = '';
+                })
+                // 将当前点击的div的样式添加
+                this.className = 'active';
+                
+            }
+        })
+        // 2、点击右移 移动div
+        document.querySelector('input').onclick = function(){
+            document.querySelector('.right').appendChild(document.querySelector('.left>.active'))
+            document.querySelector('.right>.active').className = '';
+        }
+    </script>
+</body>
+</html>

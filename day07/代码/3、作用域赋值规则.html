@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var n3 = 30;
+
+        function fn() {
+            var n2 = 20
+
+            function fn2() {
+                var n1 = 10;
+
+                n1 = 100;
+                n2 = 200;
+                n3 = 300;
+                n4 = 400;// 当前，上级、直到window都没有找到这个变量最后就在window下创建了这个变量
+                console.log(n1);//直接修改当前作用域下的变量n1 100
+                console.log(n2);//200  先在当前作用域下寻找，没找到，就到上级 上级找到了就直接用
+                console.log(n3);//300 先在当前下寻找，没找到就到上级作用域下寻找，上级也没找，继续向上，直到window下才找到 就直接修改window
+                
+            }
+            fn2();
+            console.log(n2);
+        }
+        fn();
+        console.log('out',n3);
+        console.log(n4);
+
+
+        // var a = 10;
+        // function show(a){
+        //     // 形参a 一旦函数调用 var a =undefined
+        //     a = 20;//修改局部变量  a= 20;
+        // }
+        // show();
+        // console.log(a);//10
+
+        // var a = 10;
+        // function show(){
+        //     a = 20;//
+        // }
+        // show(a);
+        // console.log(a);//10
+    </script>
+</body>
+
+</html>

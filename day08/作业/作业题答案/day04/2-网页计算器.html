@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="num1">
+    <select id="operation">
+        <option>+</option>
+        <option>-</option>
+        <option>*</option>
+        <option>/</option>
+    </select>
+    <input type="text" id="num2">
+    <input type="button" id="calculation" value="=">
+    <input type="text" id="result">
+</body>
+
+</html>
+<script>
+    /*
+        当点击=号的按钮后，根据前面两个文本框的值以及操作符号计算最终结果显示在最后一个文本框中
+        提示：
+            1、点击事件
+                标签id值.onclick = function(){
+                    此次可以写代码，一旦点击会自动执行
+                }
+            2、获取文本框与select的值
+                使用 标签ID值.value  可以获取到文本框中的值
+                需要修改 标签ID值.value = 值
+    */
+    calculation.onclick = function () {
+        // 获取到参与计算的数字
+        var number1 = Number(num1.value);
+        var number2 = Number(num2.value);
+        // 获取到操作的符号
+        var op = operation.value;
+        console.log(number1)
+        // 判断两个数字是否是数字
+        if (isNaN(number1) || isNaN(number2)) {
+            console.log('数据源错误')
+            return;
+        }
+        // 代码只要执行到这一行绝对可以证明前面的没问题
+        
+        switch (op) {
+            case '+':
+                result.value = number1 + number2;
+                break;
+            case '-':
+                result.value = number1 - number2;
+                break;
+            case '*':
+                result.value = number1 * number2;
+                break;
+            case '/':
+                number2 != 0 && (result.value = number1 / number2);
+                break;
+            default:
+                console.log('非法操作,IP地址已记录，等待后续查房');
+                break;
+        }
+
+    }
+</script>

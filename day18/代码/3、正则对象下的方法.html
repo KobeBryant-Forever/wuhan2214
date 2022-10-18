@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、test 验证字符串是否满足要求
+        var str = 'asb123';
+        var reg = /21/; // 验证字符串中有没有2个字符是12
+        // 使用正则对象调用test方法 传递的参数是需要验证的字符串 返回值为布尔类型
+        console.log(reg.test(str));
+        // 2、exec 匹配字符串 查找满足正则规则的字符串
+        var str2 = 'lanage js  study easy, but js vevry ex';
+        // 在str2字符串中查找js的位置   如果找到了 就得到数组 否则就是null
+        console.log(/js/.exec(str2))
+
+    </script>
+</body>
+</html>

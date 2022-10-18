@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+	/*
+	完成一个三角形打印功能 在页面上显示如下效果
+
+	
+	*
+	* *
+	* * *
+	* * * *
+	* * * * *
+	* * * * * *
+ */
+	for (var i = 1; i <= 6; i++) {
+		// 每次循环是为了输出当前这一行的星号
+		for (var j = 1; j <= i; j++) {
+			document.write('* ')
+		}
+		// document.write('******');
+		document.write('<br/>');
+	}
+</script>
+
+</html>

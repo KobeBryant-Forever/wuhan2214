@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        // 1、创建对象
+        // {}  是字面量方式创建对象 对象中可以存在多个属性(类似数组中元素)，属性区分名称与值 每个属性直接使用逗号分割 属性名称与属性值使用冒号分割，属性名称一般不用使用引号包裹，如果遇到特殊字符可以使用
+        var obj = {
+            height:170,
+            beautiful:true,
+            money:10000,
+            makeUp:function(){
+                console.log('神仙水');
+            }
+        }
+        // 对象使用永远是使用对象下的属性
+        // 对象使用属性常规格式 变量名.属性名称
+        obj.money -= 1;
+        console.log(obj.height);
+        // 属性值为函数 继续调用即可
+        obj.makeUp()
+        console.log(obj);   
+
+        // 2、new 方式
+        // js语言本身提供了内置的构造函数 可以直接new
+        var o = new Number(10);//内置的数字构造函数
+        console.log(o+10)
+        // 内置还存在很多的构造函数 例如 Array、String 、Object等
+
+        // 3、获取dom对象。浏览器本身已经为页面上每一个标签都分配了一个对象
+        // 使用btn变量由于没有，自动到页面上寻找对应标签的dom对象(以id值) 此方式不是常规做法，需要注意名称
+        console.log(btn);
+        btn.onclick = function(){
+            btn.innerHTML = 'change'
+        }
+    </script>
+</body>
+</html>

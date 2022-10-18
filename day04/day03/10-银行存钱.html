@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 某人在银行有50000元存款。银行每月都要收取服务费，存款大于5000元时每个月收取总额的5%，总额不大于5000元的时候不收服务费；假设这个人存了以后从来都不用，用循环计算银行要扣这个人的手续费能扣多少次？每次扣取后剩余多少钱？
+
+    var money = 50000;
+
+    var number = 0;
+
+    while (true) {
+        number++;
+        money *= 0.95;
+        console.log('余额'+money)
+        if (money <= 5000) {
+            console.log('一共可以扣除' + number)
+            break;
+        }
+    }
+</script>
+
+</html>

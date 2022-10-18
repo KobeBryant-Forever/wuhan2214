@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" data-id="12345">
+        <!-- 注释内容 -->b
+        <strong>黄金大神</strong>c
+    </div>
+</body>
+</html>
+<script>
+    var appDom = document.querySelector('#app');
+    // dom下childNodes 表示获取到元素下的所有的子节点
+    console.log(appDom.childNodes)
+    // dom下的attributes 表示获取到节点上所有属性
+    console.log(appDom.attributes)
+    // 每一个节点本身都是一个对象，并且对象的属性各不相同，节点属性是介绍个共有的属性
+    // 1、nodeName 节点的名称
+    console.log(appDom.childNodes[0].nodeName);//文本节点名称 #text
+    console.log(appDom.childNodes[1].nodeName);//注释节点 #comment
+    console.log(appDom.childNodes[3].nodeName);//元素节点 STRONG   得到的是标签名称 并且是大写的
+    console.log(appDom.attributes[0].nodeName);//属性节点 属性名称
+    // 2、nodeType 节点的类型
+    console.log(appDom.childNodes[0].nodeType);//文本节点3
+    console.log(appDom.childNodes[1].nodeType);//注释节点 8
+    console.log(appDom.childNodes[3].nodeType);//元素节点 1
+    console.log(appDom.attributes[0].nodeType);//2
+    // 3、nodevalue 节点的值
+    console.log(appDom.childNodes[0].nodeValue);//文本节点 文本内容
+    console.log(appDom.childNodes[1].nodeValue);//注释节点 注释内容
+    console.log(appDom.childNodes[3].nodeValue);//元素节点 null
+    console.log(appDom.attributes[0].nodeValue);// 属性节点的值 属性值
+</script>

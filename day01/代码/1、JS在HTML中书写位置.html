@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1、行内方式 -->
+    <!-- onclick属性表示当用户点击按钮时执行什么js代码 -->
+    <!-- alert 是系统中内置的函数 可以用于实现弹出显示指定的内容 alert需要弹出的是数字 不用使用''包裹-->
+    <button onclick="alert('按钮被点击了')">按钮</button>
+    <!-- href属性中 javascript:; 表示要执行js代码 :与;之间指定代码，如果不指定 就表示空代码-->
+    <a href="javascript:alert('点击a标签');">百度一下</a>
+
+    <!-- 2、内嵌方式 -->
+    <button id="btn">按钮2</button>
+</body>
+</html>
+<!-- 如果需要操作页面上的元素 一定要获取到dom对象 不常规的做法就是直接 标签的id值 -->
+<script>
+    btn.onclick  = function(){
+        alert('按钮2倍点击了')
+    }
+</script>
+<!-- 3、外联方式 使用script标签中src属性指定文件地址 地址正确 可以正常按照js的语法执行代码 一旦使用src属性 script标签中任何代码都无效-->
+<script src="./base.js">
+alert('ok');
+</script>

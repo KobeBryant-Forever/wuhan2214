@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .big {
+            width: 300px;
+            height: 20px;
+            border: 1px solid #eee;
+        }
+
+        .small {
+            width: 0;
+            height: 20px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+        <div class="small" style="width: 0px;">
+
+        </div>
+    </div>
+    <input type="button" class="start" value="上传">
+    <input type="button" class="stop" value="暂停">
+    <input type="button" class="continue" value="继续">
+    <input type="button" class="zero" value="清空">
+    <script>
+        var timer;
+        var bigDom = document.querySelector('.big');
+        var smallDom = document.querySelector('.small');
+        document.querySelector('.start').onclick = go;
+
+        // 暂停
+        document.querySelector('.stop').onclick = function () {
+            clearInterval(timer);
+        }
+        // 继续
+        document.querySelector('.continue').onclick = go;
+        // 清空
+        document.querySelector('.zero').onclick = function () {
+            clearInterval(timer);
+            smallDom.style.width = 0;
+        }
+
+        function go() {
+            // 获取big的宽度
+            var bigWidth = parseInt(window.getComputedStyle(bigDom).width);
+            timer = setInterval(function () {
+                // 获取small的宽度  parseInt因为取出的是字符串并且携带者px单位
+                var width = parseInt(window.getComputedStyle(smallDom).width);
+                if (width >= bigWidth) {
+                    clearInterval(timer)
+                } else {
+                    smallDom.style.width = width + 5 + 'px'
+                }
+            }, 200);
+        }
+    </script>
+</body>
+
+</html>

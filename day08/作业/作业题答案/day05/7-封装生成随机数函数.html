@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装函数生成指定区间的随机整数 Math.random()生成0-1之间的一个小数 不包括1
+
+        function randomNumber(min, max) {
+            // 如果需要包含结束位置 可以在(max-min)后+1
+            return parseInt(Math.random() * (max - min)) + min;
+        }
+        console.log(randomNumber(1, 10));
+    </script>
+</body>
+
+</html>

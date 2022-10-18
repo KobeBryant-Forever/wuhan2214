@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装一个函数 计算指定区间的质数个数  例如 100-200之间有多少个质数
+        function number(min, max) {
+            var count = 0
+            for (var i = min; i < max; i++) {
+                isZs(i) && count++;
+            }
+            return count;
+        }
+
+        // 计算指定的数字是否是质数
+        function isZs(n) {
+            if (n <= 2) {
+                return false;
+            }
+            for (var i = 2; i < n; i++) {
+                if (n % 2 == 0) {
+                    // 证明目前不是质数
+                    return false;
+                }
+            }
+            // 代码执行到这一行绝对证明前面没有出尽
+            return true;
+        }
+    </script>
+</body>
+
+</html>

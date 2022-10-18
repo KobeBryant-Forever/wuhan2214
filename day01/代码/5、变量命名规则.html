@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、变量命名规则
+        // 1.1、js中是严格区分大小写
+        var age = 20;
+        // Uncaught ReferenceError: Age is not defined 表示 Age变量没有创建
+        // console.log(Age);
+        // 1.2、变量名称只能使用0-9、a-z、 A-Z、$、_区间的字符 其他的一律不能使用，并且数字还不能作为开头部分
+        // var ！@#  使用了其他的字符作为变量  错误
+        // var 0name 数字开头作为变量名称 错误
+        var name0;//正常
+        var $_name;//正常
+        // 1.3、不要使用中文作为变量名称(非必须)
+        // var 姓名 = '盖伦';
+        // console.log(姓名);
+        // 1.4、不能使用内置的关键字与保留字
+        // 关键字 就是系统内置需要使用的 例如var 、if、eles、for等等 保留字就是系统预留后期要使用的名称
+        // 2、变量命名规范
+        // 2.1、使用语义化的单词作为变量名称
+        // var a = 20; a 变量不知道存储什么数据 所以不推荐
+        // var b = 30;
+        // 2.2、变量名称使用驼峰式或者_风格
+        // 例如存储用户信息 小驼峰 userInfo  大驼峰UserInfo _风格user_info
+
+    </script>
+</body>
+</html>

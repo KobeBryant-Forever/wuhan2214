@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //1、while循环基本使用
+        // 创建计数器
+        var number = 0;
+        while (number < 10) {
+            console.log('我喜欢编程');
+            number++; //记录输出的次数加1
+        }
+
+        // 2、计算1-10的和
+        // sum变量保存最终结果 1-10的和可以看做 将1与sum相加，2与sum相加.....
+        var sum = 0;
+        var i = 1; //循环的计数器
+        while (i <= 10) {
+            sum = sum + i;
+            i++;
+        }
+        console.log(sum)
+    </script>
+</body>
+
+</html>

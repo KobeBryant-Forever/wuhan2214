@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、局部作用域
+        function fn(){
+            // a变量是在函数体中创建的变量 所以是局部
+            var a = 10;
+        }
+        fn();
+        // console.log(a);
+        // 2、全局作用域
+        // number变量相对于fn函数就是全局变量
+        var number = 20;
+        function fn2(){
+            // 现在使用的number 不是局部作用域下的变量 而是全局  因为他没有var 创建变量的过程
+            number = 30;
+        }
+        // 3、函数是可以嵌套的
+        function fn3(){
+            var i = 1;
+            // 创建了一个fn4的变量 并且值为堆区的地址  堆区中记录函数代码
+            // fn4 就是一个局部变量 一旦fn3调用完毕 fn4默认情况下就需要销毁。所以一般 嵌套的函数 出了作用域都是无法访问
+            function fn4(){
+                var n = 10;
+            }
+        }
+
+        fn3();
+        
+    
+
+        
+
+    </script>
+</body>
+</html>

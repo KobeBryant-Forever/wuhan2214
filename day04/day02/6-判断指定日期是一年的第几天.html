@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 根据一个数字日期，判断这个日期是这一年的第几天 例如： 20160611，计算后结果为42 循环写
+    var date = prompt("请输入数字日期：");
+    // 提取出年份
+    var year = parseInt(date / 10000);
+    // 提取月份
+    var month = parseInt((date - year * 10000) / 100);
+    // 提取日期 
+    var day = (date - year * 10000) % 100;
+    for (var i = 1; i < month; i++) {
+        switch (i) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                day += 31;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                day += 30;
+                break;
+            case 2:
+                day += ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) ? 29 : 28;
+                break;
+            default:
+                break;
+        }
+    }
+
+    console.log('天数'+day);
+</script>
+
+</html>

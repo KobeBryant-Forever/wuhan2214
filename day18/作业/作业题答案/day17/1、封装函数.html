@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="btn">按钮</button>
+    <button class="remove">解除</button>
+
+    <script>
+        function fn() {
+            console.log('click')
+        }
+        document.querySelector('.btn').addEventListener('click', fn)
+        document.querySelector('.remove').onclick = function () {
+            unbindEvent(document.querySelector('.btn'), 'click', fn)
+        }
+        // 将监听方式的解绑封装成为函数
+        function unbindEvent(dom, typeName, functionName) {
+            try {
+                dom.removeEventListener(typeName, functionName);
+            } catch (error) {
+                dom.detachEvent('on' + typeName, functionName)
+            }
+        }
+    </script>
+</body>
+
+</html>

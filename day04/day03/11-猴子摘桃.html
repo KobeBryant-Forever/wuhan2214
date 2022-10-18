@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 猴子偷桃，猴子摘了x个桃，每天吃一半，再多吃一个，第7天吃的时候剩下一个了，猴子摘了多少桃子？
+    /*
+        已知第七天有1个
+        第六天 y/2-1 = 1   y = (1+1) * 2=>4
+        第五天  z =  (4+1) * 2=> 10
+    */
+    var total = 1;
+    for (var i = 6; i > 0; i--) {
+        // 每次循环 计算当前天数的个数 覆盖 方便下次计算
+        total = (total + 1) * 2;
+        console.log('第' + i + '天：' + total)
+    }
+</script>
+
+</html>

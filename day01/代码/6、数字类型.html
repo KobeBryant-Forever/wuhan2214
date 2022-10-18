@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、整数
+        var n1 = 10;
+        // js中一个变量 可以存储任意数据类型的数据(弱类型语言)
+        n1 = "hello world";
+        console.log(n1);
+        var n2 = 20;
+        // typeof属于内置的关键字 可以检查变量的数据类型（未必准确）也可以使用typeof 变量  进行检查
+        var res = typeof (n2); //等价于 var res = typeof n2
+        console.log(res); //number 表示是数字类型(n是小写)
+
+        var n3 = -100;
+        var res2 = typeof n3;
+        console.log(res2); //number
+        // 2、小数
+        var number1 = 0.1;
+        var number2 = 0.2;
+        // 将number1变量的值与number2变量的值进行加法运算 最终将结果赋值给res3变量
+        var res3 = number1 + number2;
+        console.log(res3); //0.30000000000000004 按照数学的运算  确实是0.3但是计算机中没有小数概念 所以小数都是模拟的，所以存在精度问题
+        var res4 = res3.toFixed(2); //toFixed 数字中内置的方法 可以实现对小数保留指定位数的小数点
+        console.log(res4);
+
+        // 如果真的追求精度问题 可以选择将单位下降到正数
+        // 3、NaN  NOT IS A Number 不是数字 但是是数字类型 表示着一个无法表示的数字
+        var number4 = 10;
+        var str = "hello";
+        var res5 = number4 * str;
+        console.log(res5);//NaN
+        // 将typeof res5的结果进行输出
+        console.log(typeof res5);//number
+        // 4、数字的范围
+        console.log('最大值',Number.MAX_VALUE);//最大值
+        console.log('最小值',Number.MIN_VALUE);
+        console.log('最大的安全整数',Number.MAX_SAFE_INTEGER);
+        console.log('最小的安全整数',Number.MIN_SAFE_INTEGER);
+        console.log(Infinity);//正无穷数
+        console.log(-Infinity);//负无穷数
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 先创建number变量 然后在使用变量保存10
+
+        var number = 10;
+        // 变量赋值永远是将变量中栈区存储的值赋值给另外一个变量
+        var n = number;
+        
+        n = 20;
+        
+        console.log(number);
+
+
+        // 2、引用类型
+
+        var arr = [1,2,3];
+
+        var tmp = arr;
+
+        // arr[0] = 100;
+
+        // console.log(tmp);
+
+        arr = [2,3,4];
+        
+        console.log(tmp);
+    </script>
+</body>
+
+</html>

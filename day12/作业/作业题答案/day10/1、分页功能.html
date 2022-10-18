@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="page">
+
+    </div>
+    <script>
+        var total = 105; //数据总条数
+        var perPage = 10; //每页显示的条数
+        // 已知内容条数，和每页展示的条数，编程输出所有页码的html内容到id为page的div中
+        // 计算总页数
+        var totalPage = Math.ceil(total / perPage);
+        var html = '';
+        for (var i = 1; i <= totalPage; i++) {
+            html += `<a href="">${i}</a>`
+        }
+        document.querySelector('#page').innerHTML = html;
+    </script>
+</body>
+
+</html>

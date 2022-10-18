@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、获取对象 不传递参数
+        var d = new Date();
+        // new Date得到的确实是一个日期时间对象 默认不传递参数 就表示当前时间对象，但是在控制台进行输出时 会将对象调用toString方法转换为字符串进行了输出
+        console.log(d)
+        console.log(typeof d);
+        console.log(d instanceof Date);
+        // 2、获取对象传递多个参数，参数分别表示 年、月、日、时、分、秒
+        // 日期对象月份 是按照国外的表示方式 国内使用1-12 表示国外是0-11表示
+        var d = new Date(2021,9,23,23,23,23);
+        var d = new Date(2021,9,23);
+        // 自我修正
+        d = new Date(2022,2,35);
+        
+        // 3、获取对象传递一个字符串
+        d = new Date('2022-12-13');
+        d = new Date('2022/12/13');
+        d = new Date('2022.12.13');
+        console.log(d);
+
+    </script>
+</body>
+</html>

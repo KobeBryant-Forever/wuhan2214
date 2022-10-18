@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 模式是对正则表达式 进行额外的控制
+        // i  正则表达式 默认区分大小写 使用i模式就可以忽略大小写
+        console.log(/a/.test('Abc'))
+        console.log(/a/i.test('Abc'))
+        
+        // g 正则表达式中存在贪懒模式 默认情况匹配到第一个结束 g限制全局匹配
+        var str = 'lanage js  study easy, but js vevry ex';
+        var reg = /js/g
+        // 当存在g模式时 将第一次找到的结果保存到正则对象中 下次调用就继续向后寻找
+        console.log(reg.exec(str))
+        console.log(reg.exec(str))
+
+        console.log(/js/g.exec(str))
+        console.log(/js/g.exec(str))
+        
+        // gi 全局并且不区分大小写
+
+    </script>
+</body>
+</html>

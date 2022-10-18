@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、形参比实参多的情况
+        function fn1(a, b, c) {
+            // var a = 10;
+            // var b = 20;
+            // var c
+            console.log(a, b, c); //10,20 undefined
+        }
+        fn1(10, 20);
+        // 2、形参比实参少
+        function fn2(a) {
+            // var a = 10;
+            // 无法使用到实参20
+            console.log(a);
+        }
+        fn2(10, 20);
+        // 一般自己封装函数时 形参与实参的个数对应
+        // 3、计算任意个数的参数的和
+        function sum() {
+            // 可变参数 就是函数在执行时系统内部会存在一个arguments变量
+            // arguments变量中存放着所有的实参数据 并且格式为一个伪数组
+            // console.log(arguments);
+            var total = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                total += arguments[i];
+            }
+            console.log(total)
+
+        }
+        sum(1, 2, 3, 4, 5, 6)
+    </script>
+</body>
+
+</html>

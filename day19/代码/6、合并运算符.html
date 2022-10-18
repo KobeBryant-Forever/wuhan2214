@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 合并运算符也是... 只可能出现在函数的形参上
+        // 所有参数进行合并
+        // ...args 当调用函数时 将函数中所有参数合并 成为一个数组 赋值给args
+
+        let fn = (...args) => {
+            console.log(args);
+        }
+        fn(1, 2, 3, 4, 5)
+
+        // 第一个参数是固定的 后面传递多少个不确定
+        // 将第一个实参赋值给type  在将其他的实参 组合成为数组赋值给args变量
+        let fn2 = (type, ...args) => {
+            console.log(type, args)
+        }
+        fn2('add', 1, 2, 3, 4, 5)
+
+        // 这里的三个点 表示合并
+        let max = (...args) => {
+            let max = 0;
+            args.forEach(item => {
+                if (item > max) {
+                    max = item;
+                }
+            })
+            return max;
+        }
+        // 计算最大值时传递数组
+        let data = [38, 27, 100, 2];
+        // 这里的三个点 表示展开
+        console.log(max(...data));
+        // ... 只有在函数形参上是表示合并  其他的位置表示展开
+    </script>
+</body>
+
+</html>

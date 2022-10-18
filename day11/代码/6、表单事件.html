@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="mobile" id="mobile">
+    <script>
+        // 1、焦点事件
+        // 获取焦点就是将鼠标放入到输入框  失去焦点将鼠标从输入框中移除
+        document.getElementById('mobile').onfocus= function(){
+            console.log('获取到焦点')
+        }
+        document.getElementById('mobile').onblur= function(){
+            console.log('失去焦点')
+            // 获取到当前输入框中所输入的内容
+            console.log(document.getElementById('mobile').value);
+            // 动态绑定事件中 函数事件触发后是系统调用，指向到当前事件源的dom对象
+            console.log(this);
+            console.log(this.value);
+        }
+    </script>
+
+    <input type="text" class="nickname" >
+
+    <script>
+        var inputDom = document.querySelector('.nickname');
+        // 设置默认提示
+        inputDom.value = '输入昵称';
+        inputDom.onfocus = function(){
+            // 设置可以输入
+            this.value == '输入昵称' && (this.value = '');
+        }
+        inputDom.onblur = function(){
+            !this.value && (this.value = '输入昵称')
+        }
+    </script>
+
+    <select>
+        <option>请选择省</option>
+        <option>湖北省</option>
+        <option value="1">湖南省</option>
+    </select>
+    <script>
+        // 千万别找所有的option标签 一个个绑定点击事件
+        // 每一次选中的值的改变 其实是select标签的value在变更。所以应该给select标签绑定onchange事件
+        document.querySelector('select').onchange = function(){
+            // 可以这么理解 每次当选中一个option 自动将这个option标签的value值赋值给select标签 如果option没有value属性就使用option包裹的内容
+            console.log(this.value)
+        }
+    </script>
+
+    <input type="text" class="keyword">
+    <script>
+        // 每次输入修改内容都会触发input事件
+        document.querySelector('.keyword').oninput = function(){
+            console.log(this.value);
+        }
+    </script>
+
+    <!-- enctype 表示表单提交数据的格式 form表单 本质是在实现发送请求 -->
+    <form action="" method="" enctype="application/x-www-form-urlencoded">
+        <input type="submit" value="submit">        
+    </form>
+    <script>
+        // 一旦表单准备提交 立马会自动去执行该事件，可以在事件中对数据进行格式验证
+        document.querySelector('form').onsubmit = function(){
+            console.log('form表单天生就要跳转到其他的地址 这个叫做默认行为')
+            // 是为了阻止默认行为
+            return false;
+        }
+    </script>
+</body>
+</html>

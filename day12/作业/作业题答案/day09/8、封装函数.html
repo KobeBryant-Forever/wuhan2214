@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 可选
+        // 将 forEach、map、filter、every、some内置的函数 自己封装
+        // map方法封装
+        function map(array, callback) {
+            var result = [];
+            for (var i = 0; i < array.length; i++) {
+                array[i]
+                result.push(callback(array[i], i));
+            }
+            return result;
+        }
+
+        console.log(map([1, 2, 3], function (item) {
+            return item + 2;
+        }));
+        // filter方法的封装
+        function filter(array, callback) {
+            var result = [];
+            for (var i = 0; i < array.length; i++) {
+                callback(array[i], i) && result.push(array[i])
+            }
+            return result;
+        }
+        var res = filter([60, 55, 80], function (item) {
+            return item >= 60;
+        });
+        console.log(res);
+
+        // 封装every方法
+        function every(array, callback) {
+            for (var i = 0; i < array.length; i++) {
+                // 只要有一个元素不满足要求就返回false
+                if(!callback(array[i], i)){
+                    return false;
+                }
+            }
+            return true;
+        }
+        var res = every([60,100,80],function(item){
+            return item>=60;
+        })
+
+        // 封装some方法
+        function some(array, callback) {
+            for (var i = 0; i < array.length; i++) {
+                // 只要有一个满足要求 就成立
+                if(callback(array[i], i)){
+                    return true;
+                }
+            }
+            return false;
+        }
+        var res = some([60,100,80],function(item){
+            return item==100;
+        })
+        console.log(res);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、创建函数做了什么
+        function fn(){
+            console.log('fn');
+        }
+        // 函数名称 与函数名称()区别
+        // 没有括号表示直接使用函数地址，有括号表示调用函数
+        console.log(fn)
+        // 看到有输出结果，说明目前(当前作用域)存在一个叫做fn的变量
+        // 声明式 函数名称就是变量名称。赋值式本质上就与声明式没有区别的
+        // 一旦创建(声明/赋值)函数 都会将函数代码存储到堆区，并且在栈区中创建函数名称同名变量并且记录堆区的地址
+
+        // 2、调用函数做了什么
+        // 2.1、先根据fn函数找到函数代码的位置
+        // 2.2、形参赋值(形参赋值之前先创建执行环境 后面介绍)，
+        // 2.3、进行预解析操作(后面介绍)
+        // 2.4、执行代码
+        fn()
+        // 基本类型 创建name变量并且栈区赋值为内容
+        var name = 'zhangsan';
+        // 创建fn2变量，赋值为一个函数，栈区中存储函数地址
+        // 所以 每次写function(){} 就是一个内存地址
+        var fn2 = function(){
+            console.log('fn2');
+        }
+    </script>
+</body>
+</html>

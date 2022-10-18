@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 输入分数，判定成绩等级(if和switch两种写法) ---- 0~60不及格 60~70及格 70~80丙 80~90乙 90~100甲
+    var s = 90;
+
+    // if (s >= 0 && s < 60) {
+    //     console.log('不及格');
+    // } else if (s >= 60 && s < 70) {
+    //     console.log('及格');
+    // } else if (s >= 70 && s < 80) {
+    //     console.log('丙');
+    // } else if (s >= 80 && s < 90) {
+    //     console.log('乙');
+    // } else if (s >= 90 && s <= 100) {
+    //     console.log('甲');
+    // }
+
+    // if (s < 60) {
+    //     console.log('不及格');
+
+    // } else if (s < 70) {
+    //     // 省略了 s>=60的条件 一旦执行到31行的表达式 绝对可以证明 s比60要大
+    //     console.log('及格');
+    // } else if (s < 80) {
+    //     console.log('丙');
+    // } else if (s < 90) {
+    //     console.log('乙');
+    // } else if (s <= 100) {
+    //     console.log('甲');
+    // }
+    switch(parseInt(s/10)){
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:    
+            console.log('不及格');
+            break;
+        case 6:
+        console.log('及格');
+            break;
+        case 7 :
+            console.log('丙');
+            break;
+        case 8:
+            console.log('乙');
+            break;
+        case 9:
+        case 10:
+            console.log('甲');
+            break;
+    }
+</script>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //假设上传商品图片的应用场景，需要判断上传文件后缀是图片类型
+        var str = "a.a.a.a.jepg"
+        // 可以支持的后缀
+        var allowExt = ['jpg','png'];
+        // 寻找str中最后一个.符号的位置
+        var index = str.lastIndexOf('.')
+        console.log(index);
+        // 从字符串中提取后缀
+        var ext = str.substr(index+1);
+        if(allowExt.indexOf(ext) == -1){
+            // 不存在 
+            console.log('文件格式错误')
+        }else{
+            console.log('ok')
+        }
+
+        console.log(allowExt.includes(ext))
+    </script>
+</body>
+</html>

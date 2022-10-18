@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 行内绑定就是在标签上 设置事件相关 -->
+    <button onclick="console.log('我想买奔驰')">按钮</button>
+    <!-- 行内绑定一般使用很少，如果使用也不会直接在标签上使用js代码。如果用会在标签上指定调用函数使用 -->
+    <button onclick="buyCar()">按钮2</button>
+    <script>
+        function buyCar(){
+            console.log('宝马还是奔驰呢?');
+        }
+    </script>
+</body>
+</html>

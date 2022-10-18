@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width: 100px; height: 100px; background-color: thistle;}
+        .two{ width: 200px; height: 400px; margin-top: 200px;}
+        .three{width: 200px; height: 400px; margin-top: 200px;}
+    </style>
+</head>
+<body>
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <script>
+        document.querySelector('.one').onclick = function(event){
+            // 获取到鼠标点击相对于元素左上角的位置
+            // 元素的左上角为坐标圆点
+            console.log(event.offsetX,event.offsetY)
+        }
+        document.querySelector('.two').onclick = function(event){
+            // 以浏览器的左上角为圆点 计算的坐标点
+            console.log(event.clientX,event.clientY)
+        }
+        document.querySelector('.three').onclick = function(event){
+            // 以文档的左上角为坐标原点
+            console.log(event.pageX,event.pageY)
+        }
+    </script>
+</body>
+</html>

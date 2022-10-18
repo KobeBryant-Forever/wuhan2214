@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、打印100以内7的倍数
+        for (var i = 1; i <= 100; i++) {
+            // 每次循环 i虽然是计数器 但是可以表示出要计算的数字
+            if (i % 7 == 0) {
+                console.log(i);
+            }
+        }
+        // 2、计算1～100之间所有奇数的和
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 2 != 0) {
+                sum += i;
+            }
+        }
+        console.log('奇数和:' + sum);
+
+        // 3、入职薪水10K，每年涨幅5%，第50年工资多少
+        var money = 10000;
+        for (var i = 1; i <= 50; i++) {
+            money = money * 1.05;
+        }
+        console.log('50年后的薪资' + money);
+
+        // 4、计算1000～2000之间的闰年（每行四个，打印到页面）
+        // 4.1、计算指定的年份是否是闰年
+        var year = 1000;
+        // 闰年的条件  (能够整除4 并且 不能整除100) 或者 可以整除400的
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            console.log('是闰年');
+        }
+        // 4.2、判断指定区间的
+        for (var year = 1000; year <= 2000; year++) {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                document.write(year + ' ');
+            }
+        }
+        // 4.3、每4个换行
+        var number = 0; //记录目前找到的是第几个闰年
+        for (var year = 1000; year <= 2000; year++) {
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                number++;
+                document.write(year + ' ');
+                if (number % 4 == 0) {
+                    document.write('<br/>');
+                }
+
+            }
+        }
+        // 5、计算100～999之间的水仙花数
+        // 5.1、计算指定数字是否是水仙花
+        var j = 153;
+        // 提取数字的个位、十位、百位
+        var b = parseInt(j / 100);
+        var s = parseInt((j - b * 100) / 10);
+        var g = j % 10;
+        if (b * b * b + s * s * s + g * g * g == j) {
+            console.log(j + '是水仙花数')
+        }
+
+        // 5.2、计算指定区间的
+        for (var j = 100; j <= 999; j++) {
+            var b = parseInt(j / 100);
+            var s = parseInt((j - b * 100) / 10);
+            var g = j % 10;
+            if (b * b * b + s * s * s + g * g * g == j) {
+                console.log(j + '是水仙花数')
+            }
+        }
+        // 6、输出 9*9表格
+        // 6.1、输入9个tr 
+        // var str = '<table>';
+        // for(var i = 0;i<9;i++){
+        //     str+='<tr></tr>';
+        // }     
+        // str+='</table>';
+
+        // 6.2、输出 每个tr9个td
+        var str = '<table>';
+        for (var i = 0; i < 9; i++) {
+            str += '<tr>'
+            for (var j = 0; j < 9; j++) {
+                str += '<td></td>';
+            }
+            str += '</tr>';
+        }
+        str += '</table>';
+        document.write(str);
+    </script>
+</body>
+
+</html>

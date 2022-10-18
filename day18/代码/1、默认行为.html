@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- a标签阻止默认行为方式1 直接在href上使用js代码 -->
+    <a href="javascript:;">百度一下</a>
+    <a href="" class="asecond">a的默认行为</a>
+    <a href="" class="athree">通用方式</a>
+
+    <form action="http://www.baidu.com">
+        <input type="submit" value="submit">
+    </form>
+    <script>
+        // a标签阻止默认行为方式2  动态绑定是 可以返回false
+        document.querySelector('.asecond').onclick = function(){
+            // undefined.a;
+            console.log(123)
+            // 此方式阻止默认行为 前提是前面代码不能有报错
+            return false
+        }
+        document.querySelector('.athree').onclick = function(event){
+            console.log(123)
+            // 此方式是通用型的 a标签与form标签通用
+            event.preventDefault();
+        }
+        document.querySelector('form').onclick = function(event){
+            console.log(123)
+            // 此方式是通用型的 a标签与form标签通用
+            event.preventDefault();
+        }
+    
+    </script>
+</body>
+</html>

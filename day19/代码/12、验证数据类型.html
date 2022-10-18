@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object 是内置的最大的一个对象  prototype表示原型
+        // toString 是原型下的内置方法
+        // 返回的结果是字符串 并且左右括号都有
+        console.log(Object.prototype.toString.call(10));//[object Number]
+        console.log(Object.prototype.toString.call('leo'));//[object String]
+        console.log(Object.prototype.toString.call(true));//[object Boolean]
+        console.log(Object.prototype.toString.call(undefined));//[object Undefined]
+        console.log(Object.prototype.toString.call(null));//[object Null]
+        console.log(Object.prototype.toString.call([]));//[object Array]
+        console.log(Object.prototype.toString.call({}));//[object Object]
+        console.log(Object.prototype.toString.call(/12/));//[object RegExp]
+        console.log(Object.prototype.toString.call(function(){}));//[object Function]
+        function fn(a){
+            if(Object.prototype.toString.call(a) != '[object Array]'){
+                throw new Error('形参a必须传递数组')
+            }
+        }
+        // fn(10)
+    </script>
+</body>
+</html>

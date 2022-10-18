@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 由于数组每一个元素没有约束 可以再次嵌套数组，这个叫做多维数组
+        var arr = [
+            ['a', 'b', 'c'],
+            ['d', 'e', 'f'],
+            ['g', 'h', 'i']
+        ];
+        // 获取第一个维度上的元素值 直接使用数组变量名称[下标]
+        console.log(arr[0]);
+        // 获取第二个维度上元素值 变量名称[第一个维度的下标]
+        console.log(arr[0][1]);
+        // 二维数组的遍历 维度有多少层 就需要多少个循环嵌套
+        for (var i = 0; i < arr.length; i++) {
+            // 需要考虑 可能 当前元素不是数组
+            // arr[i] 表示第一个维度上的元素 还是数组
+            for (var j = 0; j < arr[i].length; j++) {
+                console.log(arr[i][j]);
+            }
+        }
+        
+        // 创建二维数组
+        // var arr2 = [];
+        // arr2[0] = ['a','b','c']
+
+        // instanceof 判断遍历是否为指定的构造函数的对象
+        // var n = 10
+        // console.log( n instanceof Number);//false  不太准确
+        // console.log(new Number(10) instanceof Number)
+        // console.log([] instanceof Array);
+    </script>
+</body>
+
+</html>

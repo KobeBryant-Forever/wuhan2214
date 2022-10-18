@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .big{width: 300px; height: 300px;overflow: scroll;}
+        .small{width: 600px; height: 600px;}
+    </style>
+</head>
+<body>
+    <div class="big">
+        <div class="small">
+
+        </div>
+    </div>
+    <button>按钮</button>
+    <script>
+        var bigDom  = document.querySelector('.big');
+        document.querySelector('button').onclick = function(){
+            console.log('内容的宽度：',window.getComputedStyle(bigDom).width)
+            // scrollWidth/scrollHeight 获取完整的尺寸 没有px单位
+            console.log('完整的宽度：',bigDom.scrollWidth)
+            console.log('左侧的滚动距离:',bigDom.scrollLeft)
+        }
+        // 公司 滚动距离+内容的尺寸 = 完整尺寸 这个条件成立 就证明滚动条到底
+        bigDom.onscroll = function(){
+            // 有可能 自己测试的时候 发现无法达到的这个条件 由于屏幕dpi显示原有导致
+            if( parseInt(window.getComputedStyle(bigDom).height) + bigDom.scrollTop == bigDom.scrollHeight){
+                console.log('滚动到底部')
+            }
+        }
+    </script>
+</body>
+</html>

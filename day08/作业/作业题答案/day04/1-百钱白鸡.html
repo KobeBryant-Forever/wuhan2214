@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            公鸡2文，母鸡1文，小鸡半文，每种至少一只，100文买100只鸡有多少可能性
+            思路：假如公鸡x个  母鸡y个 小鸡z个  最终 x*2+y+z/2=100  x+y+z = 100 
+            // 两个条件 只能逐个测试 例如 x=1 y = 1 z = 1
+            //                          x=1 y = 1 z = 2
+            //                          x=1 y = 1 z = 3
+            //                          x=1 y = 2 z = 1
+        */
+        for (var x = 1; x < 50; x++) {
+            for (var y = 1; y < 100; y++) {
+                for (var z = 1; z < 100; z++) {
+                    if (x * 2 + y + z / 2 == 100 && x + y + z == 100) {
+                        console.log('公鸡' + x + '母鸡' + y + '小鸡' + z);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>  
+    <div id="tab" class="calendar">  
+        <ul>  
+            <li class="active"><h2>1</h2><p>1月</p></li>  
+            <li><h2>2</h2><p>2月</p></li>  
+            <li><h2>3</h2><p>3月</p></li>  
+            <li><h2>4</h2><p>4月</p></li>  
+            <li><h2>5</h2><p>5月</p></li>  
+            <li><h2>6</h2><p>6月</p></li>  
+            <li><h2>7</h2><p>7月</p></li>  
+            <li><h2>8</h2><p>8月</p></li>  
+            <li><h2>9</h2><p>9月</p></li>  
+            <li><h2>10</h2><p>10月</p></li>  
+            <li><h2>11</h2><p>11月</p></li>  
+            <li><h2>12</h2><p>12月</p></li>  
+        </ul>  
+        <div class="text">  
+        </div>  
+              
+    </div>  
+    </body>
+    <style type="text/css">  
+    * { padding: 0;margin: 0; }  
+      
+    li { list-style: none; }  
+      
+    body { background: #f6f9fc; font-family: arial; }  
+      
+    .calendar { width: 210px;  
+                margin: 50px auto 0;   
+                padding: 10px 10px 20px 20px;   
+                background: #eae9e9; }  
+                  
+    .calendar ul { width: 210px;   
+                   overflow: hidden;   
+                   padding-bottom: 10px; }  
+                     
+    .calendar li { float: left;  
+                   width: 58px;   
+                   height: 54px;   
+                   margin: 10px 10px 0 0;   
+                   border: 1px solid #fff;   
+                   background: #424242;  
+                   color: #fff;   
+                   text-align: center;   
+                   cursor: pointer; }  
+                     
+    .calendar li h2 { font-size: 20px; padding-top: 5px; }  
+      
+    .calendar li p { font-size: 14px; }  
+      
+    .calendar .active { border: 1px solid #424242;  
+                        background: #fff;  
+                        color: #e84a7e; }  
+                          
+    .calendar .active h2 { }  
+      
+    .calendar .active p { font-weight: bold; }  
+      
+    .calendar .text { width: 178px;   
+                      padding: 0 10px 10px;  
+                      border: 1px solid #fff;   
+                      padding-top: 10px;   
+                      background: #f1f1f1;   
+                      color: #555; }  
+                        
+    .calendar .text h2 {font-size: 14px; margin-bottom: 10px; }  
+      
+    .calendar .text p { font-size: 12px; line-height: 18px; }  
+    </style>
+    <script type="text/javascript">  
+         var arr=[  
+                '快过年了，大家一起去放鞭炮咯！',  
+                '马上上学了，不开心！',  
+                '妇女节快乐！',  
+                '很平淡的四月',  
+                '劳动光荣！',  
+                '儿童节快乐！',  
+                '好热的七月!',  
+                '八一建军节!',  
+                '又开学了哎！',
+                '国庆',
+                '单身狗',
+                '圣诞节'  
+            ]; 
+            // 鼠标划入每个li标签 当前划入的 增加特殊的active样式 并且设置 class为text标签中的内容为arr数组中所对应元素的内容
+    </script>
+</html>

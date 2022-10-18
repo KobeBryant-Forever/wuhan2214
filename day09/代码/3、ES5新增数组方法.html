@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、indexOf 从左向右找到第一个元素的索引 返回-1才是没找到
+        var arr = ['a', 'b', 'a', 'e', 'c'];
+        console.log(arr.indexOf('a')); //0 表示找到了
+        console.log(arr.indexOf('o')); //-1 表示没有找到
+
+        // 下面的代码是错误的 一定要与-1比较才可以确定是否真的没找到
+        // if(arr.indexOf('a')){
+        //     console.log('找到了')
+        // }else{
+        //     console.log('没找到')
+        // }
+        // indexOf可以也可以指定开始下标
+        // console.log(arr.indexOf('a',1));
+        var data = [{
+                id: 1
+            },
+            {
+                id: 2
+            },
+            {
+                id: 3
+            }
+        ]
+        console.log(data.indexOf({
+            id: 2
+        })); //-1
+        // 引用类型直接在比较相等 是比较的内存地址是否相等
+        var a = [1, 2];
+        var b = [1, 2]
+        console.log(a == b); //false
+
+        // 2、forEach
+        arr = ['a', 'b', 'a', 'e', 'c'];
+        // 只要调用forEach方法系统会自动的将数组的每一个元素都使用传递的函数进行一次处理，传递的匿名函数时系统在调用，调用时系统会自动传递实参当前元素、与对应的下标
+        arr.forEach(function (item, index) {
+            // console.log(item)
+            // console.log(index);
+            // 后期做什么处理策略 完全自己的匿名函数决定
+            item += 'c';
+            console.log(item);
+            // arr[index] = item+'c'
+        });
+        console.log(arr);
+
+        // 3、map 传递匿名函数 匿名函数中 需要返回一个具体值 最后作为map函数返回的新数组的元素 匿名函数的参数与 forEach一致
+        var score = [100, 110, 150, 120];
+        var res = score.map(function (item, index) {
+            return item * 0.8;
+        })
+        console.log(score);
+        console.log(res);
+        // 4、filter 使用数组 中每一个元素使用匿名函数进行检查，匿名函数每次返回真 该元素保留 否则丢弃
+        score = [100, 110, 150, 120];
+        res = score.filter(function (item, index) {
+            // 返回布尔值 确定元素是否保留
+            return item >= 120
+        })
+        console.log(score, res);
+
+        // 5、some 使用数组中每一个元素 使用匿名函数进行检查，如果有满足的 最终结果为真 否则 为假
+        score = [100, 110, 150, 120];
+        res = score.some(function (item, index) {
+            return item == 150;
+        })
+        console.log(res);
+        // 6、every使用数组中每一个元素 使用匿名函数进行检查，如果所有的元素全部满足 返回真 否则返回假
+        score = [100, 110, 150, 120];
+        res = score.every(function (item, index) {
+            return item >= 120;
+        })
+        console.log(res);
+
+        // 7、reduce(function(previousValue, currentValue, currentIndex, array) { /* … */ }, initialValue)
+        // reduce方法第二个参数表示初始值，如果传递 reduce会从第一个元素开始遍历，并且第一次变量将初始值作为上一次的结果，否则 会越过第一个元素，将第一个元素的值作为第一次变量的上一次结果 
+        console.log('--------------')
+        score = [100, 110, 150, 120];
+        // score.reduce(function(previousValue, currentValue, currentIndex){
+        //     console.log(previousValue, currentValue, currentIndex)
+        // });
+        var res = score.reduce(function (total, value, index) {
+            return total + value;
+        }, 0);
+        console.log(res)
+    </script>
+</body>
+
+</html>

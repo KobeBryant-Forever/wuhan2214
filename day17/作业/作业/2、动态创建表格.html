@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        table tr th,
+        table tr td {
+            border: 1px solid #0094ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="username" />
+        <input type="radio" id="sexOne" name="sex" value="男" />男
+        <input type="radio" id="sexTwo" checked name="sex" value="女" />女
+        <input type="text" id="age" />
+        <button id="add">添加</button>
+    </div>
+    <br />
+    <table cellspacing="0" border="1" width="600px">
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>删除</td>
+        </tr>
+    </table>
+    <script>
+        // 1、先根据数据显示出表格
+        // 2、实现添加数据
+        // 3、实现删除功能
+        var arr = [{
+            name: 'Jack',
+            age: 18,
+            gender: '男'
+        }, {
+            name: 'Rose',
+            age: 20,
+            gender: '女'
+        }, {
+            name: 'Top',
+            age: 22,
+            gender: '男'
+        }];
+    </script>
+</body>
+
+</html>

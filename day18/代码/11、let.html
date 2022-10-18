@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // 1、let 没有预解析
+        // console.log(n)
+        // var n = 10;
+        // // ReferenceError: Cannot access 'm' before initialization
+        // console.log(m)
+        // let m = 10;
+
+        // 2、let创建的变量不会被加入到全局对象下
+        // 会被加入到window对象下
+        var age = 20;
+        // 这个变量不会被加入到window下
+        let age2 = 30;
+        console.log(window)
+
+        // 3、重复声明问题
+        var n1 = 20;
+        var n1 = 30;//不报错，系统会认为执行修改操作
+
+        let n2 = 20;
+        // Identifier 'n2' has already been declared
+        // let n2 = 30;
+        // 4、块级作用域 只要有{} 就是一个单独的作用域 块级作用域的存在 没有改变作用域链
+        {
+            // 块级作用域  在块级作用域中创建的变量 只要离开作用域就失效
+            let n2 = 40
+            console.log(n2);//40
+            console.log(n1);//30
+            var n5 = 20;
+        }
+        
+        console.log(n2);//20
+        console.log(n5)
+
+    </script>
+</body>
+</html>

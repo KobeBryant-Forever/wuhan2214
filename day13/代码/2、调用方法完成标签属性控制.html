@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <font color="red" size="4" >法外狂徒张三</font>
+
+    <input type="checkbox" class="like" >
+    <button class="get">获取</button>
+    <button class="set">设置</button>
+    <button class="remove">删除</button>
+    <script>
+        var fontDom = document.querySelector('font');
+        document.querySelector('.get').onclick = function(){
+            // console.log(fontDom.getAttribute('size'))
+            // // 获取自定义的属性
+            // console.log(fontDom.getAttribute('data-name'))
+
+            console.log(document.querySelector('.like').getAttribute('checked'))
+        }
+        document.querySelector('.set').onclick = function(){
+            fontDom.setAttribute('size',5);
+            // 标签上可以设置以data-开头的属性 都叫做自定义属性，自定义属性是用于保存一些数据 方便后面使用,自定义属性 名称叫做什么 值保存什么内容 都是自定义
+            fontDom.setAttribute('data-name','张三')
+            document.querySelector('.like').setAttribute('checked',true)
+        }
+        document.querySelector('.remove').onclick = function(){
+            fontDom.removeAttribute('data-name')
+        }
+
+
+    </script>
+</body>
+</html>

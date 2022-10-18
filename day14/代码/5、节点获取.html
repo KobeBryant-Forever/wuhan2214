@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        a<li>JavaScript权威指南</li>
+        <li>JavaScript你不知道的事</li>
+        <li>网络是怎么连接的</li>
+        <li>现代操作系统</li></ul>
+    <script>
+        var ulDom = document.querySelector('ul');
+        // 获取到第一个子节点
+        console.log(ulDom.firstChild)
+        //获取到最后一个子节点
+        console.log(ulDom.lastChild)
+        // 获取到下一个兄弟节点
+        console.log(ulDom.firstChild.nextSibling.nextSibling)
+        // 获取上一个兄弟
+        console.log(ulDom.lastChild.previousSibling)
+    </script>
+</body>
+</html>

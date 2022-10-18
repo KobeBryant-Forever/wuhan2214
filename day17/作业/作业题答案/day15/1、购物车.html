@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="cart.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="shoppingBar">
+            <h2>购物清单</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th><input type="checkbox" class="selectAll" title="全选"></th>
+                        <th>商品名称</th>
+                        <th>数量</th>
+                        <th>单价（元）</th>
+                        <th>金额（元）</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="commodity">
+                        <th><input type="checkbox" class="input" value="1"></th>
+                        <th class="content"><img src="img/20201102150701.png" width="100px" height="100px">
+                            <p>电视机 </p>
+                        </th>
+                        <th><button type="button">
+                                -
+                            </button> <span>
+                                1
+                            </span> <button type="button">
+                                +
+                            </button></th>
+                        <th>
+                            200
+                        </th>
+                        <th class="money">
+                            200
+                        </th>
+                        <th><span class="glyphicon glyphicon-remove">删除
+                            </span></th>
+                    </tr>
+                    <tr class="commodity">
+                        <th><input type="checkbox" class="input" value="2"></th>
+                        <th class="content"><img src="img/20201102150701.png" width="100px" height="100px">
+                            <p>洗衣机 </p>
+                        </th>
+                        <th><button type="button">
+                                -
+                            </button> <span>
+                                1
+                            </span> <button type="button">
+                                +
+                            </button></th>
+                        <th>
+                            150
+                        </th>
+                        <th class="money">
+                            150
+                        </th>
+                        <th><span class="glyphicon glyphicon-remove">删除
+                            </span></th>
+                    </tr>
+                    <tr class="commodity">
+                        <th><input type="checkbox" class="input" value="3"></th>
+                        <th class="content"><img src="img/20201102150701.png" width="100px" height="100px">
+                            <p>冰箱 </p>
+                        </th>
+                        <th><button type="button">
+                                -
+                            </button> <span>
+                                1
+                            </span> <button type="button">
+                                +
+                            </button></th>
+                        <th>
+                            100
+                        </th>
+                        <th class="money">
+                            100
+                        </th>
+                        <th><span class="glyphicon glyphicon-remove">删除
+                            </span></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="shoppingBar-footer">
+                <div class="manage"><span class="delAll">
+                        删除所选商品
+                    </span> <span class="return">
+                        继续购物
+                    </span></div> <button id="go" type="button">
+                    去结算
+                </button>
+                <div class="buy"><span>
+                        0
+                    </span>
+                    件商品总计:
+                    <span class="sum">
+                        ￥0
+                    </span></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="common.js"></script>
+<script>
+    /*
+        1、每一个商品加减符号 改变都会修改当前商品小计金额
+        2、一旦商品被勾选 需要计算所有被勾选的商品总金额
+        3、全选 选中时 所有商品都需要被勾选 并且需要计算总金额
+        4、删除 一旦删除 如果商品被勾选 需要重新计算总金额 否则不需要计算
+
+    */
+    //绑定 加减符号的点击事件
+    $$('button', true).forEach(function (dom) {
+        dom.onclick = function () {
+            // 获取当前的数量
+            var currentNumber = this.parentElement.querySelector('span').innerHTML - 0;
+            if (this.innerHTML.trim() == '-') {
+                if (currentNumber < 1) {
+                    return;
+                }
+                currentNumber--;
+                
+            } else if (this.innerHTML.trim() == '+') {
+                currentNumber++;
+            }
+            // 修改数量
+            this.parentElement.querySelector('span').innerHTML = currentNumber;
+            // 修改小计金额
+            this.parentElement.parentElement.querySelector('.money').innerHTML = currentNumber * (this.parentElement.parentElement.children[3].innerHTML - 0)
+            getTotal();
+        }
+    })
+    // 每一个checkBOx绑定点击事件
+    $$('.input',true).forEach(function(dom){
+        dom.onclick = function(){
+            // 计算总金额
+            getTotal()
+            // 使用 商品个数 与被勾选的个数进行比较 得到布尔值 赋值给 全选按钮的checked属性
+            $$('.selectAll').checked = $$('.input',true).length == $$('.input:checked',true).length
+        };
+    })
+    // 全选
+    $$('.selectAll').onclick = function(){
+        // 获取到全选CheckBox的选中效果 得到布尔值
+        var hasChecked = this.checked;
+        $$('.input',true).forEach(function(dom){
+            dom.checked = hasChecked
+        })
+        getTotal();
+    }
+    // 删除
+    $$('.glyphicon-remove',true).forEach(function(dom){
+        dom.onclick = function(){
+            $$('.shoppingBar tbody').removeChild(this.parentElement.parentElement)
+            getTotal();
+        }
+    })
+    // 封装计算总金额的函数
+    function getTotal() {
+        var sum = 0;
+        // 匹配所有被勾选的CheckBox
+        $$('.input:checked', true).forEach(function (item) {
+            // item 表示CheckBox的dom对象
+            // item.parentElement.parentElement 表示当前checkBox 对应的tr标签的dom对象
+            // item.parentElement.parentElement.querySelector('.money') 在tr标签中继续寻找 class为money的标签的对象
+            sum += item.parentElement.parentElement.querySelector('.money').innerHTML - 0
+        })
+        $$('.sum').innerHTML = '￥' + sum
+    }
+</script>

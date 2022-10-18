@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // \d 匹配数字 0-9直接的数字
+        console.log(/\d\d1/.test('1231'))//true
+        // \D 匹配任意非数字的字符
+        console.log(/\D/.test('A1231'));//true
+        // \w 匹配任意的数字、字符、下划线
+        console.log(/\w/.test('12abc'));//true
+        // \W 匹配除了数字、字符、下划线的任意单个字符
+        console.log(/\W/.test('123!'));
+        // \s匹配空格
+        console.log(/\s/.test('hellojs'));//false
+        // \S匹配非空格
+        console.log(/\S/.test('heelo js'));//true
+        // .匹配除了换行以外的任意单个字符
+        console.log(/./.test('123'));//true
+    </script>
+</body>
+</html>

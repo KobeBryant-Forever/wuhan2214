@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            height: 100%;
+        }
+
+        span {
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+    </style>
+</head>
+
+<body>
+    <p>得分：<b>0</b></p>
+    <script src="common.js"></script>
+    <script>
+        /*
+            分析思路：
+                1、控制一个字符向下掉落  核心 提过使用定时器反复修改元素的top值就可以实现
+                    1、在页面上生成一个随机的字符元素  将可用的字符放到字符串中，通过随机数取下标 得到随机的字符内容，最终将字符设置标签中
+                    2、通过随机数设置元素左侧的距离
+                    3、创建定时器 反复修改元素的top值，一旦元素到达底部 销毁元素 再重新产生字符向下掉落
+                2、通控制键盘输入之后 如果相等控制消失再来
+                    绑定键盘的按下事件 获取到按下的按键  然后与生成的字符进行比较 如果相同 销毁元素再来一次
+
+        */
+        // 保存定时器标识
+        var timer;
+        // 保存生成出的随机字符
+        var char;
+        // 保存生成的span标签的dom对象
+        var spanDom = null; 
+        // 生成随机字符   
+        function createChar() {
+            // 保存可用的字符
+            var str = '1234567890qwertyuioplkjhgfdsazxcvbnm';
+            // 生成随机的下标
+            var index = makeRandomNumber(0, str.length, false);
+            return str[index];
+        }
+
+        function createSpan() {
+            // 1、创建标签
+            spanDom = document.createElement('span');
+            // 2、生成随机字符并且设置为标签内容
+            char = createChar();
+            spanDom.innerHTML = char;
+            // 3、将元素添加到页面上
+            document.body.appendChild(spanDom);
+            // 4、设置距离左边的距离
+            // 计算最大的宽度  最大的宽度是 页面可视区的宽度-span标签元素的宽度 如果不减掉span的宽度导致出现横线滚动条
+            var maxWidth = document.body.clientWidth - parseInt(getStyle(spanDom, 'width'))
+            // 计算随机的距离
+            var left = makeRandomNumber(0, maxWidth)
+
+            spanDom.style.left = left + 'px'
+            // 5、设置定时器控制向下掉落
+            timer = setInterval(function () {
+                // 获取到当前的top值
+                var top = parseInt(getStyle(spanDom, 'top'));
+                // 获取可以掉落的最大高度
+                var maxHeight = document.body.clientHeight - parseInt(getStyle(spanDom, 'height'));
+                // 判断是否已经掉落到底部
+                if (top >= maxHeight) {
+                    // 已经掉落到底部了 需要清除定时器 并且销毁元素 重新再来一次
+                    clearInterval(timer);
+                    document.body.removeChild(spanDom);
+                    createSpan();
+                }else{
+                    spanDom.style.top = top + 5 + 'px'
+                }
+            }, 30)
+        }
+        createSpan();
+
+        // 绑定键盘按下事件
+        document.onkeypress = function(e){
+            // 获取事件对象
+            var event = e || window.event;
+            if(event.key == char){
+                // 按下的字母 跟随机生成的相同
+                clearInterval(timer);
+                // 销毁span标签
+                document.body.removeChild(spanDom);
+                createSpan();
+                // 得分加1
+                $$('b').innerHTML++;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        //  编写函数norepeat(arr) 将数组的重复元素去掉，并返回新的数组
+        var arr = [1, 2, 3, 4, 5, 3, 6, 7, 3, 2];
+
+        function noreapeat(arr) {
+            // 保存没有重复元素的集合
+            var result = [];
+            // 使用arr数组中每一个元素比较在 result中是否有出现 如果没有出现说明这个元素 现在还没有重复，加入到result中
+            for (var i = 0; i < arr.length; i++) {
+                // 比较arr[i]的值在result中是否有出现
+                if (indexOf(result, arr[i]) == -1) {
+                    result.push(arr[i]);
+                }
+            }
+
+            return result;
+        }
+        // 单独封装的indexOf方法 验证数组中是否存在指定的元素
+        // 找到了返回下标 没找到返回-1
+        function indexOf(arr, value) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == value) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        console.log(noreapeat(arr));
+        // ES6中新增的Set集合
+        // console.log(new Set(arr))
+    </script>
+</body>
+
+</html>

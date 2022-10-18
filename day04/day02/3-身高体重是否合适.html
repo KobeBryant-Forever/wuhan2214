@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 开发一款软件，根据公式（身高-108）*2=体重，可以有10斤左右的浮动。来观察测试者体重是否合适
+    var height = prompt("请输入身高：");
+    var weight = prompt("请输入体重：");
+    // 计算的标准体重
+    var normalWeight = (height - 108) * 2;
+    if (weight < normalWeight - 10 || weight > normalWeight + 10) {
+        console.log('体重异常');
+    }else{
+        console.log('正常');
+    }
+</script>
+
+</html>

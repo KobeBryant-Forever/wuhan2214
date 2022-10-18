@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #big {
+            width: 620px;
+            height: 300px;
+            overflow: scroll;
+        }
+
+        #small {
+            width: 600px;
+            height: 600px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="big">
+        <div id="small">
+            欢迎注册成为京东用户！在您注册过程中，您需要完成我们的注册流程并通过点击同意的形式在线签署以下协议，请您务必仔细阅读、充分理解协议中的条款内容后再点击同意（尤其是以粗体或下划线标识的条款，因为这些条款可能会明确您应履行的义务或对您的权利有所限制）。
+        </div>
+    </div>
+    <input type="checkbox" id="agreement" disabled>
+    同意协议
+    
+    <input type="button" id="go" value="去注册" disabled>
+    <script src="common.js"></script>
+    <script>
+        var bigDom = document.querySelector('#big');
+        bigDom.onscroll = function(){
+            // 获取本身的高度
+            var height = parseInt(window.getComputedStyle(bigDom).height)
+            if(bigDom.scrollHeight == height + bigDom.scrollTop){
+                $$('#agreement').disabled = false;
+            }
+        }
+        // 同意协议的点击事件
+        $$('#agreement').onclick = function(){
+            // console.log(this.checked) 如果为true 去注册 disabled属性为false
+            $$('#go').disabled = !this.checked
+        }
+    </script>
+</body>
+
+</html>

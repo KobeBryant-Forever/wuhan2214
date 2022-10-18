@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px; height: 100px;background-color: yellow; border: 3px solid red; padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        
+        var divDom = document.querySelector('div');
+        // 获取宽度
+        console.log(window.getComputedStyle(divDom).width);//100px 只是获取到了内容的宽度
+        // dom对象.clientWidth/clientHeight 获取到的结果是没有px单位 并且尺寸是 内容+padding
+        console.log(divDom.clientWidth)//140  没有px单位
+        // dom对象.offsetWidth/offsetHeight  获取的结果也是没有px单位 并且尺寸是 内容+padding+border
+        console.log(divDom.offsetWidth)//160
+        // clientWidth/clientHeight/offsetWidth/offsetHeight都是只读属性 无法修改
+        // 如果需要修改 可以使用dom.style.样式名称的单独来控制
+        divDom.clientWidth = 200;
+
+    </script>
+</body>
+</html>

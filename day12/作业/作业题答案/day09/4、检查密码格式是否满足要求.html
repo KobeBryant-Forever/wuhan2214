@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var password = 'Leo123456';
+
+        console.log(checkPwd(password))
+
+        //密码格式要求:长度6~16位，必须由数字、大写字母、小写字母组成
+        function checkPwd(password) {
+            if (password.length < 6 || password.length > 16) {
+                console.log('密码长度不对')
+                return;
+            }
+            var hasNumber = hasUperChar = hasLowerChar = false;
+
+            for (var i = 0; i < password.length; i++) {
+                // 获取到当前遍历字符的ASCII
+                var ascii = password.charCodeAt(i)
+                // 判断是否存在数字 使用短路语法
+                ascii >= 48 && ascii <= 57 && (hasNumber = true)
+                // 判断是否存在大写
+                ascii >= 65 && ascii <= 90 && (hasUperChar = true)
+                // 判断是否存在小写
+                ascii >= 97 && ascii <= 122 && (hasLowerChar = true)
+            }
+
+            return hasUperChar && hasLowerChar && hasNumber;
+        }
+    </script>
+</body>
+
+</html>

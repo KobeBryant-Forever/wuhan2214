@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .keylist {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <input type="text" placeholder="输入关键字" class="keyword">
+        <div class="keylist">
+            
+            <div>javascript面试题</div>
+            <div>java学习路线</div>
+            <div>java是前端还是后端</div>
+            
+        </div>
+        <button>打开</button>
+    </div>
+    <script src="common.js"></script>
+    <script>
+        document.querySelector('button').onclick = function(){
+            window.open('http://www.baidu.com')
+        }
+        // 实现功能当在文本框中输入j/ja 在keylist中显示出所有的 当输入的是javascript 显示javascript面试题
+        var data = ['javascript面试题', 'java学习路线', 'java是前端还是后端', 'jar'];
+
+        document.querySelector('.keyword').oninput = function(){
+            var html = '';//保存结果
+            // 获取到现在输入的内容
+            var key = this.value;
+            // 从data中筛选出以key开头的内容
+            // filter方法返回的是一个新数组
+            data.filter(function(item){
+                // 判断item是不是以key变量开头的字符串
+                // startsWith为ES6中字符串新增方法 可以判断是否以指定的字符串开头
+                return item.startsWith(key)
+            }).forEach(function(item){
+                html += `<div>${item}</div>`
+            })
+            $$('.keylist').innerHTML = html;
+            $$('.keylist').style.display = 'block'
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

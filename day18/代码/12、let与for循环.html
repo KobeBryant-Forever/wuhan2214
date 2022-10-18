@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <button>按钮</button>
+    <script>
+        let btns = document.querySelectorAll('button');
+        // for循环()中所创建的变量 是局部变量 并且每一次使用i都不是相同的变量
+        for (let i = 0; i < btns.length; i++) {
+            // let i = 循环的值
+            btns[i].onclick = function () {
+                console.log(i);
+            }
+        }
+        // console.log(i);// ReferenceError: i is not defined
+        /*
+        {
+            1、let i = 0 
+            2、i < btns.length 真
+            3、{
+                let i = 0
+                btns[i].onclick = function () {
+                    console.log(i);
+                }
+            }
+            4、i++
+            5、i < btns.length 真
+            6、
+            {
+                let i = 1
+                btns[i].onclick = function () {
+                    console.log(i);
+                }
+            }
+            7、i++
+            8、i < btns.length 假
+
+        }
+        
+        */
+    </script>
+</body>
+
+</html>

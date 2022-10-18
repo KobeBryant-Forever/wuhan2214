@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        table tr th,
+        table tr td {
+            border: 1px solid #0094ff;
+        }
+        .layer{
+            width: 300px;
+            height: 200px;
+            background-color: #eee;
+            position: absolute;
+            top: 250px;
+            left: 200px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="username" />
+        <input type="radio" id="sexOne" name="sex" value="男" />男
+        <input type="radio" id="sexTwo" checked name="sex" value="女" />女
+        <input type="text" id="age" />
+        <button id="add">添加</button>
+    </div>
+    <div class="layer">
+        <input type="text" class="name"/>
+        <br/>
+        <input type="radio" name="changeSex" value="男" />男
+        <input type="radio" name="changeSex" value="女" />女
+        <br/>
+        <input type="text" class="age" /><br/>
+        <!-- 隐藏域 用户不可见 但是可以使用它保存一些信息 -->
+        <input type="hidden" class="userId" value="-1" >  
+        <button id="modify">修改</button>
+    </div>
+    <br />
+    <table cellspacing="0" border="1" width="600px">
+        <thead>
+
+            <tr>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>年龄</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 1、先根据数据显示出表格
+        // 2、实现添加数据
+        // 3、实现删除功能
+        var data = [{
+            name: 'Jack',
+            age: 18,
+            gender: '男'
+        }, {
+            name: 'Rose',
+            age: 20,
+            gender: '女'
+        }, {
+            name: 'Top',
+            age: 22,
+            gender: '男'
+        }];
+        // 按照数据驱动方式 实现
+        // 添加数据
+        document.querySelector('#add').addEventListener('click',function(){
+            // 获取输入的信息
+            var name = document.querySelector('#username').value;
+            var sex = document.querySelector('input[name="sex"]:checked').value;
+            var age = document.querySelector('#age').value;
+            data.push({
+                name:name,
+                age:age,
+                gender:sex
+            })
+            showData();
+        })
+
+        // 删除/修改
+        document.querySelector('tbody').addEventListener('click',function(event){
+            if(event.target.className == 'delete'){
+                // 常规做法
+                // document.querySelector('tbody').removeChild(event.target.parentNode.parentNode)
+                // 可以直接得到当前被点击删除 对应在数组中下标 就可以直接删除
+                // 获取当前点击的下标
+                var  index = event.target.getAttribute('data-index')
+                data.splice(index,1)
+                showData();
+            }else if(event.target.className == 'edit'){
+                // 点击的是修改按钮
+                // 先获取到目前修改的是那一份数据
+                // dataset是dom对象下内置的一个属性 专门用于操作data开头的自定义属性
+                // dataset返回的还是一个对象。所以需要取哪一个自定义属性 继续调用 自定义属性名称(不要加上data-)
+                var index = event.target.dataset.index
+                // 将原有的数据放到弹出层上
+                document.querySelector('.name').value = data[index].name
+                document.querySelector('.age').value = data[index].age;
+                document.querySelector(`input[name="changeSex"][value=${data[index].gender}]`).checked = true;
+                // 设置隐藏域 记录 目前修改的数据在data中序号
+                document.querySelector('.userId').value = index;
+                document.querySelector('.layer').style.display = 'block'
+            }
+        })
+        
+        // 修改
+        document.querySelector('#modify').addEventListener('click',function(){
+            var name = document.querySelector('.name').value;
+            var sex = document.querySelector('input[name="changeSex"]:checked').value;
+            var age = document.querySelector('.age').value;
+            // 获取当前修改的数据对于的序号
+            var index = document.querySelector('.userId').value;
+            data[index] = {
+                name:name,
+                age:age,
+                gender:sex
+            }
+            showData();
+            document.querySelector('.layer').style.display = 'none';
+        })
+        // 初始化显示原有内容
+        showData();
+        // 实现将data数据渲染显示到页面上
+        function showData() {
+            var html = '';
+            data.forEach(function (item,index) {
+                html += `<tr>
+                    <td>${item.name}</td>
+                    <td>${item.gender}</td>
+                    <td>${item.age}</td>
+                    <td><button class="edit" data-index="${index}">修改</button> <button data-index="${index}" class="delete">删除</button></td>
+                </tr>`
+            })
+            document.querySelector('tbody').innerHTML = html;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="send">发送验证码</button>
+    <script>
+        // send.disabled = true;
+        /*
+            思路：一旦用户点击按钮，使用定时器每秒钟反复的修改按钮的文本，并且设置按钮不可点击 一旦达到临界点 需要恢复按钮的点击状态，并且内容设置为重新获取
+        */
+        var timer; //保存定时器标识
+        var number = 10; //倒计时的时间
+        send.onclick = function () {
+            timer = setInterval(function(){
+                if(number>1){
+                    // 设置按钮不可点击
+                    send.disabled = true;
+                    number--;
+                    send.innerHTML = number + 's重新获取'
+                }else{
+                    // 重置number变量
+                    number = 10;
+                    // 停止定时器
+                    clearInterval(timer);
+                    // 设置按钮可以点击
+                    send.disabled = false;
+                    send.innerHTML = '重新获取';
+                }
+                
+            },1000)
+            
+        }
+
+        setTimeout(function(){
+            console.log('ok')
+        },1000)
+    </script>
+</body>
+
+</html>

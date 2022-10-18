@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var obj = {
+        //     say:function(){
+        //         console.log('123')
+        //     }
+        // }
+        // obj.say();
+        // 1、unshift 向数组的开头添加元素 返回 数组的长度 直接改变数组
+        var arr = ['a', 'b'];
+        // 开头加一个元素
+        var length = arr.unshift('c');
+        console.log(length, arr);
+        // 开头加多个元素
+        arr.unshift('e', 'f');
+        console.log(arr); //['e', 'f', 'c', 'a', 'b']
+        // 2、shift 数组的开头 删除一个元素 返回被删除的那个元素 直接改变数组 
+        arr = ['e', 'f', 'c', 'a', 'b'];
+        console.log(arr.shift()); //e
+        console.log(arr);
+        // 3、push 用法与unshift一致 只是操作的是数组尾部
+        arr = ['a', 'b'];
+        arr.push('c');
+        console.log(arr)
+        // 4、 pop 数组尾部删除一个元素
+        arr = ['a', 'b'];
+        console.log(arr.pop()); //b
+        console.log(arr); //['a']
+        /*
+            数组的解构配合4个头尾操作的方法 可以实现队列与栈数据结构
+            队列：先进先出 可以理解为水管
+            栈：先进后出 理解为盒子拿东西
+            [a.b,c]  使用push 每次处理 使用shift 头部删除
+        */
+        /*
+            5、splice - 对数组做增、删、改的操作
+            // 在文档中参数使用[] 表示的是可选
+            splice(start, deleteCount, [item1, item2, itemN])
+            start 表示开始位置
+            deleteCount：表示删除的元素个数
+            [item1,item2...] 表示要添加的元素
+        */
+        //实现数组元素添加
+        arr = ['a', 'b', 'c'];
+        // 从下标为1的元素删除0个元素添加 f e两个元素
+        arr.splice(1, 0, 'f', 'e');
+        console.log(arr);
+        // 实现数组删除元素
+        arr = ['a', 'b', 'c'];
+        arr.splice(1, 1); //从下标为1的位置开始(包含) 删除1个
+        console.log(arr);
+        // 实现修改
+        arr = ['a', 'b', 'c'];
+        // 从下标为1的开始删除1个元素然后在添加一个f
+        arr.splice(1, 1, 'f');
+        console.log(arr);
+
+        // 6、concat-数组的拼接
+        // contcat 可以一个个元素作为参数传递 也可以直接传递整个数组进行拼接，不会修改原数组
+        arr = ['a', 'b', 'c'];
+        var newArr = arr.concat('d', 'e');
+        console.log(arr);
+        console.log(newArr)
+        newArr = arr.concat(['e', 'f'])
+        console.log(newArr);
+        // 7、sort - 数组的排序 可以改变元素数组 排序过程中默认会按照字符串(ASCII)进行排序
+        arr = [10, 9, 1, 20];
+        arr.sort(function (a, b) {
+            // 匿名函数中 返回大小关系
+            // 从小到大排序
+            // return a - b;
+            // 从大到小排序
+            return b - a;
+        });
+        console.log(arr);
+        // 8、reverse - 数组的反转  会改变原数组
+        arr = ['a', 'b', 'c'];
+        console.log(arr.reverse())
+        console.log(arr)
+        // 9、join - 将数组中的元素使用指定的连接符连接在一起 返回结果为字符串
+        arr = [10, 9, 1, 20];
+        console.log(arr.join(','))
+        console.log(arr);
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装函数比较两个对象是否相等 比较元素值是否相等
+        var obj1 = {
+            id: 1,
+            name: '张三'
+        };
+        var obj2 = {
+            id: 1,
+            name: '张三'
+        };
+
+        function eqObject(one, two) {
+            // 比较元素个数是否相同
+            if (getObjectAttrNumber(one) != getObjectAttrNumber(two)) {
+                return false;
+            }
+            // 需要检查one对象下的每一个属性在two对象下是否存在 如果不存在 直接不相等否则在判断值是否相等
+            for (var key in one) {
+                // key变量可以为id、name字符串
+                // two[key] == undefined 验证 key对应的属性是不存在 one[key] != two[key] 验证属性值是否相等
+                if (two[key] == undefined || one[key] != two[key]) {
+                    return false
+                }
+            }
+            return true;
+        }
+        // 计算对象下的属性个数
+        function getObjectAttrNumber(obj) {
+            var number = 0;
+            for (var key in obj) {
+                number++;
+            }
+            return number;
+        }
+        console.log(eqObject(obj1, obj2));
+        // Object.keys 系统内置的方法 可以将对象下所有的属性名称取出形成一个数组
+        console.log(Object.keys(obj1));//返回值是一个数组 可以通过长度确定个数
+        console.log(Object.values(obj1))
+    </script>
+</body>
+
+</html>

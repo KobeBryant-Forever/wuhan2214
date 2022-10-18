@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装函数计算任意参数的最大值
+        function max() {
+            console.log(arguments)
+            // 假设 下标为0的元素值最大
+            var maxNumber = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if(arguments[i]>maxNumber){
+                    // 证明假设不成立
+                    maxNumber = arguments[i];
+                }
+            }
+            return maxNumber
+        }
+        console.log(max(10, 1, 2, 29));
+    </script>
+</body>
+
+</html>

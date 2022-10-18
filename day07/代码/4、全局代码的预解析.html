@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、预解析简单示例
+        console.log(number);
+        var number = 10;
+        // 按照代码的执行顺序上面的代码 执行应该要报错的，结果没有报错，这个就是预解析在生效，预解析在调整书写的代码的顺序
+        
+        // 2、预解析的规则
+        // 2.1、预解析提前var 的变量
+        console.log(n);
+        var n = 10;
+        console.log(n);
+        // 提前var的变量 只会将变量的声明提前，赋值只有当执行到这句话时才会赋值
+        // var n; console.log(n);n = 10;
+        // 2.2、预解析函数 声明式的函数才会提前，赋值式的函数正常使用var预解析规则
+        fn();
+        function fn(){
+
+        }
+        // 声明函数提升规则  只要遇到声明式函数，将整个函数提升到最前面
+        // var fn = function (){} fn();
+
+        // 3、同时存在var与声明式函数
+        var n2 = 200;
+        fn2();
+        function fn2() {
+            console.log('fn2')
+        }
+        console.log(n2);
+        /*
+            预解析之后的代码顺序
+            function fn2(){}
+            var n2;
+            n2 = 200;
+            fn2()
+            console.log('fn2');
+
+        */ 
+        //4、var与函数名称同名
+
+        var fn3 
+        function fn3() {
+            console.log('fn3')
+        }
+
+
+        var fn3 = 300;
+        function fn3() {
+            console.log('fn3')
+        }
+        console.log(fn3);
+        /*
+            // 当同是存在声明式函数与var的变量并且同名 提升的是函数
+            // 解析完成
+            function fn3(){}  等价于  var fn3 = function(){}
+            //执行代码
+            fn3 = 300;
+            console.log(fn3);
+        */
+    </script>
+</body>
+</html>

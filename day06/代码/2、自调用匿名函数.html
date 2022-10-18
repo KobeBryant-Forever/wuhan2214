@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、自调用匿名函数的语法
+        //  建议前后都使用分号避免一些理解错误
+        ;(function(){
+            // 自己需要执行的代码
+            console.log('自调用匿名函数也叫自执行函数');
+        })();
+        // 2、关于自调用匿名函数的语法解释
+        // 2.1、匿名函数  就是没有名称的函数，但是匿名函数不能单独写，一定要与其他的进行配合
+        var a =  function(){
+
+        }
+        // 上面代码表示 将函数地址 赋值给a变量
+        // 自调用的语法
+        (function(){
+            // 自己需要执行的代码
+            console.log('自调用匿名函数也叫自执行函数');
+        })()
+
+
+    </script>
+</body>
+</html>

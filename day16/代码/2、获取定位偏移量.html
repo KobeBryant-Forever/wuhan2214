@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        .one{ width: 200px; height: 200px; background-color: yellowgreen; position: absolute; top: 20px;} 
+        .two{width: 100px; height: 100px; background-color: teal; position: absolute; top:20px;left:30px}
+    </style>
+</head>
+<body>
+    <div class="one">
+        <div class="two">
+
+        </div>
+    </div>
+    <script>
+        // 元素是相对于哪一个元素进行定位
+        // 元素没有父级定位元素 最终以body进行定位
+        console.log(document.querySelector('.two').offsetParent)
+        // 获取到 相对于父级定位元素的垂直距离
+        console.log(document.querySelector('.two').offsetTop)
+        // 获取到相对于父级定位元素的水平距离
+        console.log(document.querySelector('.two').offsetLeft)
+    </script>
+</body>
+</html>

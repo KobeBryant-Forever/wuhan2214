@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" data-id="12345">
+        <!-- 注释内容 -->b
+        <strong>黄金大神</strong>c
+    </div>
+</body>
+</html>
+<script>
+    var appDom = document.querySelector('#app');
+    // dom下childNodes 表示获取到元素下的所有的子节点
+    console.log(appDom.childNodes)
+    // dom下的attributes 表示获取到节点上所有属性
+    console.log(appDom.attributes)
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var k = "10";
+        // k本身是字符串，-符号要进行数学运算 自动的将k转换为数字在运算
+        var res = k - 2;
+        console.log(res);
+        // 因为+特殊 可以拼接 所以没有转换
+        var res2 = k + 2;
+        console.log(res2); //102
+
+        console.log(k - 0 + 2);
+        // 将k转换为布尔值得到true 在于10>2的结果进行并且运算
+        var res3 = k && 10>2;
+        console.log(res3);
+    </script>
+</body>
+
+</html>

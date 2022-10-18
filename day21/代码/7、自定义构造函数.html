@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JS在ES5的时候设置语法 可以通过new关键字 配合function可以造出一个对象
+        // Dog 可以是普通函数 也可以是构造函数，但是 当function表示构造函数时一般采用大驼峰方式命名，构造函数就是创建对象的模板(类)
+
+        // 1、构造函数的语法使用
+        // function Dog(){
+
+        // }
+        // let lf = new Dog();
+        // console.log(lf);
+        // // 2、new的时候系统跟我们做了什么事情
+        // function Car(name,price){
+        //     // 1、一旦new构造函数 系统自动进行形参赋值
+        //     // 2、系统自动以当前构造函数名称创建一个对象出来 可以理解为 执行 let obj = new Object
+        //     // 3、创建一个this变量 执行到创建对象 等价于执行 let this = obj;
+        //     // 4、执行构造函数中代码
+
+        //     // 5、自动的将对象 return
+        // }
+
+        // let bmw = new Car('宝马X5','50W');
+
+
+        // 3、构造函数中this
+        function Car(name,price){
+            // 1、形参赋值
+            // let  name = '奔驰C200L';  let price = '25w';
+            // 2、开始造对象 let obj = new Object;
+            // 3、修改this执行  let this = obj
+            // 4、执行函数体的代码
+            this.name = name;
+            this.price = price;
+            this.run = function(){
+                console.log(this.name+'running');
+            }
+            //5、正常返回  return this 
+        }
+        let bc = new Car('奔驰C200L','25W');
+        console.log(bc.name)
+        bc.run();
+
+ 
+
+
+    </script>
+</body>
+</html>

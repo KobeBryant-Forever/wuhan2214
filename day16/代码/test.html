@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="" >
+
+        <p>parent</p>
+
+    </div>
+    <input type="checkbox"  checked/>
+    <input type="text" value="默认值" >
+    <img src="" alt="">
+    <script>
+        // console.log(document.querySelector('input').value); 
+        // document.querySelector('input').value = '李明杰'
+        var divDom = document.querySelector('div');
+        divDom.setAttribute('data-index','2')
+        console.log(divDom.getAttribute('data-index'))
+        console.log(document.querySelector('p').parentElement);
+    </script>
+</body>
+</html>

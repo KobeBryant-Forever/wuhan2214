@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // retrun的语法 return 可选的数据
+        // 1、终止函数代码
+        function fn(a) {
+            if (a > 10) {
+                // 一旦执行到return这句话 后面不论还有多少代码 都不会执行了
+                // 一个函数中可以写多个return ,但是最后执行 最多只能有一个return生效
+                return;
+            }
+            console.log('a');
+            return
+            console.log('over');
+        }
+        fn(20);
+        // 2、将结果返回给调用者
+        function sum(a, b) {
+            var total = a + b;
+            // 以前每次都是直接将结果进行输出，但是结果对于调用者 未必需要进行输出，可能是需要将结果再次进行其他的运算
+            // console.log(total);
+            // return 后面跟上数据 好比将结果抛出
+            return total;
+            // 函数代码执行 没有return语句最终返回 undefined
+        }
+
+        var t = sum(1, 2);
+        alert(t);
+
+    </script>
+</body>
+
+</html>

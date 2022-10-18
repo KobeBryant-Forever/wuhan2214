@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            弹窗依次输入3个学生的成绩。并且使用数组保存，打印出所有学生的的成绩与平均成绩
+        */
+        var score = [];
+        var total = 0;//总分数
+        for (var i = 0; i < 3; i++) {
+            score[i] = Number(prompt('分数'));
+            total+= score[i];
+        }
+        console.log(score)
+        console.log('avg = ',total/3)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script src="common.js"></script>
+    <script>
+        // 一旦用户的行为触发 事件处理程序是系统在调用
+        // 这个函数不是我们手动调用，是系统调用，系统在调用过程中，自动传递了一个参数 这个参数就是事件对象
+        $$('button').onclick = function (e) {
+            // w3c浏览器才会在事件触发自动传递事件对象，对于IE低版本
+            // console.log(window.event);
+            // console.log(e)
+            // 获取事件对象的兼容性写法
+            // || 只要有一个为真，整个表达式为真
+            var event = e || window.event;
+            // 先获取形参event变量 
+            // var  e = event||window.event;
+        }
+    </script>
+</body>
+
+</html>

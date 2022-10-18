@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = 'Tue Dec 13 2022 00:00:00 GMT+0800 (中国标准时间)';
+        // 补0
+        function fillZero(number) {
+            if (number < 10) {
+                return '0' + number;
+            }
+            return number;
+        }
+
+        function format(str) {
+            var d = new Date(str);
+            var y = d.getFullYear();
+            var m = fillZero(d.getMonth() + 1);
+            var date = fillZero(d.getDate());
+            var h = fillZero(d.getHours());
+            var min = fillZero(d.getMinutes());
+            var s = fillZero(d.getSeconds());
+            var str = `${y}-${m}-${date} ${h}:${min}:${s}`;
+            console.log(str);
+        }
+
+        format(str);
+
+        // 2022-12-13 00:00:00
+    </script>
+</body>
+
+</html>

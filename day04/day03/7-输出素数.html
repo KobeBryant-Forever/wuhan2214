@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 输出100-200之间所有的素数  (素数，就是除了1和自己本身，不能被别的数整除)
+    // 提示 可以先确定一个数是否是素数  然后在找区间所有的
+    // 确定一个数是否为素数时可以使用假设法
+
+    var number = 11;
+    // 假设这个数字是一个素数
+    var flag = true; //true的含义是表示这个数字是素数
+    for (var j = 2; j < number; j++) {
+        if (number % j == 0) {
+            // 每次循环j的值在改变，循环的去使用number变量 除以 j 只要有一次可以除尽 就能够验证这个数绝对不是素数
+            // 但是不能通过一次是否能够除尽验证是素数 想要验证这个数字是素数 一定要将所有的数字全部除了之后最后 如果还没有能够整除的才能够证明
+            // console.log('number='+number+'不是素数');
+            flag = false;
+        }
+    }
+    // 一旦循环完毕如果 flag的状态没有发生改变 就可以证明 从来没有除尽过
+    if (flag) {
+        console.log('number=' + number + '是素数');
+    } else {
+        console.log('不是')
+    }
+
+
+    for (var i = 100; i <= 200; i++) {
+        // 每次循环i就表示 需要验证的数字
+        // 假设这个数字是一个素数
+        var flag = true; //true的含义是表示这个数字是素数
+        for (var j = 2; j < i; j++) {
+            if (i % j == 0) {
+                flag = false;
+            }
+        }
+        // 一旦循环完毕如果 flag的状态没有发生改变 就可以证明 从来没有除尽过
+        if (flag) {
+            console.log('number=' + i + '是素数');
+        }
+    }
+</script>
+
+</html>

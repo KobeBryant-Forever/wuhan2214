@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            JSON是一种数据格式 用于实现前后端进行数据交互
+            前后端交互时，交互的数据格式只有字符串，但是字符串方式进行数据操作是非常麻烦的
+            所以 每一门编程语言都支持将JSON格式转换为自己的数据类型 就可以完成数据交互
+            js中数组、对象这些是编程语言本身所设置的数据类型
+            JSON格式 跟js中数组对象 非常相似 但是要注意JSON格式是字符串 不是数组对象
+            如果使用JSON表示多分数据就使用数组格式   "[1,2,3]"
+            如果使用JSON表示单个数据使用对象  '{"属性名称":属性值,"属性名称2":属性值}'
+        */ 
+        // 将JSON格式的字符串转换为内置的数据类型
+        let str = '{"id":1,"goodsName":"斗破苍穹","goodsPrice":100}';
+        // Unexpected end of JSON input 在转换JSON格式为内置类型时只要看到这个错误 百分之一百证明 JSON格式有问题
+        console.log(JSON.parse(str));
+        // 将内置的数据类型转换为JSON格式的字符串
+        let data = [
+            {id:1,goodsName:'a'},
+            {id:2,goodsName:'b'}
+        ];
+        console.log(JSON.stringify(data))
+    </script>
+</body>
+</html>

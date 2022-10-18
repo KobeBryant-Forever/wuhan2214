@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 将多维数组
+        var arr = [
+            [1, 2, 2],
+            [3, 4, 5, 5],
+            [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10
+        ];
+        // 转为一维数组 [1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 9, 11, 12, 12, 13, 14, 10]
+        // 提示：需要使用 instanceof判断是否为数组 并且使用递归
+        // console.log(arr instanceof Array);
+        // instanceof关键字是用于判断指定的对象是否为指定构造函数创造
+        // 检查的变量 instanceof 构造函数名称(函数名称)
+        // console.log({} instanceof Object);
+        // console.log([] instanceof Array);
+        // function formartArray(arr) {
+        //     // 保存结果
+        //     var result = [];
+        //     for (var i = 0; i < arr.length; i++) {
+        //         if(arr[i] instanceof Array){
+        //             // 当前遍历的还是数组
+        //             // result.concat将参数中元素 与result进行合并
+        //             result = result.concat(formartArray(arr[i]));
+        //         }else{
+        //             // 当前遍历的元素不是数组 将元素加入结果中
+        //             result.push(arr[i]);
+        //         }
+        //     }
+        //     return result;
+        // }
+        // 保存结果
+        var result = [];
+        function formartArray(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if(arr[i] instanceof Array){
+                    formartArray(arr[i]);
+                }else{
+                    // 当前遍历的元素不是数组 将元素加入结果中
+                    result.push(arr[i]);
+                }
+            }
+            return result;
+        }
+
+        console.log(formartArray(arr));
+
+        console.log([1,2,3].concat([['a','b'],5,6]))
+    </script>
+</body>
+
+</html>

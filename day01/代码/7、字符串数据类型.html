@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、字符串数据类型 将多个字符组合到一起 就是字符串
+        // 只要使用单引号或者双引号所包裹的内容就是字符串类型
+        var str = "编程很有意思，就是头有点冷！";
+        console.log(typeof str); //string
+        var str2 = '头发还有！';
+        console.log(typeof str2); //string
+        var n = 10;
+        var res = typeof (n); //结果 number
+        var res2 = typeof (res);
+        console.log(res2); //string
+        // console.log(typeof(typeof(n)));
+        // 2、字符串单双引号的嵌套
+        // var str3 = 'my name's Leo';
+        // 单引号中不能嵌套单引号 双引号中也不能嵌套双引号
+        var str3 = "my name's leo"; //双引号嵌套单引号
+        var str4 = '备注"XXX"'; //单引号嵌套双月
+        console.log(str3, str4);
+        // 3、字符串转义符
+        // 转义符\ 就是描述后面的字符就是一个内容 不起到特殊字符的含义
+        var str5 = 'my name\'s leo';
+        console.log(str5);
+        // 4、字符串拼接  使用+符号进行拼接
+        var str6 = "js的语法怎么形容？";
+        var str7 = "恶心";
+
+        var res6 = str6 + str7;
+        console.log(res6);
+    </script>
+</body>
+
+</html>

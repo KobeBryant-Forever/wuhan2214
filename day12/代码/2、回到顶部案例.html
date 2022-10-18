@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            document.querySelector('button').onclick = function () {
+                var timer = setInterval(function () {
+                    // 获取当前的滚动距离
+                    var height = document.documentElement.scrollTop;
+                    if (height <= 0) {
+                        clearInterval(timer);
+                        return;
+                    }
+                    document.documentElement.scrollTop = height - 20
+                }, 20);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <p style="height: 2000px;"></p>
+    <button>回到顶部</button>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、创建变量 var 变量名称 
+        // 创建变量 理解为创建了一个空的盒子，后期这个盒子中可以放东西(数据)
+        var name;
+        // 2、变量赋值 可以理解为将需要保存的东西放到盒子中
+        name = '赵信';
+        // 3、创建变量的同时进行赋值 语法  var 变量名称 =  值  var 与变量名称之间是需要有空格
+        var hp = 100;
+        // 4、取出变量使用 如何取出使用这个跟数据类型存在关系
+        // 同时输出多个内容 每个内容之间使用逗号分割，具体输出的内容 可以是指定的字符串内容 也可以是变量
+        console.log('变化之前hp的值为', hp);
+        // 将hp变量中值-90 最后在重新赋值给hp（修改变量内容）
+        hp = hp - 90;
+        console.log(hp);
+
+        var age = 28;
+        // age+1的值赋值给一个新的变量
+        var newAge = age + 1;
+        console.log(newAge);
+        // 5、创建多个变量的简写
+        /*
+            // var n1 = 20;
+            // var n2 = 30;
+            // var n3 = 40;
+            省略了var 但是 每个分割符号使用,分割
+        */ 
+        var n1 = 20,
+            n2 = 30,
+            n3 = 40;
+        // 6、创建多个相同值的变量
+        // var number1 = 20;
+        // var number2 = 20;
+        // var number3 = 20;
+        var number1 = number2 = number3 = 20;
+    </script>
+</body>
+
+</html>

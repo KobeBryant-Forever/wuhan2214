@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var d = new Date();
+        // 设置年份
+        d.setFullYear(2021);
+        // 设置月份
+        d.setMonth(11);
+        // 设置日期
+        d.setDate(40);
+
+        console.log(d);
+
+        // 本地日期格式化
+
+        var d = new Date();
+        // 转换为完整的本地时间格式
+        console.log(d.toLocaleString());
+        // 只日期转换为本地格式
+        console.log(d.toLocaleDateString());
+        // 本地时间转换为标准的格林威治时间 北京时间与标准时间相差八小时
+        console.log(d.toUTCString());
+    </script>
+</body>
+
+</html>

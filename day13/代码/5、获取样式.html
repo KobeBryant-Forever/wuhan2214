@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{height: 100px; border: 1px solid #eee;}
+    </style>
+</head>
+<body>
+    <div style="width:100px"></div>
+    <button>获取</button>
+    <button class="set">设置</button>
+    <script>
+        var divDom = document.querySelector('div');
+        document.querySelector('.set').onclick = function(){
+            divDom.style.width = '200px';
+        }
+        document.querySelector('button').onclick = function(){
+            //1、获取样式1 dom对象.style.样式名称 样式名称使用驼峰式
+            console.log(divDom.style.width);//获取到行内样式 正常
+            console.log(divDom.style.height);//获取内嵌样式 无法取到
+            // 2、getComputedStyle方法获取  该方法需要传递dom对象返回结果还是对象 表示元素上生效的样式 该方法在IE8低版本是没有的所有存在兼容性 
+            // console.log(window.getComputedStyle(divDom))
+            // console.log(window.getComputedStyle(divDom).height)
+            console.log(divDom.currentStyle.height)
+        }
+    </script>
+</body>
+</html>

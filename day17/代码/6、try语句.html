@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // try 就是尝试执行某一段代码，如果这段代码报错 就会自动的去执行catch语句
+        // try {
+        //     var arr = [1, 2, 3];
+        //     // 可能经过一系列的元素将arr变量进行了修改并且改成了null
+        //     arr = null;
+        //     console.log(arr[0]);
+        // } catch (error) {
+        //     // console.log(error)
+        //     alert('网络异常！检查下自己的网络状态');
+        // }
+        // console.log('ok')
+
+        // 封装函数时 可以使用throw 抛出异常 一旦抛出异常 代码终止
+        function fn(a){
+            // 例如目前封装fn函数 只要a参数为数字
+            if(typeof(a) != 'number'){
+                // 抛出异常  遇到了问题 但是自己不解决 交给使用者来进行处理
+                // throw '现在a参数格式错误';
+                // Error是系统所设置最大的一个错误对象
+                throw new Error('a参数错误了')
+            }
+        }
+        
+        // 当调用者 调用函数传递参数不合理的情况下 可以 try 进而对用户进行提示
+        try {
+            fn({})
+        }catch (error) {
+            console.log('输入不合法')
+        }finally{
+            // 最终 不论什么情况 最后都要执行的语句
+            console.log('over')
+        }
+        
+    </script>
+</body>
+
+</html>

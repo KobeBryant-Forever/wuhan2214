@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮</button>
+    <div>国庆卷7天</div>
+    <div>预习到vue</div>
+    <script>
+        // 动态绑定语法  dom对象.on开头的事件名称 = 函数
+        // 这个函数 是事件的处理程序。一旦事件触发，系统会自动将函数调用起来
+        // dom对象注意 一定是dom对象不能是伪数组
+        document.querySelector('button').onclick = function(){
+            console.log('击剑');
+        }
+        // 下面的写法是错误 得到的是伪数组 不能真正的给多个绑定事件
+        // document.querySelectorAll('div').onclick = function(){
+
+        // }
+        // querySelectorAll返回的是nodelist的对象 下面有forEach 所以可以使用
+        document.querySelectorAll('div').forEach(function(item,index){
+            item.onclick = function(){
+                console.log('按钮被点击')
+            }
+        })
+    </script>
+</body>
+</html>

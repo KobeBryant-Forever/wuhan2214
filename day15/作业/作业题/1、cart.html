@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="cart.css">
+    <script src="vue-2.5.17.js"></script>
+</head>
+
+<body>
+
+<!--购物车商品table-->
+<div id="app">
+    <div class="shoppingBar">
+        <h2>购物清单</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th>
+                        <input type="checkbox" title="全选" v-model="checked"  @change="selectAll">
+                    </th>
+                    <th>商品名称</th>
+                    <th>数量</th>
+                    <th>单价（元）</th>
+                    <th>金额（元）</th>
+                    <th>操作</th>
+                </tr>
+                <tr class="commodity" v-for="(goods,index) in goodslist">
+                    <th>
+                        <input type="checkbox" class="input" :value="goods.id" v-model="checkArr">
+                    </th>
+                    <th class="content">
+                        <img :src="goods.img"  width="100px" height="100px">
+                        <p>{{goods.title}}  </p>
+                    </th>
+                    <th>
+                        <button type="button" @click="decr(index)">
+                            -
+                        </button>
+                        <span>
+                            {{goods.number}}
+                        </span>
+                        <button type="button" @click="incr(index)">
+                            +
+                        </button>
+                    </th>
+                    <th>
+                        {{goods.price}}
+                    </th>
+                    <th class="money">
+                        {{goods.number * goods.price}}
+                    </th>
+                    <th>
+                        <span  class="glyphicon glyphicon-remove">删除
+                        </span>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="shoppingBar-footer">
+            <div class="manage">
+                <span class="delAll">
+                    删除所选商品
+                </span>
+                <span class="return">
+                    继续购物
+                </span>
+            </div>
+            <button id="go" type="button">
+                去结算
+            </button>
+            <div class="buy">
+                <span>
+                    0
+                </span>
+                件商品总计:
+                <span>
+                    ￥{{total}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</body>
+
+</html>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            goodslist:[
+                {id:1,title:'电视机',img:'img/20201102150701.png',number:1,price:200},
+                {id:2,title:'洗衣机',img:'img/20201102150701.png',number:1,price:150},
+                {id:3,title:'冰箱',img:'img/20201102150701.png',number:1,price:100}
+            ],
+            // 表示全选是否被选中
+            checked:false,
+            // 记录当前被选中的 商品的id
+            checkArr:[],
+            // 总金额
+            // total:0
+        },
+        // 监听方式
+        // watch:{
+        //     checkArr:function(){
+        //         this.total = 0;
+        //         for(var i = 0;i<this.checkArr.length;i++){
+        //            for(var j = 0;j<this.goodslist.length;j++){
+        //                 //当前循环的数据 就是goodslist数据    
+        //                if(this.checkArr[i] == this.goodslist[j].id){
+        //                     this.total += this.goodslist[j].number * this.goodslist[j].price;
+        //                }
+        //            }
+        //         }
+        //     }
+        // },
+        computed:{
+            total:function(){
+                var sum = 0;
+                for(var i = 0;i<this.goodslist.length ;i++){
+                    // 判断当前循环的数据是否被选中
+                    if(this.checkArr.indexOf(this.goodslist[i].id) > -1){
+                        sum += this.goodslist[i].price * this.goodslist[i].number;
+                    }
+                }
+                return sum;
+            }
+        },
+        methods:{
+            incr:function(index){
+                console.log(index)
+                this.goodslist[index].number ++;
+                
+            },
+            decr:function(index){
+                if(this.goodslist[index].number <=1){
+                    alert('数量最少一件');
+                    return false;
+                }
+                this.goodslist[index].number--;
+            },
+            selectAll:function(){
+                if(this.checked){
+                    // 全部选中的操作
+                    // 将所有的商品的id添加到checkArr中。由于v-model的双向绑定 会自动选中
+                    for(var i = 0; i<this.goodslist.length;i++){
+                        this.checkArr.push(this.goodslist[i].id);
+                    }
+                }else{
+                    // 取消全选
+                    this.checkArr=[];
+                }
+            }
+        }
+    })
+</script>

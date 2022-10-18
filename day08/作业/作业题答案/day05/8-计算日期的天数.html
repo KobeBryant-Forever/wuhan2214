@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装一个函数根据日期计算是这一年的第几天 例如： 20160211，计算后结果为42  要求使用数组保存每个月的天数
+        function getDay(date) {
+            var year = parseInt(date / 10000);
+            var month = parseInt((date - year * 10000) / 100);
+            var day = date % 100;
+            // 使用数组中每一个元素保存每个月的天数
+            var perMoneth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            // 如果是 闰年 2月份的天数应该是29
+            (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) && (perMoneth[1] = 29);
+            for (var i = 1; i < month; i++) {
+                day += perMoneth[i - 1];
+            }
+            return day
+        }
+
+        console.log(getDay(20160211));
+    </script>
+</body>
+
+</html>

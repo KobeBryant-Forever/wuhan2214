@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name;
+        }
+        // 验证Person是对象
+        // 函数都是属于Function的实例对象(new出来)
+        console.log(Person instanceof Function);// 构造函数也是对象
+
+        // 只要创建了构造函数 系统就自动创建一个新的对象 并且将这个对象赋值给 构造函数对象下的prototype属性
+        console.log(Person.prototype)
+
+        // 实例对象
+        let p = new Person('李灿');
+
+        let p2 =  new Person('李明杰');
+
+        // 原型被所有的实例对象所共享
+        console.log(p.__proto__ == p2.__proto__);//
+        console.log(Person.prototype == p.__proto__)//true
+
+        console.log(Person.prototype.constructor == Person);//true
+    </script>
+</body>
+</html>

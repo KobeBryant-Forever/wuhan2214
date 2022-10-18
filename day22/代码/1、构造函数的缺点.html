@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 笔记本是类 我现在使用的ThinkPad这个笔记本 对象
+        function Computer(cpu, memerySize, diskSize) {
+            // 每次new  this就表示对应的对象 下面的代码表示给对象增加属性
+            this.cpu = cpu;
+            this.memerySize = memerySize;
+            this.diskSize = diskSize;
+            this.see = function () {
+                console.log(this.cpu + '解析视频');
+            }
+        }
+
+        let tp = new Computer('I5', 8, 512);
+        tp.see();
+        let mac = new Computer('I8', 16, 256);
+        mac.see();
+    </script>
+</body>
+
+</html>

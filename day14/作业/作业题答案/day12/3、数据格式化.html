@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="goods.css">
+
+</head>
+
+<body>
+    <div class="goodsinfo">
+        <form action="" class="choose">
+            <ul>
+                <!-- <li class="product">
+                    <dl>
+                        <dt>颜色：</dt>
+                        <dd><a class="selected" href="javascript:;">白色</a><a class="" href="javascript:;">黑色</a></dd>
+                    </dl>
+                </li> -->
+
+            </ul>
+        </form>
+    </div>
+    <script>
+        // data 变量表示的是服务端发给我们的商品的sku(货品)信息，根据数据 将可以选择的信息显示在ul标签中，最终显示结果  颜色：白色 黑色  内存：2G 4G 倒推
+        var data = [{
+                "id": 6,
+                "goodsSku": {
+                    "颜色": "白色",
+                    "内存": "2G"
+                },
+            },
+            {
+                "id": 7,
+                "goodsSku": {
+                    "颜色": "白色",
+                    "内存": "4G"
+                }
+            },
+            {
+                "id": 8,
+                "goodsSku": {
+                    "颜色": "黑色",
+                    "内存": "2G"
+                }
+            },
+            {
+                "id": 9,
+                "goodsSku": {
+                    "颜色": "黑色",
+                    "内存": "4G"
+                },
+            }
+        ];
+        // 上面的data 数据中每一个元素表示的是一组可能的组合，如果需要将信息显示，需要对已有的data 进行整理，需要将具体有多少类型，每种类型有多少值需要整理
+
+        /*
+        
+            如果需要显示上面布局，每一个商品具体有那些可以选择的 这点不确定。如果整体数据就是一个数组，数组表示出可以选择的信息，后期就可以直接遍历
+
+            [
+                能够表示出可以选择“规格”
+            ]
+            上面的数组格式 每一个元素需要使用对象格式保存(记录规格的名称 记录可以选择的值)
+            
+            var sku = [
+                {
+                    name:'颜色',
+                    values:['玫瑰金','深空蓝','暗影黑']
+                },
+                {
+                    name:'内存',
+                    values:['2G','4G','8G']
+                }
+            ]
+
+            如果按照数组套对象的格式 ，当每次根据数据源(data)转换格式时，都需要检查一下sku中有没有记录过规格名称，以及对应的值
+            由于 规格名称与值存在对应关系的所以可以选择使用对象格式记录 其中规格名称作为属性名称使用，属性值就记录可以用值
+
+            {
+                "颜色":['玫瑰金','深空蓝','暗影黑'],
+                "内存":['2G','4G','8G']
+            }
+
+        */
+
+        var sku = {};
+        data.forEach(function (item, index) {
+            // 将每个元素下的goodsSku进行遍历
+            for (var key in item.goodsSku) {
+                // key 表示的是规格名称  item.goodsSku[key] 表示的是可用的一个值
+                // 检查sku变量中是否已经记录了key变量对应值的那个属性
+                if (sku[key] == undefined) {
+                    // 没有记录过 就将该属性加入到对象中
+                    sku[key] = [item.goodsSku[key]]
+                } else {
+                    // 有记录过key变量对应的值的那个属性 检查是否已经记录过这个属性值
+                    // 检查是否存在属性值，如果不存在就添加  假如 key现在表示 颜色 item.goodsSku[key] 表示白色 验证sku对象中的颜色属性有没有记录白色这个值，如果记录了忽略 否则就添加
+                    !sku[key].includes(item.goodsSku[key]) && sku[key].push(item.goodsSku[key])
+                }
+            }
+        })
+        var html = '';
+        for (var key in sku) {
+            html += `<li class="product">
+                    <dl>
+                        <dt>${key}：</dt>
+                        <dd>`
+            sku[key].forEach(function (item, index) {
+                html += `<a class="${index==0?'selected':''}" href="javascript:;">${item}</a>`
+            })
+            html += `</dd></dl></li>`
+        }
+        console.log(sku)
+
+        document.querySelector('.choose>ul').innerHTML = html;
+    </script>
+</body>
+
+</html>

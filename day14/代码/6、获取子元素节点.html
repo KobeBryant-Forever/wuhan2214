@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>JavaScript权威指南</li>
+        <li>JavaScript你不知道的事</li>
+        <li>网络是怎么连接的</li>
+        <li>现代操作系统</li>
+    </ul>
+    <script>
+        var ulDom = document.querySelector('ul');
+        // 1、children 获取所有的子元素节点(记忆)
+        console.log(ulDom.children)
+        // 2、firstElementChild 获取到第一个子元素节点
+        console.log(ulDom.firstElementChild)
+        // 3、lastElementChild 获取最后一个子元素节点
+        console.log(ulDom.lastElementChild)
+        // 4、nextElementSibling 获取下一个兄弟元素节点
+        console.log(ulDom.children[2].nextElementSibling)
+        // 5、previousElementSibling 获取上一个兄弟元素节点
+        console.log(ulDom.children[2].nextElementSibling.previousElementSibling)
+    </script>
+</body>
+</html>

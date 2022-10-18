@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>按钮</button>
+    <button class="off">解除点击事件</button>
+    <script>
+        // dom对象在页面没有被关闭的情况下 只要修改长期保存
+        document.querySelector('button').room = '项目九'
+        document.querySelector('button').onclick = function(){
+            console.log('我现在头发还挺多的');
+        }
+        document.querySelector('.off').onclick = function(){
+            // 动态方式解绑 需要将事件设置为null
+            document.querySelector('button').onclick = null;
+            console.log(document.querySelectorAll('button'))
+        }
+    </script>
+</body>
+</html>

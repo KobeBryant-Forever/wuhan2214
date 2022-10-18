@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对于经常写判断 最多的就是if...else...
+        // 语法格式：表达式1?表达式2:表达式3  表达式1就是一个条件 可以得到布尔值，如果表达式为真 就执行表达式2 否则就执行表达式3
+        var a = 10;
+        // 使用三元控制代码的执行
+        (a > 5) ? console.log('a>5成立'): console.log('a<5');
+        // 使用三元完成赋值操作
+        var b = 20;
+        var c;
+        // if (a > 5) {
+        //     c = a;
+        // } else {
+        //     c = b
+        // }
+        c = (a > 5) ? a : b;
+        console.log(c)
+    </script>
+</body>
+
+</html>

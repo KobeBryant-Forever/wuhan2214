@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var name = '蔡徐坤';
+        var age = 28;
+        // var str = '<table>';
+        // str = str + '<tr>';
+        // str = str + '<td>' + name + '</td>';
+        // str = str + '<td>' + age + '</td>';
+        // str = str +'</tr></table>';
+
+        var str = '<table>';
+        str += '<tr>';
+        str += '<td>' + name + '</td>';
+        str += '<td>' + age + '</td>';
+        str += '</tr></table>';
+        document.write(str);
+
+        // 反引号  是ES6语法中模板字符串 可以内容任何换行 并且也可以解析字符串
+        var str2 = `<table>
+            <tbody>
+                <tr><td>蔡徐坤</td><td>28</td></tr></tbody></table>`;
+
+    </script>
+</body>
+
+</html>

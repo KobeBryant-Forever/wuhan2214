@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 显示省 -->
+    <select id="province">
+        <option>选择省份</option>
+
+    </select>
+    <!-- 显示市 -->
+    <select id="city">
+        <option>选择市区</option>
+    </select>
+
+    <script>
+        // 1、省市地区二级联动，页面加载完毕后显示出可以选择的省份，当省改变显示省份对应的市
+        // 2、实现省市区三级联动(可选)
+        // data变量是数组 每一个元素表示 一个省 但是一个省下 又有多个市 并且省也有自己的信息 所以data中数组元素每一个都需要使用对象表示
+        var data = [{
+                name: '湖北省',
+                city: ['武汉市', '荆州市', '宜昌市', '天门市']
+            },
+            {
+                name: '广东省',
+                city: ['广州市', '东莞市', '惠州市', '深圳市']
+            }
+        ];
+        // 显示所有的省信息
+        var provinceHtml = '<option value="-1">选择省份</option>';
+        data.forEach(function (item, index) {
+            provinceHtml += `<option value="${index}">${item.name}</option>`
+        })
+        document.querySelector('#province').innerHTML = provinceHtml
+
+        // 为省绑定change事件
+        document.querySelector('#province').onchange = function () {
+            // // 获取到当前选中的省
+            // var provinceName = this.value
+            // var res = data.filter(function (item) {
+            //     return item.name == provinceName
+            // })
+            // var cityHtml = '<option>选择市区</option>'
+            // if (res.length != 0) {
+            //     res[0].city.forEach(function (item) {
+            //         cityHtml += `<option>${item}</option>`
+            //     })
+            // }
+
+            // document.querySelector('#city').innerHTML = cityHtml
+
+
+            var cityHtml = '<option>选择市区</option>'
+            if (this.value != -1) {
+                data[this.value].city.forEach(function (item) {
+                    cityHtml += `<option>${item}</option>`
+                })
+            }
+
+            document.querySelector('#city').innerHTML = cityHtml
+
+        }
+
+
+
+        var data2 = [
+            {
+                name:'湖北省',
+                children:[
+                    {
+                        name:'武汉市',
+                        children:['江夏区','洪山区']
+                    }
+                ]
+            }
+        ]
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         table,table tr th, table tr td { border:1px solid #0094ff; }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="username" />
+        <input type="radio" id="sexOne"  name="sex" value="男"/>男
+        <input type="radio" id="sexTwo" checked name="sex" value="女"/>女
+        <input type="text" id="age" />
+        <button id="add">添加</button>
+    </div>
+    <br/>
+    <table cellspacing="0" border="1" width="600px" >
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>年龄</td>
+        </tr>
+    </table>
+    <script>
+        //页面上输入用户的姓名、性别、年龄 确认后 列表的方式显示添加的数据
+        document.querySelector('#add').onclick = function(){
+            // 获取信息
+            var username = document.querySelector('#username').value;
+            // 获取年龄
+            var age = document.querySelector('#age').value;
+            // 获取性别
+            var sex = document.querySelector('input[name="sex"]:checked').value;
+            // 组装需要追加的html标签
+            var html = `<tr>
+                <td>${username}</td>
+                <td>${sex}</td>
+                <td>${age}</td>
+            </tr>`
+            document.querySelector('tbody').innerHTML += html;
+
+        }
+    </script>
+</body>
+</html>

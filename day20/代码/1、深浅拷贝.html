@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            深浅拷贝就是变量直接进行赋值 其中一个变量修改对另外一个变量是否产生影响
+            深浅拷贝所针对的是引用类型
+            浅拷贝：一个变量修改 另外一个变量受到影响 引用类型直接赋值就是一种浅拷贝
+            深拷贝：将变量下的内容赋值给另外一个变量 但是两个变量相互要不影响
+
+        */
+        // 1、浅拷贝  直接赋值   
+        let obj = {
+            name: 'abc',
+            like: [1, 2, 3]
+        }
+
+        let obj2;
+        // obj.name = 'leo'
+        // console.log(obj2);
+        // 1、借助于JSON完成深拷贝
+        let data = [
+            1,
+            {
+                id: 1,
+                nickname: '蓝猫',
+                children: [{
+                    id: 2,
+                    nickaname: '无名'
+                }]
+            }
+        ];
+        // let a = data[1];
+        // a.id = 20;
+        // console.log(a)
+        // console.log(data)
+
+        // let data2 = JSON.parse(JSON.stringify(data));
+        // data2[0] = 10;
+        // console.log(data);
+        // console.log(data2);
+        // 2、封装函数实现深拷贝
+        function deepCopy(data) {
+            // 验证数据类型 传递的参数需要是数组或者对象
+            let allowType = ['[object Array]', '[object Object]'];
+            // 提取当前数据的类型
+            let dataType = Object.prototype.toString.call(data);
+            // 验证是否满足要求的类型
+            if (!allowType.includes(dataType)) {
+                throw new Error('参数类型错误')
+            }
+            // result变量是用于保存结果 根据现在的数据类型创建新的数组或者对象
+            let result = (dataType == '[object Array]') ? [] : {};
+            // 数组也是对象 也可以使用for in遍历
+            for (let key in data) {
+                // data[key] 不论data是数组还是对象 都可以取出值
+                // 当前遍历的元素 还是数组或者对象 需要继续将里面的值单独提取出
+                if(allowType.includes(Object.prototype.toString.call(data[key]))){
+                    result[key] = deepCopy(data[key]);
+                }else{
+                    result[key] = data[key];
+                }
+            }
+            return result;
+        }
+        let data3 = deepCopy(data);
+        data3[1].id= 200;
+        console.log(data,data3);
+    </script>
+</body>
+
+</html>

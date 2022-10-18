@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .one{width: 300px; height: 300px; background-color: yellowgreen;}
+        .two{width: 200px; height: 200px; background-color: rebeccapurple;}
+    </style>
+    <div class="one">
+
+        <div class="two"></div>
+    </div>
+    <script>
+        document.querySelector('.one').onclick = function(){
+            console.log('第一个div')
+        }
+        document.querySelector('.two').onclick = function(event){
+            // 一旦two的点击事件触发 上升到one上面的点击事件 由于one上有绑定点击事件 将对应的事件处理程序调用起来了。部分场景事件冒泡需要避免
+            console.log('第二个div')
+            // 阻止事件冒泡，到此为止 后面就不要在向上传播
+            // IE的低版本使用event.cancelBubble=true
+            // event.cancelBubble=true
+            event.stopPropagation();
+        }
+    </script>
+</body>
+</html>

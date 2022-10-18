@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var date1 = '2022-09-23';
+        var date2 = '2022-10-01';
+        // 计算两个日期之间相差的秒
+        var diffSecond = Math.abs((Date.parse(date1) - Date.parse(date2)) / 1000);
+        // 计算相差的天数
+        var day = Math.floor(diffSecond / (3600 * 24));
+        // 计算相差的小时
+        var hours = Math.floor((diffSecond - day * 24 * 3600) / 3600);
+        // 计算相差的分数
+        var mintnus = Math.floor((diffSecond - day * 24 * 3600 - hours * 3600) / 60);
+        var seconds = (diffSecond - day * 24 * 3600 - hours * 3600) % 60
+        console.log('距离国庆放假还有' + day + '天' + hours + '小时' + mintnus + '分' + seconds + '秒')
+    </script>
+</body>
+
+</html>

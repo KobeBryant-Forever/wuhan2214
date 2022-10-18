@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // *重复0次或者更多  >=0
+        // +重复1次或者更多  >=1
+        // ?重复0次或者1次
+        // {n}重复n次
+        // {n,}最少重复n次  没有{,m}这个写法
+        // {n,m} 最少重复n次最多重复m次
+        console.log(/a\d*/.test('a123a'));//true
+        console.log(/a\d+/.test('a'));//false
+        console.log(/a\d?/.test('a123'));//true
+        // 限制数字必须连续出现2次
+        console.log(/\d{2}/.test('a1b2c3'));//false
+        console.log(/\d{2,}/.test('123456'));//true
+        console.log(/\d{2,4}/.test('12a6'));//true
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            list-style: none;
+            padding: 10px;
+            border: 1px solid #eee;
+            width: 220px;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul id="app">
+            
+        </ul>
+
+    </div>
+    <script>
+        // 表示服务端给我们的数据
+        // 需要使用data变量保存所有的商品信息，商品信息一定存在多个，可以使用数组或者对象。如果整体使用对象格式，每一个需要设置名称，所以整体使用数组格式，数组中每一个元素就表示一个商品，一个商品存在多个信息，都是描述商品的 所以每一个商品可以使用对象格式。最终data整体数组，每个元素是对象
+        var data = [{
+                id: 1,
+                goodsCover: 'https://img11.360buyimg.com/n7/jfs/t1/115858/19/21803/40569/6231af20E22db4dca/054157e394f736d1.jpg.avif',
+                goodsPrice: 98,
+                goodsName: 'iphone 14 plus'
+            },
+            {
+                id: 2,
+                goodsCover: 'https://img14.360buyimg.com/n7/jfs/t1/76346/11/22140/49435/6329aa84E036a4c7f/14fb29d65f437a91.jpg.avif',
+                goodsPrice: 1998,
+                goodsName: '红米 note 11'
+            },
+            {
+                id: 3,
+                goodsCover: 'https://img11.360buyimg.com/n7/jfs/t1/94020/30/27525/61686/628cb8acE053ad9ff/b4ad6f942fd3f791.jpg.avif',
+                goodsPrice: 11998,
+                goodsName: '红米 note 12'
+            }
+        ];
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            // console.log(data[i]) 每次遍历的过程中 data[i] 表示的就是对象 就是商品信息的对象
+            html += `<li>
+                <img src="${data[i].goodsCover}" alt="">
+                <p class="price">￥${data[i].goodsPrice}</p>
+                <p class="title">${data[i].goodsName}</p>
+            </li>`;
+        }
+        // app.innerHTML 是使用dom对象调用属性进行内容设置 浏览器会自动的将页面元素处理
+        app.innerHTML = html;
+    </script>
+</body>
+
+</html>

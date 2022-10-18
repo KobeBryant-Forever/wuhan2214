@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = '张三';
+        let like = ['麻将','游戏'];
+        let obj = {
+            name:'李四',
+            age:44
+        }
+        let key = 'name'
+        let str = `${name}的爱好${like[0]},喜欢的对象叫${obj[key]}`;
+        console.log(str);
+        // 模板字符串中可以写简单的表达式
+        let n1 = 20;
+        let n2 = 3;
+        let h = 1.6
+        console.log(`商品总价格：${n1*n2},${n2>=3?'购买的商品数量3件超标':'ok'},身高:${Math.floor(h)}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+    <script>
+        // 动态的显示距离国庆剩下的天、时、分、秒
+
+        function fn() {
+            var diffTime = parseInt((Date.parse('2022-10-01') - Date.now()) / 1000) - 8 * 3600;
+
+            var day = Math.floor(diffTime / (24 * 3600));
+
+            var hours = parseInt((diffTime - day * 24 * 3600) / 3600);
+
+            var m = Math.floor((diffTime - day * 24 * 3600 - 3600 * hours) / 60);
+
+            var s = (diffTime - day * 24 * 3600 - 3600 * hours) % 60
+            document.querySelector('.app').innerHTML = `放假倒计时:${day}天${hours}时${m}分${s}秒`
+        }
+        fn();
+        setInterval(fn, 1000);
+    </script>
+</body>
+
+</html>

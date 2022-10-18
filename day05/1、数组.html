@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、创建数组  
+        // 使用字面量方式创建数组  字面量就是特殊的符号，但是具备了含义
+        var arr = [];
+        // 2、创建数组并且指定元素内容
+        // 现在数组是一个变量，数组是可以存储多个数据，可以理解数组就是一个大的盒子，将这个盒子分割为了很多的小空
+        // 数组中的元素理论上可以是任何数据类型 一般数组表示同类型的数据。所以大部分情况 数组中每一个元素的值数据类型都是相同，每个元素直接使用英文逗号分割
+        var arr2 = [60, 70, 80, 90];
+        console.log(typeof arr2); //object 因为数组也是对象
+        
+
+        // 不要直接使用数组 进行某些运算 真正需要使用的是数组中的元素
+        // console.log(arr2+'hello')
+        // 3、获取数组中元素的值  数组变量[下标]
+        console.log('第一个元素的值:', arr2[0]);
+        console.log('第五个元素的值:', arr2[4]); //数组越界
+        // 4、获取数组长度
+        console.log('长度为:', arr2.length);
+        console.log('数组的最大小标', arr2.length - 1);
+        // 5、数组的遍历
+        for (var i = 0; i < arr2.length; i++) {
+            console.log('第' + i + '个元素的内容为：' + arr2[i]);
+        }
+        // 6、元素修改
+        arr2[0] = arr2[0] * 0.8;
+        console.log(arr2);
+    </script>
+</body>
+
+</html>

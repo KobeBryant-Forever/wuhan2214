@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // fn();//无法调用
+    </script>
+    <script>
+        // 1、声明式函数调用 在同一个script标签中 任何位置都可以直接调用起来
+        fn();
+        function fn(){
+            console.log('声明式创建的函数')
+        }
+        fn();
+    </script>
+
+    <script>
+        // fn();
+        func();
+    </script>
+
+
+    <script >
+        func();//报错了
+        // 2、赋值式  在同一个script标签中 赋值式的函数在能在创建之后才可以调用
+        var func = function(){
+            console.log('ok')
+        }
+        func();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 小明学习js用了7896709887秒。问：共多少天，多少小时，多少分钟，多少秒？
+    var allSeconds = 7896709887;
+    // 计算天数
+    var day = parseInt(allSeconds / (3600 * 24));
+    // 计算小时
+    var hours = parseInt((allSeconds - day * 3600 * 24) / 3600);
+    // 计算分钟
+    var m = parseInt((allSeconds - day * 3600 * 24 - hours * 3600) / 60);
+    // 计算秒数
+    var s = (allSeconds - day * 3600 * 24 - hours * 3600) % 60;
+
+    console.log('小明学习js用时' + day + '天' + hours + '小时' + m + '分钟' + s + '秒');
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、if单分支
+        var hasSale = false;
+        // 一定会判断hasSale得到的结果是不是真 如果是真才执行{}所包裹的语句
+        if (hasSale) {
+            console.log('买一个西瓜');
+        }
+        // 因为10自动被转换为布尔值真 所以可以输出
+        if (10) {
+            console.log('123')
+        }
+        
+        // if双分支 就是存在else语句 表示 如果满足条件做什么 否则又做什么
+        if (hasSale) {
+            console.log('买一个西瓜');
+        } else {
+            console.log('买一个包子');
+        }
+
+        // 表示今天星期几  day为1-7之间的值
+        var day = 2;
+        if (day == 1) {
+            console.log('开需求会');
+        } else if (day == 2) {
+            console.log('摸鱼一天');
+        } else if (day == 3) {
+            console.log('开发需求');
+        } else if (day == 4) {
+            console.log('提交测试');
+        } else if (day == 5) {
+            console.log('打回重写');
+        } else {
+            console.log('加班ing');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、const创建的常量必须赋值
+        let n;
+        //  Missing initializer in const declaration 常量必须初始化
+        // 常量名规则跟变量名称规则一样 只是一般都使用全部大写
+        // const PI;
+        // 2、const常量栈区的值是不能修改的
+        const PI = 3.14;
+        // Assignment to constant variable.
+        // PI = 3.1415;
+        const STATUS = [1,2,3,4,5]
+        // 此次修改的是堆区数据
+        STATUS[1] = 22
+        // STATUS = []//报错
+        // const 也具备let比var新增的新特性
+    </script>
+</body>
+</html>

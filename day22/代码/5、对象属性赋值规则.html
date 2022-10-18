@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name) {
+            this.name = name;
+        }
+        // 向原型上添加属性
+        Person.prototype.leg = 2;
+        Person.prototype.name = '李四';
+        let p = new Person('刘一手');
+        // 结论：修改不管怎么修改 永远修改当前对象的 没有就近原则 如果属性存在就修改否则就添加
+        // 修改name属性 当前对象与原型上都存在 修改当前对象
+        p.name = '留一手';
+        // 当前对象没有但是原型上有 也只会修改当前对象，直接在当前对象下添加这个属性
+        p.leg = 3;
+        console.log(p)
+    </script>
+</body>
+
+</html>

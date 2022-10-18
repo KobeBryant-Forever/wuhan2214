@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let goods = {id:1,goodsName:'华为手机Mate',price:999};
+        // 不使用解构赋值时 可以使用到对象下的信息   goods.price 虽然可以使用 但是比较麻烦 每次都需要goods.进行调用
+        // 1、对象解构的基础使用
+        // 对象解构
+        // let {属性名称1,属性名称2...} = 对象
+        // 等价于 let price = goods.price
+        // 在解构时默认需要将解构的变量名称与需要使用的属性名称同名
+        // let {price,id} = goods;
+        // console.log(price,id);
+
+        // 2、解构并且设置别名
+        // let {属性名称:别名,...} = 对象
+        let price = 123;
+        // 等价于 ley goodsPrice = goods.price let id = goods.id
+        let {price:goodsPrice,id} = goods;
+        console.log(goodsPrice,id)
+        // 3、多级解构
+        let person = {
+            code:0,
+            data:{
+                name:'李灿灿',
+                catgeory:{
+                    sex:'女'
+                }
+            }
+        }
+        // 等价于 let data = person.data ;let name = data.name 
+        let {data:{name}} = person
+        console.log(name)
+
+        // let {data:{catgeory:{sex}}} = person
+
+    </script>
+</body>
+</html>

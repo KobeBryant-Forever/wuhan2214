@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        /*
+            1、元素绑定鼠标的按下事件 按下事件中设置鼠标的移动事件
+            2、在移动事件中 每次移动需要控制元素 可以跟随 修改元素的top left
+            3、元素绑定鼠标的抬起事件 需要设置移动事件失效
+
+        */
+        //    document.querySelector('div').onclick = function(){
+        //        console.log('aaa')
+        //    }
+        //    console.log(document.querySelectorAll('div'))
+        document.querySelector('div').onmousedown = function () {
+            // 设置移动事件
+            this.onmousemove = function (event) {
+                // clientx clientY以浏览器左上角取得的坐标点
+                // 如果直接使用clientX clientX 设置元素的top与left值 会导致坐标点一直在元素的左上角。所以需要将坐标点定位到元素的中间 需要再减掉宽高的一半
+                this.style.top = event.clientY - parseInt(window.getComputedStyle(this).height) / 2 + 'px';
+                this.style.left = event.clientX - parseInt(window.getComputedStyle(this).width) / 2 + 'px';
+            }
+        }
+        // 鼠标抬起 移动事件失效哦
+        document.querySelector('div').onmouseup = function () {
+            this.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

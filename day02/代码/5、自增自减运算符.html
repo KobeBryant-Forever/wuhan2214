@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ++运算符
+        var n = 10;
+        // 将n变量的值+1
+        n = n + 1; //可以简写为 n+=1
+        n++;
+        console.log(n); //12
+        // --运算符
+        var m = 20;
+        m--;
+        console.log(m);
+        // 3、前置与后置的区别  两个运算符 可以设置在变量前或者变量后。前置与后置存在区别
+        // n++ 后置
+        // ++n 前置
+        // 不论是前置也好 还是后置，一旦运行完毕绝对会将变量加1或者减1
+
+        var j = 10;
+        j++;
+        console.log(j);
+        ++j;
+        console.log(j);
+        // 当进行赋值或者输出时，++符号在变量前 先进行增加然后在进行其他操作，如果++符号在后 先进行其他操作 然后在进行加1
+        var k = 10;
+        var k2 = k++; //先将k的值赋值给k2变量 然后再将k的值+1
+        console.log('k2=' + k2, 'k=' + k);
+
+        var k3 = 10;
+        var k4 = ++k3; //先将k3变量的值+1 然后在赋值给k4
+        console.log(k3, k4);
+
+        // 练习题：
+        var i = 10;
+        // var a = i++; 执行完毕 a = 10 i = 11;
+        // var b = ++i; 执行完毕 b = 12 i = 12;
+        // 等价于 var result = a + b;
+        var result = i++ + ++i;
+        console.log('i=' + i, 'result=' + result);
+    </script>
+</body>
+
+</html>

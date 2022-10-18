@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用严格模式 必须在代码中第一行使用字符串 来开启严格模式
+        // var a = 10;
+        // "use strict";
+        // c = 30;
+
+        // function fn(a,a){
+
+        // }
+        // fn(1,2);
+        // "use strict"
+        // // 3、禁止普通函数中this直接指向window
+        // // 前面说每一个函数被调用时内置都存在arguments对象，arguments是系统所提供的一个变量 记录下所有的实参数据。在调用函数时系统也提供了一个this关键字 表示函数的调用者是谁
+        // // 在函数中this永远表示函数的调用者 所以大多数场景不确定函数中this是谁是因为不知道函数调用者
+        // var obj = {
+        //     money: '10000w',
+        //     show: function () {
+        //         console.log('我的账户余额:' + this.money)
+        //     }
+        // }
+        // // 使用obj对象将show方法调用起来 所以调用时show方法中的this 就表示obj对象 this == obj
+        // obj.show();
+        // function fn(){
+        //     console.log(this);
+        // }
+        // fn();
+
+        // 4、只针对函数使用严格模式
+        a = 20;
+        function fn(){
+            "use strict"
+            b= 30;
+        }
+        fn()
+    </script>
+</body>
+
+</html>

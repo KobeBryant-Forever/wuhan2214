@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            冒泡排序，就是相邻的两个元素直接进行大小比较，根据情况决定是否交换位置
+            第一次 10(0) 与9(1) 比较 交换位置 结果 [9,10,28,30,25]
+            第二次 10(1)与28(2)比较  不交换 结果 [9,10,28,30,25]
+            第三次 28(2)与30(3)比较  不交换 结果 [9,10,28,30,25]
+            第四次 30(3)与25(4)比较  交换位置 结果 [9,10,28,25,30]
+            上面一轮只能找到一个最大值，还需要继续每相邻的两个元素进行比较
+
+        */
+        var arr = [10, 9, 28, 30, 25];
+        // 1、寻找一个最大值
+        // for (var i = 0; i < arr.length; i++) {
+        //     if (arr[i] > arr[i + 1]) {
+        //         // 左侧比右侧的元素要大 就交换位置
+        //         var tmp = arr[i];
+        //         arr[i] = arr[i + 1];
+        //         arr[i + 1] = tmp;
+        //     }
+        // }
+        // 2、解决越界的问题 当i = 4时 条件中会使用arr[4] 与arr[5]进行比较
+        // for (var i = 0; i < arr.length - 1; i++) {
+        //     if (arr[i] > arr[i + 1]) {
+        //         // 左侧比右侧的元素要大 就交换位置
+        //         var tmp = arr[i];
+        //         arr[i] = arr[i + 1];
+        //         arr[i + 1] = tmp;
+        //     }
+        // }
+
+        // 3、循环找多个最大值，5个数需要将上面的循环执行4次 就能完整排序完毕
+        // for (var j = 0; j < arr.length - 1; j++) {
+        //     for (var i = 0; i < arr.length - 1; i++) {
+        //         if (arr[i] > arr[i + 1]) {
+        //             // 左侧比右侧的元素要大 就交换位置
+        //             var tmp = arr[i];
+        //             arr[i] = arr[i + 1];
+        //             arr[i + 1] = tmp;
+        //         }
+        //     }
+        // }
+
+
+        // 冒泡排序的优化
+        // 第一轮 5个数 确定一个最大值 比较4次      j = 0  i=4
+        // 第二轮 5个数 确定第二个最大值 比较3次    j = 1  i=3
+        // 第三轮 5个数 确定第三个最大值 比较2次    j = 2  i=2
+        var count = 0;
+        for (var j = 0; j < arr.length - 1; j++) {
+            for (var i = 0; i < arr.length - j - 1; i++) {
+                count++;
+                if (arr[i] > arr[i + 1]) {
+                    // 左侧比右侧的元素要大 就交换位置
+                    var tmp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = tmp;
+                }
+            }
+        }
+        console.log(count);
+        console.log(arr);
+    </script>
+</body>
+
+</html>

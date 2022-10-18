@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="console.log('事件绑定了')">按钮</button>
+    <button class="off">解除点击事件</button>
+    <script>
+        document.querySelector('.off').onclick = function(){
+            // 行内方式解绑 需要将对应的属性移除调用
+            document.querySelector('button').removeAttribute('onclick')
+        }
+    </script>
+</body>
+</html>

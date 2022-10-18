@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、函数参数的作用
+        // 函数的参数控制函数的功能不一致,可以通过函数的参数值不同实现函数的功能不一样，例如洗衣机，可以放洗衣粉或者洗衣液
+        // 2、区分形参与实参  在创建函数时()中所写的就是形参 形参的名称任意设置， 实参是调用函数时真正设置的数据
+
+        // a,b 就是形参 形参就是变量 只是形参名称任意设置 大多数情况下使用与实参同名变量
+        function sum(a, b) {
+            console.log(a + b);
+        }
+        var n1 = 10;
+        var n2 = 20;
+        // n1 n2 就是实参
+        sum(n1, n2);
+        // 3、实参与形参的关联  一旦调用函数，系统会自动按照顺序，将实参的值赋值给形参
+
+        function sumTwo(a, b, c) {
+            // 一旦调用函数 函数中就好比执行语句
+            // var a = number1
+            // var b = number2
+            // var c = number3
+            console.log(a + b + c);
+        }
+        var number1 = number2 = number3 = 10;
+
+        sumTwo(number1, number2, number3);
+
+
+        // 4、形参与实参的修改问题
+
+        // 函数传递基本类型，函数体中修改对应的形参变量 对实参无影响(基本类型赋值 两个变量相互不影响)
+        function func1(a) {
+            // var a = n;
+            a = 30;
+        }
+        var n = 20;
+
+        func1(n);
+        console.log(n); //20
+        // console.log(a); // a is not defined函数中创建的变量 是临时变量，默认情况下一旦调用完毕 变量销毁
+
+        // 函数传递引用类型 函数体中如果直接覆盖引用变量 对外无影响，但是如果函数体中修改变量 对外就有影响
+        function func2(a) {
+            // var a = arr;
+            // a[0] = 2;
+            a = [100,2,3];
+        }
+        // 创建引用类型  arr变量对应的值就是一个内存地址
+        var arr = [1, 2, 3];
+        // 调用函数将内存地址赋值给形参a
+        func2(arr);
+        console.log(arr);//[2, 2, 3]
+    </script>
+</body>
+
+</html>

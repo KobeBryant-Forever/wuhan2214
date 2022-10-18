@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、使用toString方法，undefined与null无法使用该方式进行转换  转换方式等价于直接给内容加引号
+        var n = 10; 
+        console.log(n.toString());
+        var flag = true;
+        console.log(flag.toString());//'true'
+        var flag2= false;
+        console.log(flag2.toString());//'false'
+        var un;
+        // Cannot read properties of undefined (reading 'toString'),以后一旦遇到类似的报错 绝对证明前面的不是一个对象
+        // console.log(un.toString());
+        // console.log(10)//在同一个script标签中一旦报错 后续还有多少代码都不会被执行
+        // var nu = null;
+        // console.log(nu.toString());
+        // 2、String函数完成
+        console.log(String(10))
+        console.log(String(true));
+        console.log(String(false));
+        console.log(String(undefined));
+        console.log(String(null));
+    </script>
+    <script>
+        // console.log(11)
+    </script>
+</body>
+</html>

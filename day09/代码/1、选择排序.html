@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [10, 1, 8, 29, 3];
+        /*
+            选择排序 就是假设某一个数是最大或者最小 通过循环可以验证是否是正确
+            需要按照从小到大排序
+            假设第一个元素10是最小值
+                使用假设的最小值(10) 下标为1的 进行比较 假设不成立 记录现在下标为1的是最小值
+                使用假设的最小值(1) 与下标为2的进行比较 假设成立 不做任何处理
+                使用假设的最小值(1) 与下标为3的进行比较 假设成立 不做任何处理
+                使用假设的最小值(1) 与下标为4的进行比较 假设成立 不做任何处理
+                循环完毕 可以找到一个最小值  使用第一个元素与最小值的元素交换位置
+            假设第二个元素10是最小值
+                 使用假设的最小值(10) 与下标为2的进行比较  如果满足什么都不做，否则就记录真正的最小下标。。。
+        */
+        //1、实现找到一个最小值
+        // var index = 0; //假设下标为0的元素值最小
+        // for (var i = 1; i < arr.length; i++) {
+        //     // 使用当前假设的最小值与 现在循环的元素 进行比较
+        //     if (arr[index] > arr[i]) {
+        //         // 假设不成立 记录现在真正的最小值
+        //         index = i;
+        //     }
+        // }
+
+        // // 使用下标为0的元素与最小值的元素进行值交换
+        // var tmp = arr[0];
+        // arr[0] = arr[index];
+        // arr[index] = tmp;
+
+        // var index = 1; //假设下标为0的元素值最小
+        // for (var i = 2; i < arr.length; i++) {
+        //     // 使用当前假设的最小值与 现在循环的元素 进行比较
+        //     if (arr[index] > arr[i]) {
+        //         // 假设不成立 记录现在真正的最小值
+        //         index = i;
+        //     }
+        // }
+
+        // // 使用下标为0的元素与最小值的元素进行值交换
+        // var tmp = arr[1];
+        // arr[1] = arr[index];
+        // arr[index] = tmp;
+
+        // 2、多轮循环 进行排序
+        for (var j = 0; j < arr.length - 1; j++) {
+            var index = j;
+            // 第一轮循环 index为0 i起始为1， 第二轮循环 index=1  i的起始值为2  
+            for (var i = index + 1; i < arr.length; i++) {
+                // 使用当前假设的最小值与 现在循环的元素 进行比较
+                if (arr[index] > arr[i]) {
+                    // 假设不成立 记录现在真正的最小值
+                    index = i;
+                }
+            }
+
+            // 使用下标为0的元素与最小值的元素进行值交换
+            var tmp = arr[j];
+            arr[j] = arr[index];
+            arr[index] = tmp;
+        }
+        console.log(arr);
+    </script>
+</body>
+
+</html>

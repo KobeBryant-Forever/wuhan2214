@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            实现猜数游戏。先随机生成一个100以内的数字。用户输入一个数字。 如果输入的大于随机数提示大了，输入的数值小于随机数提示小于。相等游戏结束 
+            思路
+                1、生成100以内的随机数
+                    Math.random()生产一个0到1之间的随机数
+                2、循环接受用户的输入与随机数判断(需要使用死循环与break语句)
+        */
+        var makeNumber = parseInt(Math.random() * 100)
+        console.log(makeNumber);
+        while(true){
+            // 接受输入的内容
+            var number = prompt('输入一个0-100之间的数:');
+            if (number > makeNumber) {
+                console.log('大了')
+            } else if (number < makeNumber) {
+                console.log('小了')
+            } else {
+                console.log('game over');
+                break;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let arr = [9, 8, 7, 6];
+        // 数组的解构是按照顺序进行赋值
+        // let [变量名称...] = 数组
+        // 等价于 let a = arr[0]  let b = arr[1] let c = arr[2]...
+        // let [a, b, c, d] = arr;
+        // console.log(a, b, c, d)
+
+        // 将前面两个元素进行解构
+        // let [a,b] = arr;
+        // console.log(a,b)
+        // 将前后元素进行解构  将不需要的元素留空
+        // let [a,,,b] = arr;
+        // console.log(a,b)
+
+        // 数组多级解构
+        let arr2 = [
+            [9, 8, 7], 6, [1, 2, 3]
+        ];
+        let [
+            [a, b], c
+        ] = arr2;
+        console.log(a, b, c);
+
+        // 借助于解构语法 实现变量直接进行值的交互
+        let cc = 10;
+        let dd = 20;
+        [dd, cc] = [cc, dd];
+        console.log(cc,dd)
+    </script>
+</body>
+
+</html>

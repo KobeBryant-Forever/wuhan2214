@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <strong>KTV</strong>
+    </div>
+    <script>
+        var aDom = document.createElement('a'); 
+        aDom.innerHTML = '百度一下';
+        aDom.setAttribute('href','https://www.baidu.com/s?wd=正规的ktv');
+        // 父元素的对象.replaceChild(新的dom对象，被替换的dom对象)
+        document.querySelector('#app').replaceChild(aDom,document.querySelector('strong'))
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{background-color: yellow;}
+        .w {width: 200px;}
+        .h{height: 200px;}
+    </style>
+</head>
+<body>
+    <div id="app" class="w">我与赌毒不共戴天</div>
+    <button class="get">获取样式</button>
+    <button class="set">设置样式</button>
+    <button class="remove">删除样式</button>
+    <script>
+        var divDom = document.querySelector('#app');
+        document.querySelector('.set').onclick = function(){
+            // 1、通过方法完成控制
+            // 获取原有的class属性
+            // var str = divDom.getAttribute('class')
+            // divDom.setAttribute('class',str+' h')
+            // 2、dom对象调用属性控制
+            // 因为class的关键字 所以在设置样式时使用className属性
+            // var str = divDom.className// 获取原有的class属性
+            // divDom.className = str + ' h'
+            // 3、使用classList操作
+            console.log(divDom.classList)
+            divDom.classList.add('h')
+        }
+
+        document.querySelector('.get').onclick = function(){
+            console.log(divDom.getAttribute('class'))
+            console.log(divDom.className);
+            console.log(divDom.classList)
+        }
+        document.querySelector('.remove').onclick = function(){
+            divDom.classList.remove('w')
+        }
+    </script>
+</body>
+</html>

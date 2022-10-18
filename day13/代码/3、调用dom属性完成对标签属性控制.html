@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="">
+    <input type="checkbox" class="like">
+
+    <button class="get">获取</button>
+    <button class="set">设置</button>
+    <button class="remove">删除</button>
+    <script>
+        var imgDom = document.querySelector('img');
+        document.querySelector('.set').onclick = function(){
+            // 当调用的属性存在中横线 转换为驼峰式
+            imgDom.src = 'https://img1.baidu.com/it/u=3975477403,3704385503&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500';
+            // 不支持自定义属性
+            // imgDom.dataName = "李四"
+            document.querySelector('.like').checked = true
+        }
+        document.querySelector('.get').onclick = function(){
+            console.log(imgDom.src);
+            console.log(document.querySelector('.like').checked)
+        }
+        document.querySelector('.remove').onclick  = function(){
+            imgDom.src = ''    
+        }
+    </script>
+</body>
+</html>

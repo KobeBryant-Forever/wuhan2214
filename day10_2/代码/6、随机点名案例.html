@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #content {
+            width: 600px;
+            height: 400px;
+            background: #000;
+            margin: 100px auto;
+            text-align: center;
+            position: relative;
+            line-height: 300px;
+            color: dodgerblue;
+            font-size: 70px;
+        }
+
+        #btn1 {
+            background: #ccc;
+            width: 180px;
+            height: 80px;
+            font-size: 30px;
+            color: #f40;
+            border-radius: 12px;
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            margin-left: -90px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <span id="span1">
+            点击开始
+        </span>
+        <button id="btn1">
+            start
+        </button>
+
+    </div>
+    <script src="common.js"></script>
+    <script>
+        /*
+            分析思路
+                1、用户点击start按钮,名称在一直更换
+                    1、将start字符换为end字符
+                    2、因为需要反复更换名称 所以使用定时器。需要确认更换名称方式。将所有可用的名称 设置到一个数组中，再随机取一个名称替换内容即可
+                2、用户点击end按钮 停止了更换名字
+                    清除定时器
+        */
+        var users = ['王超','李灿灿','舒高','江静文','曹俊雄','刘一航'];
+        var timer;
+        btn1.onclick = function(){
+            if(btn1.innerHTML.trim() == 'start'){
+                // 现在是要开始了
+                btn1.innerHTML = 'end';
+                timer =  setInterval(function(){
+                    // 根据数组 生成一个随机的下标
+                    var index = makeRandomNumber(0,users.length,false);
+                    // 设置名称
+                    span1.innerHTML = users[index];
+                },30)
+            }else{
+                // 现在要结束
+                btn1.innerHTML = 'start';
+                clearInterval(timer);
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>

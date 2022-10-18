@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <button class="off">解除点击事件</button>
+    <script>
+        var btnDom = document.querySelector('button');
+        // 使用事件监听绑定两次事件
+        btnDom.addEventListener('click', function () {
+            console.log('匿名函数 永远无法解除')
+        })
+
+        function fn() {
+            console.log('有名称的数函');
+        }
+        btnDom.addEventListener('click', fn);
+
+        document.querySelector('.off').onclick = function () {
+            btnDom.removeEventListener('click', fn)
+            // 无法解除的原因是因为引用类型比较的是内存地址
+            btnDom.removeEventListener('click', function () {
+                console.log('匿名函数 永远无法解除')
+            })
+            // 解除监听方式的绑定在IE8以下需要使用detachEvent方法
+        }
+        console.log([]==[]);//false
+    </script>
+</body>
+
+</html>

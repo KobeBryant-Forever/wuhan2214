@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1、普通函数直接调用  this指向window -->
+    <script>
+        function fn(){
+            console.log(this)//window
+        }
+        fn()
+    </script>
+    <!-- 2、行内绑定 this表示当前的dom对象 -->
+    <button onclick="console.log(this)">按钮</button>
+    <!-- 3、行内绑定中调用函数  函数中this 表示window -->
+    <button onclick="clickme()">按钮</button>
+    <script>
+        function clickme(){
+            console.log(this);//window对象
+        }
+    </script>
+    <!-- 4、动态绑定与事件监听 -->
+    <button class="btn3">按钮3</button>
+    <button class="btn4">按钮4</button>
+    <script>
+        document.querySelector('.btn3').onclick = function(){
+            console.log(this)
+        }
+        document.querySelector('.btn4').addEventListener('click',function(){
+            console.log(this)
+        })
+    </script>
+    <!-- 5、定时器、延时器 函数this都是window -->
+    <button class="btn5">按钮5</button>
+    <script>
+        // setInterval(function(){
+        //     console.log(this);//window
+        // }, 1000);
+
+        document.querySelector('.btn5').onclick = function(){
+            console.log(this);//按钮的dom对象
+            // this其实是可以变化的
+            setInterval(function(){
+                console.log(this);//window
+            }, 1000);
+        }
+    </script>
+    <!-- 6、自定义对象 -->
+    <script>
+        
+        let obj = {
+            name:'石头人',
+            say:function(){
+                console.log(this.name+'为啥不是猴子呢?')
+            }
+        }
+        // 谁调用this就是谁 say函数时被obj 调用
+        obj.say();
+
+        window.name = '猴子';
+        function say(){
+            console.log(this.name)
+        }
+        let obj2 = {
+            name:'石头人',
+            say:say
+        }
+        say();//猴子
+        obj2.say();//石头人
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let goodsName = 'mate 11';
+        let price = 8999;
+        // 需求是将变量组合成为一个对象
+        let data = {
+            // 左边的属性名称 右边是值
+            goodsName:goodsName,//对象下存在一个叫做goodsName的属性值为goodsName变量
+            price:price
+        }
+        console.log(data);
+        // 当属性名称与属性值的变量同名 可以省略一个
+        let data2 = {
+            goodsName,
+            price
+        }
+        console.log(data2);
+
+
+        let obj = {
+            name:'李四',
+            // say:function(){
+            //     console.log('say')
+            // }
+            // 该简写方式是针对say:function(){console.log('say')}的简写  注意  不是箭头函数
+            say(){
+                console.log('say')
+            }
+            // say:()=>{
+
+            // }  
+        }
+        obj.say();
+
+    </script>
+</body>
+</html>

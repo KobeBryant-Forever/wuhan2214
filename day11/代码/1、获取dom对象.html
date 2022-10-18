@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div class="box">刘邦</div>
+    <div class="box">刘备</div>
+    <input type="text" name="nickname">
+    <script>
+        // 以前通过直接使用标签的id变量 使用dom对象的方式 以后就不要使用了
+        // 1、根据ID值寻找标签元素对应的dom对象 参数传递id的属性值
+        var divDom = document.getElementById('app');
+        // console.log(divDom)
+        // divDom.innerHTML = '项羽'
+        // 2、根据class的值寻找标签对应的元素 最终返回的是伪对象，数组中每一个元素才是真正的dom对象
+        console.log(document.getElementsByClassName('box'));
+        // 伪数组调用dom下的属性控制元素 下面的写法是错误的。永远是dom对象.内置的属性方法
+        // document.getElementsByClassName('box').innerHTML = '刘秀'
+        // 3、以标签名称寻找对应的dom对象 返回的还是伪数组
+        console.log(document.getElementsByTagName('div'));
+        // 4、以标签中name属性寻找 返回结果还是伪数组(nodelist) 可以使用forEach遍历
+        console.log(document.getElementsByName('nickname'));
+
+
+        // 参数中需要传递的是css选择器规则 返回的结果使用dom对象 如果选择器可以匹配到多个，最后只会得到第一个匹配的标签对应的dom对象
+        console.log(document.querySelector('.box'))
+        // 根据css选择器规则匹配多个元素的dom对象 返回的是伪数组
+        console.log(document.querySelectorAll('.box'))
+
+        console.log(document.querySelector('.abc'));
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name = name;
+        }
+        // 向原型上添加属性
+        Person.prototype.leg = 2;
+        Person.prototype.name = '李四';
+
+        let p = new Person('刘一手')
+        console.log(p)
+        // 当前对象下存在name属性  所以直接取出对象下的属性使用
+        console.log(p.name);// 刘一手
+        // 当前对象下没有leg属性，系统自动顺着__proto__属性到原型下寻找，找到了leg属性所返回使用
+        console.log(p.leg);//2
+        // 当前对象下不存在，Person原型上也不存在，继续根据原型的__proto__再到上层原型上寻找，找到了直接使用
+        console.log(p.toString);//函数代码
+        // 当前对象下不存，原型上也不存在，原型的原型也不存在，最后找到null 还没找到 就没有返回undefined
+        console.log(p.age);//undefined
+        // 当对象调用属性，当前对象下不存在自动顺着原型链寻找，找到了直接使用否则就undefined
+        // 原型是被所有的实例对象共享
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、Number函数
+        var str = '100';
+        var res = Number(str);
+        console.log(res, typeof res);
+        // str变量本身是没有任何修改
+        console.log(str, typeof str)
+        console.log('100元转换结果', Number('100元')); //NaN
+        console.log('100元转换结果', Number('￥100')); //NaN
+        console.log('true转换结果', Number(true)); //1
+        console.log('false转换结果', Number(false)); //0
+        console.log('undefined转换结果', Number(undefined)); //NaN
+        console.log('null转换结果', Number(null)); //0
+        // 当使用Number将字符串转换为数字是,只有字符串全部为数字才可以正常转换否则一律为NaN
+        // 2、parseInt函数 主要是针对字符串 虽然其他类型可以转换但是无意义
+        console.log('-------------------------------------')
+        console.log('100字符串转换的结果', parseInt('100'))
+        console.log('100元转换的结果', parseInt('100元'))
+        console.log('￥100转换的结果', parseInt('￥100'))
+        console.log('100.98字符串转换的结果', parseInt('100.98'))
+        console.log(parseInt(true))
+        console.log(parseInt(false))
+        console.log(parseInt(undefined))
+        console.log(parseInt(null))
+        // 当使用parseInt函数将字符串转换为数字时，会从第一个字符开始提取，是数字就保留，直到遇到字符结束，如果到结束都没有提取到数字 最终结果NaN  parseInt只要整数部分
+
+
+        // 3、parseFloat函数
+        console.log('-------------------------------------')
+        console.log('100字符串转换的结果', parseFloat('100'))
+        console.log('100元转换的结果', parseFloat('100元'))
+        console.log('￥100转换的结果', parseFloat('￥100'))
+        console.log('100.98字符串转换的结果', parseFloat('100.98'))
+        // 转换的规则与parseInt一模一样，唯一区别就在于parseFloat可以支持小数点
+
+        // prompt接受用户的输入值赋值给变量 永远是字符串类型
+        var k = prompt('请输入一个数字')
+        console.log('k=' + k, 'typeof k = ', typeof k);
+        // 一旦将字符串转换为数字类型 结果为NaN 表示绝对不是一个正常数字 肯定是字符串
+        console.log(Number(k));
+        // 因为NaN不等于自身 所以需要借助于isNaN来进行判断 判断是不是NaN 如果值是NaN 得到的就是true 否则就是false
+        // console.log(NaN == NaN)
+        console.log(isNaN(Number(k)))
+    </script>
+</body>
+
+</html>

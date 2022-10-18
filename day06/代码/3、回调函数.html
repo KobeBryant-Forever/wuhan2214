@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、函数传递基本类型
+        function fn (a){
+            // 系统自动执行 var a = n ;将n变量的值赋值给a变量 a与n两个变量相互独立
+            console.log(a);
+        }
+        var n = 10;
+        fn(n);
+        // 2、函数传递引用类型
+        function fn2(a){
+            // 系统自动执行 var a = arr; 将arr变量的内存地址赋值给a变量 a与arr 都是数组[1,2,3]的名称
+            console.log(a[0]);
+        }
+
+        var arr = [1,2,3];
+        // 调用函数传递的其实就是一个内存地址
+        fn2(arr);
+
+        // 3、函数传递函数
+        function fn3(a){
+            // 一旦调用函数 系统自动执行 var a = callback 
+            // 所以 a变量与callback变量都指向一个内存地址 都是函数名称
+            console.log(a);
+            a();
+        }
+        // 当前有一个叫做callback的变量 并且值是一个内存地址
+        // 好比 var callback = function(){}  就类似 var callback = 0X444;
+        function callback(){
+            console.log('回调函数')
+        }
+        // 等价于 fn3(0X444);
+        fn3(callback)
+
+        // 4、回调函数的简化写法
+        function fn4(a){
+            a();
+        }
+
+        // function(){console.log('匿名的回调函数')}  匿名函数 就是一个内存地址
+        // fn4(内存地址)
+        fn4(function(){
+            console.log('匿名的回调函数')
+        })
+
+        // 5、回调传递参数
+
+        function fn5(a){
+            var data = [1,2,3];
+            // 调用函数 传递实参数据data变量
+            a(data);
+        }
+
+        // function(){console.log('callback')}  这个是函数的创建  参数表示形参
+        fn5(function(datas){
+            console.log('callback');
+            console.log('携带的额外参数',datas)
+        })
+
+
+        
+        function  fn6(){
+            console.log('fn6')
+        }
+
+        function  fn7(){
+            console.log('fn6')
+            fn6();//没有将fn6作为参数传递过来 所以fn6不叫做回调函数
+        }
+        fn7()
+    </script>
+</body>
+</html>

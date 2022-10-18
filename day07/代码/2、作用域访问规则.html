@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var n1 = 10;//全局window作用域下的变量
+
+        function fn() {
+            var n2 = 20;//属于fn下的局部变量 相对于window是局部 但是相对于fn2函数是全局
+
+            function fn2() {
+                // 访问变量值时遵守就近原则 那个位置创建变量最近
+                var n3 = 30;//绝对是局部
+                var n2 = 40;//绝对是局部
+                console.log(n3);//30 当前fn2下存在n3变量 所以可以取出
+                console.log(n2);//40 虽然当前fn2与fn下都存在n2变量 但是就近
+                console.log(n1);//10 当前没有 上级fn也没有 就使用了全局下的n1
+                // console.log(n);// n is not defined  所有位置都没有n变量 所以报错
+                console.log(name);// 因为name是window下内置的 所以不报错。默认是空字符串 name永远是字符串，类型 改都无效
+                // console.log(window);
+            }
+            fn2();
+        }
+        fn();
+    </script>
+</body>
+
+</html>

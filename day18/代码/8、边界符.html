@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ^ 表示开始 是从字符串开始位置进行匹配
+        console.log(/^\d/.test('a123'));//false
+        // $ 表示结束
+        console.log(/\d$/.test('123a'));//false
+        // 平常进行表单验证一定会使用开始与结束符号
+        var str = '119';
+        console.log(/^1[2-9]\d{9}$/.test(str));
+    </script>
+</body>
+</html>

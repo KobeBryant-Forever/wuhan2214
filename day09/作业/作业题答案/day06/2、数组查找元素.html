@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 现有数组var arr = [1,2,3,4,5,6,7,8,9]。判断出任意数字在数组中是否出现。如果出现输出 存在，否则不存在
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var findNumber = 10;
+        var flag = false; // 没有出现
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == findNumber) {
+                flag = true;
+                break;
+            }
+        }
+        flag ?console.log('存在'):console.log('不存在');
+    </script>
+</body>
+
+</html>

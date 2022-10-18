@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="message">
+        <strong>喝完酒谁都不服，就扶墙</strong>
+    </div>
+    <input type="text" class="mobile">
+    <button class="get">获取</button>
+    <button class="set">设置</button>
+    <script>
+    
+        /*
+            1、使用的属性
+                innerHTML：针对于双标签 可以解析html内容
+                innerText：针对于双标签 不能解析html
+                value：针对于表单元素
+                三个都是dom对象下的属性 直接调用 表示将值取出，为属性赋值表示设置
+        */ 
+        document.querySelector('.get').onclick  = function(){
+           console.log(document.querySelector('.message').innerHTML);
+           console.log(document.querySelector('.message').innerText);
+           console.log(document.querySelector('.mobile').value);
+        }
+
+        document.querySelector('.set').onclick = function(){
+            // document.querySelector('.message').innerHTML = '<h1>李明杰</h1>'
+            // document.querySelector('.message').innerText = '<h1>李明杰</h1>'
+            document.querySelector('.mobile').value = '18520XXXXXX'
+        }
+
+    </script>
+</body>
+</html>

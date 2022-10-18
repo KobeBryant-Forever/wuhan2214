@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 反复输出内容
+        var number = 0;
+        function fn() {
+            number++;
+            console.log('从前有座山');
+            if(number<=10){
+                fn();
+            }
+        }
+        fn();
+
+        // 2、计算5的阶乘
+
+        /*
+            5! = 5 * 4!
+            4! = 4 * 3!
+            3! = 3 * 2!
+            2! = 2 * 1!
+            1! = 1
+        */
+        // 能够计算指定数字的阶乘
+        function jc(number) {
+            if(number == 1){ return 1;}
+            return number * jc(number-1);
+        }
+        var res = jc(5)
+       console.log(res);
+    </script>
+</body>
+</html>

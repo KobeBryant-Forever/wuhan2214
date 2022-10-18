@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、函数表达式
+        // let fn = function(){}
+        // let obj = {
+        //     say:function(){}
+        // }
+        // 2、箭头函数语法
+        // (形参)=>{函数体代码}
+        // let fn = (a,b)=>{
+        //     return a+b
+        // }
+        // console.log(fn(1,2))
+        // 3、箭头函数简写形式一 如果形参只有一个并且没有默认值 可以省略()
+        // 等价于  let fn = (a)=>{return a+10}
+        // let fn = a => {
+        //     return a + 10;
+        // }
+
+        // 4、箭头函数简化形式二 如果函数体的代码只有一句话 可以省略{} 并且自动将这句话结果返回
+        let fn = a => a + 10
+        console.log(fn(20))
+
+        let arr = [60, 70, 80]
+        // let result = arr.filter(function (item) {
+        //     return item >= 70
+        // })
+        // 筛选 元素大于70的
+        let result = arr.filter(item => item >= 70);
+        //生成随机数
+        let random = (min, max) => Math.floor(Math.random() * (max - min)) + min
+
+        // 5、箭头函数与function函数的区别
+        // 5.1、箭头函数中没有this的 不是说箭头函数中不能使用this
+        // 5.2、箭头函数中没有arguments
+        // 5.3、箭头函数不能使用new 因为没有原型
+        let fn2 = ()=>{
+            console.log(this);
+            // console.log(arguments)
+        }
+        fn2(1,2,3)
+    </script>
+</body>
+
+</html>

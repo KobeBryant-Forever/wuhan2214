@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，
+            加密规则如下：每位数字都加上5,然后用除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换，
+            实现传入原文，输出密文
+
+        */
+        var str = 1234;
+        // 提取数字
+        var q = parseInt(str / 1000);
+        var b = parseInt((str - q * 1000) / 100);
+        var s = parseInt((str % 100) / 10);
+        var g = str % 10;
+        var q1 = (q + 5) % 10;
+        var b1 = (b + 5) % 10;
+        var s1 = (s + 5) % 10;
+        var g1 = (g + 5) % 10;
+
+        console.log(g1 + '' + s1 + '' + b1 + q1);
+    </script>
+</body>
+
+</html>

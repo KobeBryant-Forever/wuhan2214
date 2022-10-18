@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+    // 需要使用逻辑运算符
+    var year = prompt("请输入年份：");
+    // 条件 是 整除4 但是不能整除100  或者 整除400
+    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+        console.log('ok');
+    }
+</script>
+
+</html>

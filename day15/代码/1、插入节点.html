@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>还有8小时放假</h1>
+    <div id="app">
+        <strong>晚上烧烤</strong>
+    </div>
+    <button>添加</button>
+    <script>
+        document.querySelector('button').onclick = function(){
+            // 1、父元素dom对象.appendChild(添加的dom对象)
+            // 这是错误示例
+            // document.querySelector('#app').appendChild('<a href="">百度</a>')
+            // var aDom = document.createElement('a'); 
+            
+            // aDom.innerHTML = '百度一下';
+            
+            // aDom.setAttribute('href','https://www.baidu.com/s?wd=哪里烧烤好吃');
+
+            // document.querySelector('#app').appendChild(aDom)
+
+            // 如果添加的是页面上已有的元素 会剪切
+            // document.querySelector('#app').appendChild(document.querySelector('h1'))
+            // 2、父元素dom对象.insertBefore(添加的dom对象,指定位置的dom对象)
+
+            var aDom = document.createElement('a'); 
+
+            aDom.innerHTML = '百度一下';
+            
+            aDom.setAttribute('href','https://www.baidu.com/s?wd=哪里烧烤好吃');
+
+            document.querySelector('#app').insertBefore(aDom,document.querySelector('#app>strong'))
+        }
+    </script>
+</body>
+</html>

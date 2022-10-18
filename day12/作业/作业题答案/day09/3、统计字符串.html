@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 统计字符串中重复字符的次数,并且去掉重复
+        var str = 'aabccd'
+        //统计每个字符出现的次数，结果显示 a 2、b 1、c 
+        //最后 输出字符串abcd
+        // 可以设置一个对象 记录最终的数据 属性名称使用统计的字符，属性值使用具体的次数
+        var result = {};
+        for (var i = 0; i < str.length; i++) {
+            // str[i] 表示每次循环的字符
+            var char = str[i];
+            
+            // 借助于对象下属性名称是不可能出现重名的特点
+            // result[char] 获取对象下属性名称为char变量存储值的属性
+            // result.char 获取对象下属性名称就叫做char的元素
+            // result[char] 表示前面已经记录过当前循环字符对应的次数
+            if (result[char] != undefined) {
+                result[char] += 1;
+            } else {
+                result[char] = 1;
+            }
+        }
+        for(var key in result){
+            // 每次遍历key表示属性名称
+            // console.log(key)
+            console.log(key+'字符出现次数'+result[key]);
+        }
+
+
+
+        var obj = {
+            'a':1,
+            b:2
+        }
+        var key = 'b'
+        // obj['a'] obj下属性叫做a的属性值
+        // obj.a obj下属性叫做a的属性值
+        // obj[a] 找obj对象下 属性是a变量存储值的那个属性 如果a存储的是字符串'b' 就取出obj 下属性叫做b的属性值
+        console.log(obj['a'])
+    </script>
+</body>
+
+</html>

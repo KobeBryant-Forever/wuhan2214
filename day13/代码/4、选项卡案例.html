@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 400px;
+            border: 10px solid #333;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            height: 40px;
+            display: flex;
+            line-height: 40px;
+        }
+
+        .header div {
+            flex: 1;
+            background-color: hotpink;
+            text-align: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        .header .active {
+            background-color: orange;
+        }
+
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="active">热卖</div>
+            <div>精品</div>
+            <div>推荐</div>
+        </div>
+        <div class="body">
+            <div class="content" style="display: block;">1</div>
+            <div class="content">2</div>
+            <div class="content">3</div>
+        </div>
+
+    </div>
+</body>
+<script>
+    /*
+        思路：
+            1、为header下的每一个div绑定点击事件
+            2、一旦点击事件触发
+                1、为点击的这个div设置特殊样式
+                    先将当前已经有active样式的标签 移除样式，再将当前点击的div设置样式active 
+                2、将点击的div对应的内容设置为显示
+                    1、将header下的每一个div 设置一个自定义属性 记录序号
+                    2、点击事件中可以取到这个序号
+                    3、根据序号设置对应的content显示(排他思想 先将所有的content隐藏，在将当前对应的显示)
+    */
+    var headers = document.querySelectorAll('.header>div');
+    var contents = document.querySelectorAll('.body>.content');
+    for (var i = 0; i < headers.length; i++) {
+        // 先为每一个div设置自定义属性
+        headers[i].setAttribute('data-index',i);
+        headers[i].onclick = function(){
+            // 先将tab上具备active样式的元素 移除样式
+            document.querySelector('.header>.active').removeAttribute('class');
+            // 当前点击的设置样式
+            this.setAttribute('class','active');
+            // 获取当前点击的序号
+            var index = this.getAttribute('data-index');
+            // 将所有的content全部隐藏
+            contents.forEach(function(item){
+                item.style.display = 'none';
+            })
+            // 点击的div对应的content显示
+            contents[index].style.display = 'block'
+        }
+    }
+</script>

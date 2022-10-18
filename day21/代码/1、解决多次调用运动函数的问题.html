@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button style="position: absolute; top: 200px;">向左运动</button>
+    <div style="width: 100px; height: 100px; background-color: rebeccapurple; position: absolute; left:0;top:0"></div>
+
+    <p>dom对象是持久化保存内容的</p>
+    <button class="get">获取新的属性</button>
+    <script src="common.js"></script>
+    <script src="sport.js"></script>
+    
+    <script>
+        
+        document.querySelector('div').onclick = function(){
+            annimate(this,{left:800})
+        }
+        document.querySelector('button').onclick = function(){
+            annimate(document.querySelector('div'),{left:0})
+        }
+
+        // 演示dom对象保存数据
+        // 只要向dom对象中添加数据，后期将dom对象取出 是可以获取到以前所添加的数据
+        document.querySelector('p').leo = '123';
+        document.querySelector('.get').onclick = function(){
+            console.log(document.querySelector('p').leo)
+        }
+    </script>
+</body>
+</html>

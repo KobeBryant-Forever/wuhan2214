@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(10 > 20); //false
+        console.log(20 >= 5); //true
+        var n1 = 20;
+        var n2 = 30;
+        console.log(n1 < n2); //true
+        console.log(n1 <= n2); //true
+        // 判断相等 只是判断值相等
+        console.log(n1 == n2); //false
+        console.log(10 == "10"); //数据类型不一致 判断时会自动转换类型 10 与字符串的是10 是相等
+        console.log(undefined == undefined); //true
+        console.log(null == null); //true
+        console.log(null == undefined); //true
+        console.log(NaN == NaN); //false
+        // != 判断不相等
+        console.log(10 != 20); //true
+        console.log(10 != 10); //false
+
+        // === 全等判断 要求 值与数据类型全部相同 才为真
+        console.log(10 === "10");//false
+        // !== 判断不全等 只要只与数据类型中有一个不相同就得到true
+        console.log(10 !== "10");//true
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // && 要求两边都为真最终就为真 如果左边的表达式为真 不能决定整个表达式 的结果，需要执行右边的才可以确定 如果左边的表达式为false 已经可以确定整个的表达式 右边就不会执行
+        var flag = true;
+        var k = 10;
+        flag && k++; // flag为真 不能确定整个表达式的真假 继续执行，等价 if(flag){k++}
+        console.log(k);
+
+        // || 只要左侧的是真整个表达式就是真，右侧就没有执行的意义 所以被短路
+        var j = 20;
+        false || j++;
+        console.log(j)
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script src="common.js"></script>
+    <script>
+
+
+        // document.querySelector('button').addEventListener('click', function () {
+        //     console.log('第一次点击')
+        // })
+
+        // document.querySelector('button').addEventListener('click', function (event) {
+        //     console.log('第二次点击',event)
+        // })
+        // 在IE的低版本 没有addEventListener方法
+        // IE低版本 需要使用监听的方式 需要使用dom对象调用attachEvent方法
+        // dom对象.attachEvent(事件名称,事件处理程序) 事件名称 需要由on前缀
+        // document.querySelector('button').attachEvent('onclick',function(){
+        //     console.log(1)
+        // })
+        // document.querySelector('button').attachEvent('onclick',function(){
+        //     console.log(2)
+        // })
+        linstenEvent(document.querySelector('button'),'click',function(){
+            console.log(123)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 100px; height: 100px; border: 1px solid red;"></div>
+    <script>
+        var divDom = document.querySelector('div');
+        // 1、onclick 表示点击
+        divDom.onclick = function(){
+            console.log('鼠标点击')
+        }
+        // ondblclick 鼠标双击事件
+        // oncontextmenu 鼠标的右键事件
+        // 2、鼠标划入
+        divDom.onmouseover = function(){
+            console.log('鼠标划入')
+        }
+        // 3、鼠标移动事件
+        divDom.onmousemove = function(){
+            console.log('动起来')
+        }
+        // 4、鼠标的划出事件
+        divDom.onmouseout = function(){
+            console.log('鼠标划出')
+        }
+        // 5、鼠标按下事件
+        divDom.onmousedown = function(){
+            console.log('鼠标按下了')
+        }
+        // 6、鼠标抬起事件
+        divDom.onmouseup = function(){
+            console.log('鼠标松手')
+        }
+        
+    </script>
+</body>
+</html>

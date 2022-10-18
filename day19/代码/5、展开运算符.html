@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、展开运算符 ... 表示的意思是平铺
+        // 展开数组
+        let arr = [9, 1, 7, 6];
+        console.log(Math.max(arr)); //NaN 因为 max方法传递多个参数 每个参数是需要比较的值
+        console.log(Math.max(arr[0], arr[1], arr[2], arr[3]));
+        // 上面的代码如果 数组元素不确定 无法使用max进行比较
+        // 展开运算符 就是hi在变量前 使用... 将变量中所有的元素进行平铺
+        // ...arr 等价于 arr[0], arr[1], arr[2], arr[3] 
+        // 可以将展开运算符理解为去掉了数组[]  
+        console.log(Math.max(...arr))
+
+        let obj = {
+            name:'leo',
+            age:18
+        }
+
+        let data = {
+            // ...obj 就是将obj 对象下的属性展开 作为data属性
+           ...obj,
+            like:['看书','写代码']
+        }
+        console.log(data)
+
+
+    </script>
+</body>
+
+</html>

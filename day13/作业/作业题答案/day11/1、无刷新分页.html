@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+
+    </div>
+    <div id="page">
+    </div>
+    <script>
+        var data = []; //已有的数据        
+        var total = 101; //数据总条数
+        var perPage = 10; //每页显示的条数
+        for (var i = 1; i <= total; i++) {
+            data.push('我是第' + i + '条数据');
+        }
+        console.log(data);
+        // 生成出分页导航 并且实现 每个数字页点击更换对应的的数据 点击事件使用行内绑定
+        // 计算总页数
+        var totalPage = Math.ceil(total / perPage);
+        // 生成分页导航
+        var html = '';
+        for (var i = 1; i <= totalPage; i++) {
+            html += `<span onclick="jump(${i})">${i}</span>`
+        }
+        document.querySelector('#page').innerHTML = html;
+        // 显示默认的第一页的数据
+        jump(1)
+
+        function jump(page) {
+            /*
+                第一页 显示数据下标 0-10
+                第二页 显示数据下标 10-20
+                第三页 显示数据下标 20-30
+                第n页 显示数据下标 (n-1)*perPage-n*perPage
+            */
+            console.log(page)
+            // 显示分页数对应的数据
+            var contentHtml = '';
+            var end = page * perPage >= total ? total : page * perPage;
+            for (var i = (page - 1) * perPage; i < end; i++) {
+                contentHtml += `<div>${data[i]}</div>`
+            }
+            document.querySelector('#content').innerHTML = contentHtml
+        }
+    </script>
+</body>
+
+</html>

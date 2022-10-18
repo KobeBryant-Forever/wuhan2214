@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn(){
+            console.log(arguments)
+            // arguments是伪数组 无法使用数组下的方法
+            // arguments.forEach()
+            // 1、借助于伪数组的下标 手动遍历
+            // let data = [];
+            // for(let i =0;i<arguments.length;i++){
+            //     data.push(arguments[i])
+            // }
+            // console.log(data)
+            // 2、使用数组的slice方法
+            // console.log(Array.prototype.slice.call(arguments)) 
+            // 3、ES6中数组下静态方法from
+            console.log(Array.from(arguments))
+        }
+        fn('a','b','c')
+    </script>
+
+</body>
+</html>
