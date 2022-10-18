@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: #333;
+            background-color: #ccc;
+            margin: 1em 10%;
+        }
+
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+
+        #imagegallery {
+
+            list-style: none;
+        }
+
+        #imagegallery li {
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            display: inline;
+        }
+
+        #imagegallery li a img {
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        美女画廊
+    </h2>
+
+    <ul id="imagegallery">
+        <li>
+            <a href="images/meinv/1.jpg" title="美女A">
+                <img src="images/meinv/1-small.jpg" width="100" alt="美女1">
+            </a>
+        </li>
+        <li>
+            <a href="images/meinv/2.jpg" title="美女B">
+                <img src="images/meinv/2-small.jpg" width="100" alt="美女2">
+            </a>
+        </li>
+        <li>
+            <a href="images/meinv/3.jpg" title="美女C">
+                <img src="images/meinv/3-small.jpg" width="100" alt="美女3">
+            </a>
+        </li>
+        <li>
+            <a href="images/meinv/4.jpg" title="美女D">
+                <img src="images/meinv/4-small.jpg" width="100" alt="美女4">
+            </a>
+        </li>
+    </ul>
+    <div style="clear:both"></div>
+    <img id="image" src="images/meinv/placeholder.png" alt="" width="450px">
+    <p id="des">选择一个图片</p>   
+    <script>
+        // 实现点击li标签将 下面的id为image的图片的地址进行更换 并且 设置设置 id为des的内容为title的值
+        document.querySelectorAll('a').forEach(dom=>{
+            dom.addEventListener('click',function(event){
+                // 组装默认行为
+                event.preventDefault();
+                // 设置大图
+                document.querySelector('#image').src = this.href
+                document.querySelector('#des').innerHTML = this.getAttribute('title')
+            })
+        })
+
+    </script>
+
+
+</body>
+</html>

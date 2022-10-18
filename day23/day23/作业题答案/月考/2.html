@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票</title>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="layui/css/layui.css">
+
+    <!-- 引入 layui.js -->
+    <script src="layui/layui.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .layui-card {
+            width: 1024px;
+            margin: auto;
+        }
+
+        .box {
+            height: 24px;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .good-result {
+            width: 50%;
+            background-color: green;
+            float: left;
+        }
+
+        .down-result {
+            width: 50%;
+            background-color: red;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset class="layui-elem-field">
+        <legend>要求</legend>
+        <div class="layui-field-box">
+            1. 完成布局；有代码注释50%以上<br />
+            2. 点击赞成和反对实现投票，对应的票数累加<br />
+            3. 点击赞成和返回的投票票数百分比显示在上方横条中<br />
+            4. 有小数的保留小数点后两位<br />
+        </div>
+    </fieldset>
+
+    <div class="layui-card">
+        <div class="layui-card-header">投票结果</div>
+        <div class="layui-card-body">
+            <div class="box">
+                <div class="good-result">50%</div>
+                <div class="down-result">50%</div>
+            </div>
+            <br />
+            <button type="button" class="layui-btn good-btn">赞成</button>
+            <button type="button" class="layui-btn down-btn">反对</button>
+            <div>
+                <p>赞成：<strong class="good-number">0</strong></p>
+            </div>
+            <div>
+                <p>反对：<strong class="down-number">0</strong></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    // 赞成次数
+    let goodCount = 0;
+    // 反对次数
+    let downCount = 0;
+    // 总的次数
+    let count = 0;
+    // 赞成点击事件
+    document.querySelector('.good-btn').onclick = function () {
+        goodCount++;
+        count++;
+        // 控制赞成次数
+        document.querySelector('.good-number').innerHTML = goodCount;
+        show();
+    }
+    // 反对点击事件
+    document.querySelector('.down-btn').onclick = function () {
+        downCount++;
+        count++;
+        document.querySelector('.down-number').innerHTML = downCount;
+        show();
+    }
+
+    // 函数根据数量控制显示的百分比
+    function show() {
+        // 获取操作的dom对象
+        let goodResultDom = document.querySelector('.good-result');
+        let downResultDom = document.querySelector('.down-result');
+        // 计算百分比
+        let goodBfb = (goodCount / count * 100).toFixed(2);
+
+        let downBfb = 100 - goodBfb;
+        // 设置宽度
+        goodResultDom.style.width = goodBfb + '%'
+        downResultDom.style.width = downBfb + '%'
+        goodResultDom.innerHTML = goodBfb + '%';
+        downResultDom.innerHTML = downBfb + '%'
+
+        if (goodBfb == 0) {
+            goodResultDom.innerHTML = '';
+        }
+        if (downBfb == 0) {
+            downResultDom.innerHTML = ''
+        }
+    }
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 400px;
+            border: 10px solid #333;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            height: 40px;
+            display: flex;
+            line-height: 40px;
+        }
+
+        .header div {
+            flex: 1;
+            background-color: hotpink;
+            text-align: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        .header .active {
+            background-color: orange;
+        }
+
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="active">热卖</div>
+            <div>精品</div>
+            <div>推荐</div>
+        </div>
+        <div class="body">
+            <div class="content" style="display: block;">1</div>
+            <div class="content">2</div>
+            <div class="content">3</div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="tab.js"></script>
+<script>
+    let headers = document.querySelectorAll('.header>div');
+    var contents = document.querySelectorAll('.body>.content');
+    let t = new Tab(headers,contents);
+    // t.init();
+</script>

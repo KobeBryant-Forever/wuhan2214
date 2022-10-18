@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 560px;
+            height: 312px;
+            background-color: rgb(249, 247, 248);
+            border: 1px solid rgb(222, 222, 222);
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .left {
+            width: 456px;
+            float: left;
+        }
+
+        .left img {
+            width: 440px;
+            height: 293px;
+            margin-left: 8px;
+            margin-top: 8px;
+        }
+
+        .right {
+            height: 293px;
+            margin-left: 8px;
+            margin-top: 8px;
+        }
+
+        .right img {
+            width: 95px;
+            height: 62px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left"><img src="images/1.jpg" /></div>
+        <div class="right">
+            <img src="images/1.jpg" />
+            <img src="images/2.jpg" />
+            <img src="images/3.jpg" />
+            <img src="images/4.jpg" />
+        </div>
+    </div>
+</body>
+<script>
+    // 1、自动切换 图片
+    // 2、鼠标移入右侧的图片 左边切换到对应的图片  鼠标移出  以当前的图片 自动继续切换图片
+    // 3、当前显示的小图片 透明度为1  其他没有显示的保证透明度为0.5
+    // http://phpclub.org.cn/edu/html/44.html
+
+    // 保存定时器标识
+    let timer;
+    // 记录当前显示图片的序号
+    let index = 0;
+    let leftImgDom = document.querySelector('.left>img');
+    // 获取左侧小图
+    let rightSmallDom = document.querySelectorAll('.right>img');
+    execOpacity();
+    autoPlay();
+
+    // 右侧小图 绑定鼠标的滑入滑出事件
+    rightSmallDom.forEach((item,i)=>{
+        item.onmouseover = function(){
+            clearInterval(timer);
+            // 修改index 记录现在显示的是哪一个图片
+            index = i
+            leftImgDom.src = rightSmallDom[index].src
+            execOpacity();
+        }
+        item.onmouseout = function(){
+            autoPlay();
+        }
+    })
+    // 自动切换
+    function autoPlay() {
+        timer = setInterval(() => {
+            // 修改序号
+            index++
+            // 如果目前显示的是最后一张图 重置
+            index > 3 && (index = 0);
+            // 设置大图
+            leftImgDom.src = rightSmallDom[index].src
+            execOpacity();
+        }, 1000)
+    }
+    // 处理透明度问题设置为函数
+    function execOpacity(){
+        // 所有的设置为0.5
+        rightSmallDom.forEach(item=>item.style.opacity = 0.5)
+        // 将当前对应的设置为
+        rightSmallDom[index].style.opacity = 1;
+    }
+</script>

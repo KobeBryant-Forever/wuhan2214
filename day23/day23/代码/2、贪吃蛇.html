@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+</body>
+
+</html>
+<script src="common.js"></script>
+<script>
+    // 地图构造函数
+    function SnakeMap(xCellNumber = 40, yCellNumber = 30, cellWidth = 20, cellHeight = 20) {
+        // x方向的单元格数量
+        this.xCellNumber = xCellNumber;
+        // y方向单元格数量
+        this.yCellNumber = yCellNumber;
+        // 每一个单元格高度
+        this.cellHeight = cellHeight;
+        // 每一个单元格宽度
+        this.cellWidth = cellWidth;
+        // 使用属性记录地图div的dom对象
+        this.mapDom = null;
+    }
+    // 地图的原型上添加显示地图的方法
+    SnakeMap.prototype.show = function () {
+        // 创建地图DIV的Dom对象
+        this.mapDom = document.createElement('div');
+        // 设置class
+        this.mapDom.className = 'map';
+        // 控制地图的尺寸
+        this.mapDom.style.width = this.xCellNumber * this.cellWidth + 'px';
+        this.mapDom.style.height = this.yCellNumber * this.cellHeight + 'px';
+        // 添加到页面
+        document.body.appendChild(this.mapDom);
+    }
+
+    // 食物的构造函数
+    function Food(map) {
+        // 检查传递的map参数是不是SnakeMap的对象
+        if (!(map instanceof SnakeMap)) {
+            throw new Error('对象使用错误');
+        }
+        // 使用属性将map对象保存起来
+        this.map = map;
+    }
+    // 食物的原型上添加显示方法
+    Food.prototype.show = function () {
+        // 创建食物的标签
+        let foodDom = document.createElement('div');
+        // 设置class
+        foodDom.classList.add('food');
+        // 计算 根据地图的xy单元格数量 随机的xy坐标
+        let x = makeRandomNumber(0, this.map.xCellNumber, false);
+        let y = makeRandomNumber(0, this.map.yCellNumber, false);
+        foodDom.style.left = x * this.map.cellWidth + 'px';
+        foodDom.style.top = y * this.map.cellHeight + 'px';
+        // 将元素添加到地图中
+        this.map.mapDom.appendChild(foodDom);
+    }
+    // 获取地图对象
+    let map = new SnakeMap();
+    // 实现地图显示
+    map.show();
+    // 获取食物对象 在实例化时 传递地图的对象
+    let food = new Food(map);
+    // 调用食物的显示方法
+    food.show();
+</script>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="layui/css/layui.css">
+
+    <!-- 引入 layui.js -->
+    <script src="layui/layui.js"></script>
+
+</head>
+
+<body>
+    <fieldset class="layui-elem-field">
+        <legend>要求</legend>
+        <div class="layui-field-box">
+            1.完成基本布局；有代码注释50%以上，商品类别为优选水果、卤味熟食、饮料酒水、休闲零食四类。<br />
+            2.点击提交表单将提交的内容显示在表格的最上面; 提交后清空输入框的内容; 表单各项不允许为空; 原价，现价，数量必须为数字;<br />
+            3.奇数行背景色为白色（white); <br />偶数行背景灰为(#FAFAFA)；完成删除功能，点击删除，删除数据
+        </div>
+    </fieldset>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品名称</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input goodsName">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品类别</label>
+            <div class="layui-input-block">
+                <select class="goodsType">
+                    <option>优选水果</option>
+                    <option>卤味熟食</option>
+                    <option>饮料酒水</option>
+                    <option>休闲零食</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品原价</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input marketPrice">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品现价</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input shopPrice">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品数量</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input goodsNumber">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn">立即提交</button>
+            </div>
+        </div>
+    </form>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <th>商品名称</th>
+                <th>商品类别</th>
+                <th>商品原价</th>
+                <th>商品现价</th>
+                <th>商品数量</th>
+                <th>删除</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+<script>
+    let data = [];
+    document.querySelector('.layui-btn').onclick = function () {
+        // 获取表单值
+        let goodsName = document.querySelector('.goodsName').value.trim();
+        let goodsType = document.querySelector('.goodsType').value.trim();
+        let marketPrice = document.querySelector('.marketPrice').value.trim();
+        let shopPrice = document.querySelector('.shopPrice').value.trim();
+        let goodsNumber = document.querySelector('.goodsNumber').value.trim();
+        if (!goodsName || !marketPrice || !shopPrice || !goodsNumber) {
+            console.log('内容为空')
+            return false;
+        }
+        // 验证是否满足要求
+        if (!isNumber(marketPrice) || !isNumber(shopPrice) || !isNumber(goodsNumber)) {
+            // 只要有一个不是数字 都是存在问题
+            console.log('输入的不是数字');
+            return false;
+        }
+        data.push({
+            goodsName,
+            goodsType,
+            marketPrice,
+            shopPrice,
+            goodsNumber
+        });
+        showData();
+        // document.querySelector('.goodsName').value = '';
+        // document.querySelector('.marketPrice').value = '';
+        // document.querySelector('.shopPrice').value = '';
+        // document.querySelector('.goodsNumber').value = '';
+        // 在动态绑定中可以阻止默认行为
+        return false;
+    }
+
+    // 删除
+    document.querySelector('tbody').addEventListener('click', (event) => {
+        if (event.target.nodeName == 'BUTTON') {
+            // 移除数据
+            let index = event.target.getAttribute('data-index');
+            data.splice(index, 1);
+            showData();
+        }
+    })
+    // 判断是否是数字 是返回true  不是返回false
+    function isNumber(number) {
+        // isNan 如果检查的是NaN 返回是true 
+        return !isNaN(Number(number));
+    }
+
+    function showData() {
+        let html = '';
+        data.forEach((item, index) => {
+            html += `<tr style="background-color:${index%2 == 0?'white':'#FAFAFA'}">
+                <th>${item.goodsName}</th>
+                <th>${item.goodsType}</th>
+                <th>${item.marketPrice}</th>
+                <th>${item.shopPrice}</th>
+                <th>${item.goodsNumber}</th>
+                <th><button data-index="${index}">删除</button></th>
+            </tr>`
+        })
+        document.querySelector('tbody').innerHTML = html;
+    }
+</script>

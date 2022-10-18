@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 123px;
+            height: 173px;
+            background: url(img/colon.JPG);
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img/0.JPG">
+    <img src="img/0.JPG">
+    <span></span>
+    <img src="img/0.JPG">
+    <img src="img/0.JPG">
+    <span></span>
+    <img src="img/0.JPG">
+    <img src="img/0.JPG">
+</body>
+
+</html>
+<script>
+    fn();
+    setInterval(fn,1000)
+
+    function fn() {
+        let d = new Date();
+        let h = fillZero(d.getHours());
+        let m = fillZero(d.getMinutes());
+        let s = fillZero(d.getSeconds());
+        // 将时分秒拼接成为字符串
+        let str = h + m + s;
+        document.querySelectorAll('img').forEach((item,index) => {
+            item.src = 'img/'+str[index]+'.JPG'
+        })
+    }
+
+    // 补0 返回结果永远是字符串
+    function fillZero(number) {
+        if (number < 10) {
+            return '0' + number;
+        }
+        return number + '';
+    }
+</script>
