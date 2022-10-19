@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .body {
+            width: 700px;
+            margin: 0 auto;
+            line-height: 24px;
+        }
+
+        .paginate {
+            width: 700px;
+            display: flex;
+            justify-content: center;
+            height: 38px;
+            line-height: 38px;
+        }
+
+        .paginate div {
+            height: 18px;
+            line-height: 18px;
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #eee;
+        }
+
+        .paginate .list {
+            height: 38px;
+            line-height: 38px;
+            border: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .list p {
+            height: 18px;
+            line-height: 18px;
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #eee;
+        }
+
+        .active {
+            background-color: red;
+        }
+
+        .paginate .number {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .paginate button {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+
+    </div>
+    <!-- 分页的容器 -->
+    <div class="paginate"></div>
+</body>
+
+</html>
+<script src="page.js"></script>
+<script>
+    // 目前已经有301条数据
+    let total = 301;
+    // 每一页显示多少条
+    let pageSize = 10;
+    let config = {
+        // 表示数据相关
+        data:{
+            total
+        }
+    }
+    let p = new Page('.paginate',config)
+    console.log(p)
+</script>

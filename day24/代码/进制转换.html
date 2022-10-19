@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 扩展进制转换
+        // 数字 平常会使用十进制方式表示 数字只能是0-9 遇到十就前进一位
+        // 二进制 只有0根1 遇到2就前进一位
+        // 八进制 只有0-7之间 遇到8 就前进一位
+        // 十六进制 只有0-9 a-f 遇到下一个就前进一位
+        
+        // 十进制表示法
+        let n1 = 10;
+        // 二进制表示
+        let n2 = 0b10;//2
+        console.log(n2);
+        // 八进制表示
+        let n3 = 012;//10
+        console.log(n3)
+        // 十六进制
+        let n4 = 0x11;//17
+        console.log(n4)
+
+        // 十进制转换二进制
+        // 除法运算
+        // 10=>转换为二进制 一直进行除法运算 直到0结束 最后反向看余数的组合  =>1010
+        console.log(0b1010);
+        // 二进制转换十进制
+
+        /*
+            1       0       1     0
+            2^3    2^2    2^1    2^0
+            8    +  0  +    2  +   0
+        */
+
+        
+    </script>
+</body>
+</html>

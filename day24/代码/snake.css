@@ -1,0 +1,22 @@
+*{padding: 0px; margin: 0px;}
+.map{
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background-image: url('imgs/bg.png');
+    border: 10px solid red;
+    position: relative;
+}
+
+.map >.food{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url('imgs/food.png');
+}
+
+.map .snake{
+    width: 20px;
+    height: 20px;
+    position:absolute;
+}

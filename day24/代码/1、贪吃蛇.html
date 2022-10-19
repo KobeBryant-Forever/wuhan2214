@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body>
+</body>
+
+</html>
+<script src="common.js"></script>
+<script>
+    // 地图构造函数
+    function SnakeMap(xCellNumber = 40, yCellNumber = 30, cellWidth = 20, cellHeight = 20) {
+        // x方向的单元格数量
+        this.xCellNumber = xCellNumber;
+        // y方向单元格数量
+        this.yCellNumber = yCellNumber;
+        // 每一个单元格高度
+        this.cellHeight = cellHeight;
+        // 每一个单元格宽度
+        this.cellWidth = cellWidth;
+        // 使用属性记录地图div的dom对象
+        this.mapDom = null;
+    }
+    // 地图的原型上添加显示地图的方法
+    SnakeMap.prototype.show = function () {
+        // 创建地图DIV的Dom对象
+        this.mapDom = document.createElement('div');
+        // 设置class
+        this.mapDom.className = 'map';
+        // 控制地图的尺寸
+        this.mapDom.style.width = this.xCellNumber * this.cellWidth + 'px';
+        this.mapDom.style.height = this.yCellNumber * this.cellHeight + 'px';
+        // 添加到页面
+        document.body.appendChild(this.mapDom);
+    }
+
+    // 食物的构造函数
+    function Food(map) {
+        // 检查传递的map参数是不是SnakeMap的对象
+        if (!(map instanceof SnakeMap)) {
+            throw new Error('对象使用错误');
+        }
+        // 使用属性将map对象保存起来
+        this.map = map;
+        // 保存生成食物的xy单元格数
+        this.x = 0;
+        this.y = 0;
+        // 保存食物的dom对象
+        this.foodDom = null;
+    }
+    // 食物的原型上添加显示方法
+    Food.prototype.show = function () {
+        if (!this.foodDom) {
+            // 创建食物的标签
+            this.foodDom = document.createElement('div');
+            // 设置class
+            this.foodDom.classList.add('food');
+            // 将元素添加到地图中
+            this.map.mapDom.appendChild(this.foodDom);
+        }
+        // 计算 根据地图的xy单元格数量 随机的xy坐标
+        this.x = makeRandomNumber(0, this.map.xCellNumber, false);
+        this.y = makeRandomNumber(0, this.map.yCellNumber, false);
+        this.foodDom.style.left = this.x * this.map.cellWidth + 'px';
+        this.foodDom.style.top = this.y * this.map.cellHeight + 'px';
+    }
+
+    // 蛇的构造函数
+    function Snake(food) {
+        // 参数为食物对象
+        if (!(food instanceof Food)) {
+            throw new Error('对象传递错误');
+        }
+        // 保存食物对象，食物对象下有map属性 存储的是地图对象
+        this.food = food;
+        // 保存蛇的移动方向，默认向右
+        this.derict = 'right';
+        // 使用属性保存蛇的每一节的信息  规定0号元素是蛇的头部，最后一个元素是蛇尾巴，由于蛇每一节有多个信息需要保存 所以使用对象格式 dom表示当前这一节是否已经被创建了 null表示目前标签还未创建，如果有对象表示已经创建
+        this.bodys = [{
+                x: 2,
+                y: 0,
+                backgroundImage: 'url("imgs/head.png")',
+                dom: null
+            },
+            {
+                x: 1,
+                y: 0,
+                backgroundImage: 'url("imgs/body.png")',
+                dom: null
+            },
+            {
+                x: 0,
+                y: 0,
+                backgroundImage: 'url("imgs/body.png")',
+                dom: null
+            },
+        ];
+    }
+    // 蛇的原型上添加显示方法
+    Snake.prototype.show = function () {
+        // 创建蛇的每一节
+        this.bodys.forEach(item => {
+            if (!item.dom) {
+                // 表示目前dom属性为null 也是元素还没有在页面创建出来
+                item.dom = document.createElement('div');
+                // 添加样式
+                item.dom.classList.add('snake');
+                // 设置背景图
+                item.dom.style.backgroundImage = item.backgroundImage;
+                // 将蛇的每一节加入到页面上
+                // this.food是食物对象 食物对象下存在map属性保存着地图的对象
+                this.food.map.mapDom.appendChild(item.dom)
+            }
+            // 控制蛇的位置 不论条件是否成立 下面修改位置都要执行
+            item.dom.style.left = item.x * this.food.map.cellWidth + 'px';
+            item.dom.style.top = item.y * this.food.map.cellHeight + 'px';
+        })
+    }
+
+    // 蛇的原型上添加移动方法
+    Snake.prototype.move = function () {
+        // 每次移动 body属性都需要记录每一节对应的身体信息并且还是尾巴先移动的 所以需要反向循环修改坐标
+        for (let i = this.bodys.length - 1; i > 0; i--) {
+            // 永远设置当前的这一节 是前一节的位置
+            this.bodys[i].x = this.bodys[i - 1].x;
+            this.bodys[i].y = this.bodys[i - 1].y;
+        }
+        // 处理蛇头部的位置
+        switch (this.derict) {
+            case 'right':
+                this.bodys[0].x++;
+                break;
+            case 'left':
+                this.bodys[0].x--;
+                break;
+            case 'up':
+                this.bodys[0].y--;
+                break;
+            case 'down':
+                this.bodys[0].y++;
+                break;
+            default:
+                break;
+        }
+        // 判断是否有吃到食物
+        this.eat();
+        if (this.hasDie()) {
+            // 蛇死亡了
+            clearInterval(timer);
+            alert('游戏结束')
+        } else {
+            this.show();
+        }
+
+    }
+    // 验证蛇是否死亡
+    Snake.prototype.hasDie = function () {
+        let header = this.bodys[0];
+        if (header.x < 0 || header.x >= this.food.map.xCellNumber || header.y < 0 || header.y >= this.food.map
+            .yCellNumber) {
+            return true
+        }
+    }
+
+    Snake.prototype.eat = function () {
+        // 判断是否已经吃到食物  使用食物的xy 与蛇的头部的xy进行对比
+        if (this.food.x == this.bodys[0].x && this.food.y == this.bodys[0].y) {
+            // 计算最后一个元素的下标
+            let index = this.bodys.length - 1
+            // 增加的一节就跟尾巴重叠
+            this.bodys.push({
+                x: this.bodys[index].x,
+                y: this.bodys[index].y,
+                backgroundImage: this.bodys[index].backgroundImage,
+                dom: null
+            })
+            // 重新生成食物的
+            this.food.show();
+        }
+    }
+    // 蛇的原型添加方法控制移动
+    Snake.prototype.executeEvent = function () {
+        document.onkeydown = event => {
+            switch (event.keyCode) {
+                case 37:
+                    this.derict = 'left';
+                    break;
+                case 38:
+                    this.derict = 'up';
+                    break;
+                case 39:
+                    this.derict = 'right';
+                    break;
+                case 40:
+                    this.derict = 'down';
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    // 获取地图对象
+    let map = new SnakeMap();
+    // 实现地图显示
+    map.show();
+    // 获取食物对象 在实例化时 传递地图的对象
+    let food = new Food(map);
+    // 调用食物的显示方法
+    food.show();
+    // 获取蛇的对象
+    let snake = new Snake(food);
+    // 调用蛇的显示方法
+    snake.show();
+    let timer = setInterval(() => {
+        snake.move();
+    }, 100)
+    snake.executeEvent();
+    console.log(map, food, snake)
+</script>
