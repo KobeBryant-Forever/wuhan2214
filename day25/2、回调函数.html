@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、本质 ：每次当创建一个函数  就是在当前作用域下创建了一个同名变量,对应的值为内存地址 函数名称也就是内存地址
+        // function fn(){
+
+        // }
+        // console.log(fn)
+        // 2、声明式与赋值式写法
+        // 基本上属于相同的 等价于 将内存地址赋值给fn变量
+        // let fn = function(){}
+        // 3、函数参数 函数调用参数 可以传递任意的数据类型
+        // let fn = function(a){
+        //     console.log(a)
+        // }
+        // // 传递基本类型 传递的是值
+        // fn(1)
+        // fn("abc")
+        // // 传递引用类型 传递的是内存地址
+        // fn([12,3])
+        // 4、将函数作为参数传递
+        // let fn = function(a){
+        //     // 一旦fn函数被调用 此时形参a 就自动被赋值为0X11.所以在执行fn函数时callback有两个名字
+        //     console.log(a)
+        //     a()
+        // }
+        // // callbak 变量记录的是内存地址  例如0X111
+        // let callback = function(){
+        //     console.log('回调函数')
+        // }
+        // // 调用函数 将callback保存的内存地址作为参数传递
+        // fn(callback);
+        // 5、回调函数的常规写法
+        // let fn = function(a){
+        //     console.log(a)
+        //     a()
+        // }
+        // fn(function(){
+        //     console.log('回调函数')
+        // })
+
+        // 6、回调函数携带参数
+        let fn = function(a){
+            let data = '封装的函数中所得到的一些数据';
+            // 调用函数
+            a(data)
+        }
+        fn((data)=>{
+            console.log(data)
+        })
+    </script>
+</body>
+</html>

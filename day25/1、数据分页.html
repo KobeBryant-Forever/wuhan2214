@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .body {
+            width: 700px;
+            margin: 0 auto;
+            line-height: 24px;
+        }
+
+        .paginate {
+            width: 700px;
+            display: flex;
+            justify-content: center;
+            height: 38px;
+            line-height: 38px;
+        }
+
+        .paginate div {
+            height: 18px;
+            line-height: 18px;
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #eee;
+        }
+
+        .paginate .list {
+            height: 38px;
+            line-height: 38px;
+            border: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .list p {
+            height: 18px;
+            line-height: 18px;
+            padding: 10px;
+            margin: 0 10px;
+            border: 1px solid #eee;
+        }
+
+        .active {
+            background-color: red;
+        }
+
+        .paginate .number {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .paginate button {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="body">
+
+    </div>
+    <!-- 分页的容器 -->
+    <div class="paginate"></div>
+</body>
+
+</html>
+<script src="page.js"></script>
+<script>
+    // 目前已经有301条数据
+    let total = 301;
+    // 每一页显示多少条
+    let pageSize = 10;
+    let config = {
+        // 表示数据相关
+        data: {
+            total
+        }
+    }
+    // 模拟total条数据
+    let data = [];
+    for (let i = 0; i < total; i++) {
+        data.push(`我是第${i+1}条数据`)
+    }
+    /*
+        分析数据规律
+        第1页 显示0-10下标的数据 不包含10
+        第2页 显示10-20下标的数据 不包含20
+        第3页 显示20-30下标的数据  不包含30
+        ...
+        第n页 显示 (n-1)*10 到n*10下标的数据
+    */
+    // 关于数据的显示 必须设置到Page构造函数中，因为一旦页码改变 内容也需要更换，如果是当前页面中处理数据显示 就无法检测到页码的改变   
+    // 如果将代码写到Page构造函数中，数据该如何显示呢
+    // 需要由Page构造函数实现数据显示但是如果在Page中写了数据怎么显示导致功能固定
+    let p = new Page('.paginate', config, function (currenPage) {
+        let start = (currenPage - 1) * 10;
+        let end = currenPage * 10 >= total ? total : currenPage * 10;
+        let html = '';
+        for (let i = start; i < end; i++) {
+            html += `<div>${data[i]}</div>`
+        }
+        document.querySelector('.body').innerHTML = html;
+    })
+    console.log(p)
+</script>

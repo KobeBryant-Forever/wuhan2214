@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .middleBox {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .middleBox img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .shade {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.5;
+            display: none;
+        }
+
+        .smallBox {
+            margin-top: 10px;
+
+        }
+
+        .smallBox img {
+            border: 1px solid #000;
+            margin-left: 5px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .smallBox img.active {
+            border-color: red;
+        }
+
+        .box {
+            margin: 50px;
+            width: 402px;
+            position: relative;
+        }
+
+        .bigBox {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            position: absolute;
+            top: 0;
+            left: 105%;
+            display: none;
+            background-image: url(./images/big1.jpg);
+            background-position: 0 0;
+            background-size: 1600px 1600px;
+            background-repeat: no-repeat;
+        }
+
+        .shade:hover {
+            cursor: move;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="middleBox">
+            <img src="./images/big1.jpg" width="400" height="400">
+            <div class="shade"></div>
+        </div>
+        <div class="smallBox">
+            <img class="active" src="./images/big1.jpg">
+            <img src="./images/big2.jpg" alt="">
+        </div>
+        <div class="bigBox"></div>
+    </div>
+</body>
+
+</html>
+<script>
+    // 1、获取常用的dom对象
+    const boxDom = document.querySelector('.box');
+    const middleBoxDom = document.querySelector('.middleBox');
+    const smallBoxDom = document.querySelector('.smallBox');
+    const bigBoxDom = document.querySelector('.bigBox');
+    const shadeDom = document.querySelector('.shade');
+    // 2、实现小图的点击切换事件
+    smallBoxDom.onclick = function (event) {
+        if (event.target.nodeName == 'IMG') {
+            // 2.1、设置特殊样式
+            smallBoxDom.querySelector('.active').classList.remove('active');
+            event.target.className = 'active';
+            // 2.2、设置中图显示指定的图片
+            // 完美的放大镜效果一张图片应该存在3中不同尺寸的图片 分别 小图、中图、大图。如果需要实现 可以使用属性保存
+            middleBoxDom.querySelector('img').src = event.target.src;
+            // 2.3、设置大图的背景
+            bigBoxDom.style.backgroundImage = `url(${event.target.src})`;
+        }
+    }
+    // 3、实现中图的划入事件
+    middleBoxDom.onmouseover = function () {
+        // 显示遮罩
+        shadeDom.style.display = 'block';
+        // 显示大图
+        bigBoxDom.style.display = 'block';
+        // 绑定鼠标的移动事件
+        middleBoxDom.onmousemove = function (event) {
+            // offsetX 获取鼠标坐标点相对与【元素的左上角】的位置 
+            // clientX获取鼠标坐标点相对于【浏览器左上角】的位置
+            // pageX获取鼠标坐标点相对于【文档左上角】的位置
+            // 在获取鼠标坐标点时如果使用的是offsetX/offsetY 由于遮罩跟随着鼠标在移动。所以导致事件源发生了改变.从而导致获取到的坐标点的值是错误的，后期计算时就不对
+            // 需要实现的功能是不论事件源在那个元素上希望取出的值永远是准确的
+            // console.log(`x=${event.offsetX} y= ${event.offsetY}`);
+            let x = event.clientX;
+            let y = event.clientY;
+            // 计算值遮罩的宽高一般
+            let shadeWidthHalf = shadeDom.clientWidth / 2;
+            let shadeHeightHalf = shadeDom.clientHeight / 2;
+
+            // 限制xy的值
+            // 如果坐标点在放大镜 小于 整个大放大镜距离左侧距离加上这种宽度一般
+            // 限制坐标点在左侧到遮罩一般距离 永远限制在左侧
+            if (x < boxDom.offsetLeft + shadeWidthHalf) {
+                x = boxDom.offsetLeft + shadeWidthHalf;
+            }
+            if (x > boxDom.offsetLeft + boxDom.clientWidth - shadeWidthHalf) {
+                x = boxDom.offsetLeft + boxDom.clientWidth - shadeWidthHalf
+            }
+            if (y < boxDom.offsetTop + shadeHeightHalf) {
+                y = boxDom.offsetTop + shadeHeightHalf
+            }
+            if (y > boxDom.offsetTop + middleBoxDom.clientHeight - shadeHeightHalf) {
+                y = boxDom.offsetTop + middleBoxDom.clientHeight - shadeHeightHalf
+            }
+            // 设置遮罩的定位
+            // 可以使用clientX/clientY 获取到永远是相对于浏览器的左上角的位置 这个坐标点是正确的值 。但是遮罩的定位是相对于中图进行定位的，但是取出的距离是相对于浏览器左上角。所以需要减掉 box相对于左侧的距离
+            // offsetLeft/offsetTop 获取元素相对于定位元素左侧/顶部的距离
+            shadeDom.style.left = x - boxDom.offsetLeft - shadeWidthHalf + 'px';
+            shadeDom.style.top = y - boxDom.offsetTop - shadeHeightHalf + 'px';
+
+            // 计算遮罩在中图中的百分比是多少
+            let xPercentage = (x - boxDom.offsetLeft - shadeWidthHalf) / middleBoxDom.clientWidth;
+            let yPercentage = (y - boxDom.offsetTop - shadeHeightHalf) / middleBoxDom.clientHeight;
+            // 再根据百分比数设置大图的背景位置
+            // 获取到背景图的原始尺寸
+            let bigBoxSize = window.getComputedStyle(bigBoxDom).backgroundSize;
+            // 提取出背景图的宽度高度
+            let bixBoxWidth = parseInt(bigBoxSize.split(' ')[0])
+            let bigBoxHeight = parseInt(bigBoxSize.split(' ')[1])
+            // 计算背景图移动的位置
+            let xMove = bixBoxWidth * xPercentage;
+            let yMove = bigBoxHeight * yPercentage;
+            bigBoxDom.style.backgroundPosition = `-${xMove}px -${yMove}px`
+        }
+    }
+    // 4、鼠标划出
+    middleBoxDom.onmouseout = function () {
+        // 隐藏遮罩
+        shadeDom.style.display = 'none';
+        // 隐藏大图
+        bigBoxDom.style.display = 'none';
+        // 解绑移动事件
+        middleBoxDom.onmousemove = null;
+    }
+</script>

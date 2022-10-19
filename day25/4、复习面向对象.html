@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            抽象化：将所有相同一类的对象进行总结。将类似的个体总结后形参一个模板(叫做构造函数/类)
+        */ 
+        // function Bus(size){
+        //     // 1、形参赋值
+        //     // 2、系统自动造一个对象
+        //     // 3、将this指向到这个对象上
+        //     // 4、指向构造函数中代码
+        //     this.size = size;
+        //     this.start = function(){
+        //         console.log(this.size+'容量额公交车启动了')
+        //     }
+        //     // 5、返回这个对象
+        // }
+        // let b = new Bus(60);
+        // b.start();
+        // let byd = new Bus(70);
+        // byd.start();
+
+
+        function Person(){
+
+        }
+        // 只要写完function的代码 系统就自动为Person(可以是函数、可以是对象 也可以是构造函数)对象 增加了一个属性  该属性叫做prototype 属性值是系统所分配的一个对象(以Object 构造函数new 出来的对象)
+        Person.prototype.name = '这是一个人';
+        let p = new Person;
+        // 当前取不到 就到原型上去
+        console.log(p.name);
+        
+        console.log(p.age);
+
+    </script>
+</body>
+</html>
