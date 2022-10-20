@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Byd(type) {
+            this.type = type;
+            this.engine = '电动版';
+        }
+        Byd.prototype.run = function () {
+            console.log('车启动了')
+        }
+
+        function Bmw(type) {
+            this.type = type;
+            this.engine = '电动版';
+        }
+        Bmw.prototype.run = function () {
+            console.log('车启动')
+        }
+
+        let byd = new Byd('汉');
+        byd.run();
+        let bmw = new Bmw('X5');
+        bmw.run();
+    </script>
+</body>
+
+</html>

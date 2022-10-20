@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 在ES6中虽然提供了class关键字(类) 但是本质原理没有改变，JS面向对象机制还是执行的原型链一套，只是写法的改变
+        /*
+            语法  class 类名称{
+                所有的函数需要使用简化写法 并且直接不能有逗号  如果需要写下一个方法 换行即可
+                constructor(){
+                    //表示构造函数 只要new 对象就会自动触发执行  构造函数上可以传递参数
+                    // 在class语法中this还是跟以前一样
+                }
+                后面的其他的方法系统会自动的加入到原型上
+
+            }
+        */
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say(){
+                console.log(this.name+'说：  你好')
+            }
+        }
+        let p = new Person('张三',20)
+        console.log(p);
+        // 2、static  所修饰的表示是静态 不需要实例化对象对象调用 可以直接调用
+        class Student{
+            constructor(name){
+                // 属于对象保存
+                this.name = name;
+            }
+            static say(){
+                console.log(this.name+' say hello')
+            }
+        }
+        let s = new Student('李四')
+        console.log(s)
+        // s.say(); 无法调用 因为这个say方法没有被加入到原型中，被加入到Student对象下
+        Student.say();//Student say hello  因为say方法是由Student对象在进行调用
+        // ES5中实现静态做法
+        function Dog(){
+
+        }
+        Dog.say  = function(){
+            console.log('汪汪')
+        }
+        Dog.say();
+
+    </script>
+</body>
+
+</html>

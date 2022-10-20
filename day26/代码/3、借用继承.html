@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Animal() {
+        //     this.leg = 4;
+        // }
+        // Animal.prototype.eat = function () {
+        //     console.log('eat');
+        // }
+
+        // function Cat(name) {
+        //     this.name = name;
+        // }
+        // let an = new Animal();
+        // // 使用原型继承
+        // Cat.prototype = an;
+
+        // let kitty = new Cat('kitty');
+        // // kitty对象记录着 猫的名称，几条腿 设置在原型上
+        // // 是不是所有的动物都是4条腿。
+        // // 在实现继承中最完美的方案 就是对象本身所拥有的 自己单独的保存，所有对象都共有的设置到原型上
+        // // 所以leg属性适合放到kitty对象本身保存
+        // // an.leg = 3; 如果 an对象修改属性 导致所有的猫全部只有3条腿 也不合适
+        // console.log(kitty);
+        // // 2、回顾call方法
+        // // call将函数中this替换为指定的对象，并且调用函数
+        // function Person(name,like){
+        //     obj.name = name;
+        //     obj.like = like;
+        // }
+        // let obj = {};
+        // // 第一个参数表示将函数中this换成谁
+        // // 后面参数是调用函数时所传递的其他参数
+        // Person.call(obj,'王超','坤坤');
+        // console.log(obj);
+
+        // 3、使用call方法实现借用继承
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.fly = function () {
+            console.log('这个人起飞了');
+        }
+
+        // 一旦实例化 将实参除了第一个参数为其他的组合为一个数组放到args变量中
+        function Student(like,...args) {
+            this.like = like;
+            // 使用借用继承  
+            // 因为args 变量现在是数组 call 方法 传递的是多个参数 使用...进行展开
+            // 调用Person函数 并且将Person函数中的this修改为当前对象this(就是s对象)
+            // 一旦执行完 当前s对象下是就自动拥有了Person中属性
+            Person.call(this,...args);
+        }
+        
+        let s = new Student('奥特曼','李灿',28);
+        console.log(s)
+        // s.fly();
+        // 执行会报错，因为使用借用继承只会将构造函数中 对应的属性给继承回来，但是原型上的方法无法继承
+    </script>
+</body>
+
+</html>

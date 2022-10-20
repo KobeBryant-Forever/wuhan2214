@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 1、原型的修改问题
+        // // 虽然每次书写构造函数 系统会自动分配一个原型，但是这个原型是可以被替换
+        // function Bus() {
+
+        // }
+        // let obj = {
+        //     name: '公交车'
+        // }
+        // // 表示在原有的原型上添加一个run
+        // // Bus.prototype.run = function(){
+        // //     console.log('run')
+        // // }
+        // // 对原型对象直接进行重置操作
+        // Bus.prototype = obj
+
+        // console.log(Bus.prototype);
+        // let b = new Bus()
+        // console.log(b.name)
+        // b.run()
+
+        // 2、实现原型继承
+        function Animal(name) {
+            this.name = name;
+        }
+        Animal.prototype.eat = function () {
+            console.log('eat');
+        }
+
+        function Dog(leg) {
+            this.leg = leg;
+        }
+
+        // 当使用对象调用属性/方法都遵守原型链规则
+        let an = new Animal('旺财');
+        // 手动的将Dog的原型对象修改为Animal的对象
+        Dog.prototype = an;
+        let wc = new Dog(4);
+        wc.eat();
+        console.log(wc);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、组合继承的弊端
+        // 组合继承虽然可以将所有的属性全部继承回来，但是导致部分属性重复
+        // 2、寄生式方式二继承问题
+        // 此方式是直接设置原型对象，导致父级下可以使用的属性无法使用
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('hello');
+        // }
+        // function Student(no){
+        //     this.no = no;
+        // }
+        // // 使用寄生继承
+        // // 将Student的原型设置为 Person的原型
+        // Student.prototype = Person.prototype;
+        // let p = new Student(1010);
+        // console.log(p.name);//undefined
+
+        // 3、错误的写法  先使用寄生继承将原型上所有属性方法全部继承，再使用借用继续将父构造函数中的所有属性全部拿过来
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('hello');
+        // }
+        // function Student(no,...args){
+        //     this.no = no;
+        //     // 使用借用继承将属性全部转移到自己对象下
+        //     Person.call(this,...args)
+        // }
+        // // 使用寄生继承
+        // // 将Student的原型设置为 Person的原型
+        // Student.prototype = Person.prototype;
+        // let p = new Student(1010,'张三');
+        // console.log(p);
+        // console.log(p.name)
+        // p.say();
+        // 上面虽然使用寄生加借用 可以所有的属性全部继承回来 但是一旦Student的原型发生改变 导致Person的也发生改变(子改变影响到父)
+        // 正常需求是 父改变对子产生影响(正常) 子改变影响到父(不正常)
+        // 4、寄生式组合继承 还是使用寄生+借用+原型 但是给子类增加一个新的原型，该原型的原型设置为父的原型对象
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('hello');
+        // }
+
+        // function Student(no,...args){
+        //     this.no = no;
+        //     // 使用借用继承将属性全部转移到自己对象下
+        //     Person.call(this,...args)
+        // }
+        // // 使用一个第三方的构造函数
+        // function Three(){}
+        // // 将第三方的构造函数的原型设置为Person的原型
+        // Three.prototype = Person.prototype;
+        // // 使用原型继承
+        // Student.prototype = new Three;
+        // let s = new Student(1010,'李四')
+        // // 修改Student的原型
+        // Student.prototype.leg = 2;
+        // console.log(s);
+        // 5、解决重名问题 因为引入第三方构造函数 虽然不会主动的去使用 但是 有可能重名
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('hello');
+        // }
+
+        // function Student(no,...args){
+        //     this.no = no;
+        //     // 使用借用继承将属性全部转移到自己对象下
+        //     Person.call(this,...args)
+        // }
+        // //自调用匿名函数 将第三方的构造函数 进行包裹 
+        // (function(){
+        //     // 使用一个第三方的构造函数
+        //     function Three(){}
+        //     // 将第三方的构造函数的原型设置为Person的原型
+        //     Three.prototype = Person.prototype;
+        //     // 使用原型继承
+        //     Student.prototype = new Three;
+        // })();
+
+        // let s = new Student(1010,'李四')
+        // console.log(s);
+
+        // 6、最终版
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.say = function () {
+            console.log('hello');
+        }
+
+        //自调用匿名函数 将第三方的构造函数 进行包裹 
+        const Student = (function () {
+            function Student(no, ...args) {
+                this.no = no;
+                // 使用借用继承将属性全部转移到自己对象下
+                Person.call(this, ...args)
+            }
+            // 使用一个第三方的构造函数
+            function Three() {}
+            // 将第三方的构造函数的原型设置为Person的原型
+            Three.prototype = Person.prototype;
+            // 使用原型继承
+            Student.prototype = new Three;
+            return Student;
+        })();
+
+        let s = new Student(1010, '李四')
+        console.log(s);
+    </script>
+</body>
+
+</html>

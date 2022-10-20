@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Bird() {
+            this.eyes = 2;
+        }
+        Bird.prototype.fly = function () {
+            console.log('i can fly');
+        }
+
+        function Mq(...args) {
+            // 使用借用继承
+            Bird.call(this,...args)
+        }
+        // 使用原型继承
+        Mq.prototype = new Bird();
+
+        let mq = new Mq();
+        console.log(mq.eyes);
+        mq.fly();
+        console.log(mq);
+
+
+    </script>
+</body>
+
+</html>

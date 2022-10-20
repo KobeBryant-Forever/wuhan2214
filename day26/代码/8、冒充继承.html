@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 冒充继承本质 使用深浅拷贝机制 将父的属性全部转移到子上面
+        // 1、assign方法
+        // 语法 Object.assign(目标对象,被复制的对象...)
+        let obj = {}
+        let obj2 = {
+            name:'李四'
+        }
+        let obj3 = {
+            age:25,
+            name:'王八'
+        }
+        // 将obj2与obj3对象下的所有属性全部复制到obj对象下，如果出现重名的属性进行覆盖
+        Object.assign(obj,obj2,obj3);
+        console.log(obj);
+        // 冒充继承
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function(){
+            console.log(this.name+'正在....');
+        }
+        const p = new Person('李明杰',18);
+
+        function Student(no){
+            this.no = no;
+            // 创建完对象 拷贝父对象下的属性信息
+            Object.assign(this,p);
+        }
+        Student.prototype = Person.prototype;
+
+        let s = new Student(1010);
+        console.log(s);
+
+
+    </script>
+</body>
+</html>

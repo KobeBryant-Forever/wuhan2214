@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 1、关于构造函数中return的问题
+        // // 如果构造函数中return基本类型当new的时候所得到的是对应的对象
+        // // 如果构造函数中return引用类型当new的时候所的到的就引用类型对象
+        // function Car() {
+        //     return 10;
+        // }
+        // let c = new Car;
+        // console.log(c);
+
+        // function Bus() {
+        //     // 返回的是 引用类型
+        //     return [];
+        // }
+        // // 得到的是数组对象
+        // let b = new Bus;
+        // console.log(b)
+        // 2、寄生式继承方式一
+        // 永远不使用自己的属性 一直都死使用其他的信息
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('hello');
+        // }
+
+        // function Student(...args) {
+        //     // 寄生式继承 Student 就是一个空壳 所有的信息全部使用的是Person
+        //     return new Person(...args)
+        // }
+        // let s = new Student('寄生虫');
+        // console.log(s);
+        // 3、寄生式继承方式二
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.say = function () {
+            console.log('hello');
+        }
+
+        function Student(no){
+            this.no = no;
+        }
+        // 使用寄生继承
+        // 将Student的原型设置为 Person的原型
+        Student.prototype = Person.prototype;
+        let p = new Student(1010);
+        console.log(p);
+        // 每一个原型上都有constructor属性
+        console.log(Student.prototype.constructor == Person)//true
+        console.log(Student.prototype.constructor == Student)//false
+    </script>
+</body>
+
+</html>

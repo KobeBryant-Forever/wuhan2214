@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 1、in关键字使用
+        // // 用于检查对象下是否存在指定的属性  属于原型上的属性也是包含
+        // // 语法  属性名称 in 对象
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('你好');
+        // }
+        // let p = new Person('张三');
+        // // 检查p对象下是否存在name属性
+        // console.log('name' in p); //true
+        // console.log('say' in p); //true
+        // console.log('age' in p); //false
+        // // 2、hasOwnProperty 检查属性是否是对象本身所引用
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('你好');
+        // }
+        // let p = new Person('张三');
+        // console.log(p.hasOwnProperty('name'));//true
+        // console.log(p.hasOwnProperty('say'));//false say属性在原型上
+        // console.log(p.hasOwnProperty('age'));// false 没有这个属性
+        // // 3、for in遍历
+        // // for in在遍历时可以将对象本身以及原型上可用的属性全部进行遍历
+        // function Person(name) {
+        //     this.name = name;
+        // }
+        // Person.prototype.say = function () {
+        //     console.log('你好');
+        // }
+        // let p = new Person('张三');
+
+        // for(let key in p){
+        //     console.log(key);
+        // }
+
+        // 4、实现拷贝继承
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.say = function () {
+            console.log('hello');
+        }
+
+        function Student(no, ...args) {
+            this.no = no;
+            // 实现拷贝继承
+            const p = new Person(...args);
+            for (let key in p) {
+                // 将每次遍历的属性添加到 当前的原型上
+                // Student.prototype[key] = p[key];
+                // 如果想实现 父构造函数原型上的设置到 原型上其他的一律设置到对象上可以使用hasOwnProperty进行判断
+                // 每次遍历  key  可以是 name 、age、say
+                // p.hasOwnProperty(key)判断当前遍历的属性是不是 对象本身所拥有 如果是对象本身 转移到 子对象中记录
+                if (p.hasOwnProperty(key)) {
+                    // 说明当前key 是p对象本身拥有的属性
+                    this[key] = p[key];
+                } else {
+                    Student.prototype[key] = p[key];
+                }
+            }
+        }
+        let s = new Student(1010, 'leo', 20);
+        console.log(s);
+    </script>
+</body>
+
+</html>
