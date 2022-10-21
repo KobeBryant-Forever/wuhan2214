@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function outSider() {
+        //     let a = 100;
+        //     let b = 200;
+        //     return {
+        //         getA: function () {
+        //             return a;
+        //         },
+        //         getB: function () {
+        //             return b;
+        //         },
+        //         setA: function (val) {
+        //             a = val;
+        //         }
+        //     }
+        // }
+        // // 就好比是一个箱子
+        // let box = outSider();
+        // console.log(box)
+        // // 箱子中公开了方法 可以让我们访问到内部的变量
+        // console.log(box.getA());
+        // console.log(box.getB());
+        // box.setA(300);
+        // console.log(box.getA());
+        // 语法糖
+        function outSider() {
+            let a = 100;
+            let b = 200;
+            return {
+                // 借助于 getter 获取器与setter修改器配合使用简化使用
+                // getter/setter 属于内置的一旦 读取/设置属性自动执行
+                // 一旦使用 get/set修饰 系统会走动的为创建对应的属性，一旦获取属性 系统自动执行getter对应的函数 一旦 设置属性 系统会走动执行setter函数
+                get a() {
+                    return a;
+                },
+                set a(val) {
+                    a = val;
+                },
+                get b(){
+                    return b;
+                },
+                
+            }
+        }
+        // // 就好比是一个箱子
+        let box = outSider();
+        console.log(box)
+        // 使用形式 就按照属性的操作方式进行操作
+        console.log(box.a);
+        box.a  = 500;
+        console.log(box.a)
+    </script>
+</body>
+
+</html>

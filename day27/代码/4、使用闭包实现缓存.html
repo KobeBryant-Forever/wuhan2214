@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 缓存 
+        // 例如计算指定数字的二次方为达标演示缓存使用
+        function power() {
+            // 保存结果的变量 因为需要保存多种结果 所以只有数组或者对象，由于为了方便后期直接获取到结果 所以使用对象格式。使用对象格式时属性名称 根据规则决定.将表达式中所有的可变因素组合到一起使用.现在计算的可变因素就是数字 所以key的就是数字
+            let result = {}
+            return function (number) {
+                if (result[number] == undefined) {
+                    console.log('计算');
+                    // 说明前面没有计算过这个数字的结果
+                    result[number] =  number * number
+                }
+                return result[number];
+
+            }
+        }
+        let p = power();
+        console.log(p(2))
+        console.log(p(3))
+        console.log(p(4))
+        console.log(p(2))
+
+        // console.log(power()(2))
+        // console.log(power()(2))
+    </script>
+</body>
+
+</html>

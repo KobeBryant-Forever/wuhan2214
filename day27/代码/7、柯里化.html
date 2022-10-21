@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // 2、使用柯里化的作用
+        // // 校验密码
+        // console.log(/^\w{6,12}$/.test('1qwerty123'));
+        // // 可能整个项目注册的入口比较多(不考虑公用问题)，每一个实现注册的位置都需要写正则表达式进行验证。所以比较麻烦 解决办法封装函数
+        // function testPwd(str){
+        //     return /^\w{6,12}$/.test(str);
+        // }
+        // // 但是项目中可能还存在很多其他需要校验的 如果每一个需要验证的都设置一个函数 过于麻烦  所以封装一个函数 用两个参数
+        // function testForm(reg,str){
+        //     return reg.test(str);
+        // }
+        // // // 如果使用testForm 验证 每次都要传递正则对象
+        // // // 所以可以使用闭包 将各种正则的规则存储起来方便后面去使用
+        // function testForm(reg){
+        //     return function(str){
+        //         return reg.test(str);
+        //     }
+        // }
+        // const testPwd = testForm(/^\w{6,12}$/);
+        // const testMobile = testForm(/^1[2-9]\d{9}$/)
+        // // 后期如果需要使用到验证密码功能直接调用testPwd
+        // console.log(testPwd('aw123'))
+        // console.log(testMobile('18020409114'))
+
+        // testForm(/^\w{6,12}$/)('awert')
+
+
+        // 4、封装柯里化函数
+        function sum(a, b, c, d) {
+            return a + b + c + d;
+        }
+        // 柯里化函数
+        // handler 表示需要转换为柯里化方式的函数
+        function curry(handler, ...args) {
+            // 目标函数需要传递的参数个数
+            let len = handler.length;
+            // 第一次调用curry函数可能是没有给sum传递足够参数
+            return function (...data) {
+                // 将第一次调用传递的参数 与后面调用时传递的参数进行合并
+                data = [...data, ...args];
+                if (data.length < len) {
+                    // 参数还没有传递够 需要返回函数继续传递参数  使用递归继续收集参数
+                    return curry(handler, ...data);
+                } else {
+                    // 参数已经传递完毕了 需要直接调用函数
+                    return handler(...data);
+                }
+            }
+        }
+        let fn = curry(sum, 1)
+        console.log(fn(2)(3,4));
+        // fn(3)(4)
+    </script>
+</body>
+
+</html>

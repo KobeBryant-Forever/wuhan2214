@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        // 1、为什么使用防抖节流技术
+        // document.querySelector('button').onclick = function(){
+        //     // 如果需要控制某一些行为触发频率 就可以使用防抖与节流的技术
+        //     console.log('给服务端发送请求获取数据');
+        // }
+        // 2、实现防抖
+        // let timer = null;
+        // document.querySelector('button').onclick = function () {
+        //     clearTimeout(timer);
+        //     timer = setTimeout(() => {
+        //         console.log('给服务端发送请求获取数据');
+        //     }, 1000)
+
+        // }
+        // 3、使用闭包保护timer变量
+        // function antiShake() {
+        //     let timer = null;
+        //     let handler = function () {
+        //         clearTimeout(timer);
+        //         timer = setTimeout(() => {
+        //             console.log('给服务端发送请求获取数据');
+        //         }, 1000)
+        //     }
+        //     return handler;
+        // }
+
+        // document.querySelector('button').onclick = antiShake()
+
+        // 4、封装防抖函数
+        // 使用防抖的时候具体做什么
+        function handler() {
+            console.log(this);
+            console.log('给服务端发送请求获取数据');
+        }
+        // handler 表示具体做什么 time表示执行的时间间隔
+        function antiShake(handler, time = 1000) {
+            let timer = null;
+            return function () {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    // console.log(this);
+                    // 此时this表示的还是dom对象
+                    handler.call(this)
+                }, time)
+            }
+        }
+        document.querySelector('button').onclick = antiShake(handler);
+    </script>
+</body>
+
+</html>

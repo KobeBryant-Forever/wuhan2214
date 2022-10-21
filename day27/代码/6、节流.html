@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 2000px;">
+
+    <script>
+        // 节流 完全以时间周期进行触发
+        // 以当前的时间计算，如果达到指定的时间间隔 就触发对应的代码 否则就忽略
+        // let start = Date.now();
+        // window.onscroll = function () {
+        //     // 获取到事件触发的时间
+        //     let currentTime = Date.now();
+        //     if (currentTime - start >= 1000) {
+        //         console.log('具体做什么内容');
+        //         // 将开始时间设置为当前时间
+        //         start = currentTime;
+        //     }
+        // }
+        // 2、使用闭包保护全局变量
+        // function throttle() {
+        //     let start = Date.now();
+        //     return function () {
+        //         // 获取到事件触发的时间
+        //         let currentTime = Date.now();
+        //         if (currentTime - start >= 1000) {
+        //             console.log('具体做什么内容');
+        //             // 将开始时间设置为当前时间
+        //             start = currentTime;
+        //         }
+        //     }
+        // }
+        // window.onscroll = throttle();
+        // 3、封装节流函数
+
+        function throttle(handler, time = 1000) {
+            // 获取当前时间
+            let start = Date.now();
+            return function () {
+                let currentTime = Date.now();
+                if (currentTime - start >= time) {
+                    handler.call(this);
+                    start = currentTime;
+                }
+            }
+        }
+        window.onscroll = throttle(function () {
+            console.log('节流做什么')
+        });
+    </script>
+</body>
+
+</html>
