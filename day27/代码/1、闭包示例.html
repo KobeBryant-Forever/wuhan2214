@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 使用js模拟 账户余额
+        // 1、使用全局变量保存数据
+        // let money = 1000;
+        // // 消费
+        // money -= 6000;
+        // console.log(money);
+        // // 发工资
+        // money += 1800;
+        // console.log(money)
+        // 2、使用函数保存数据
+        // function fn(number, type = 'sale') {
+        //     let money = 1000;
+        //     if (type == 'sale') {
+        //         money -= number;
+        //     } else {
+        //         money += number;
+        //     }
+        //     return money;
+        // }
+        // console.log('买手机',fn(6000));
+        // console.log('发工资',fn(1800,'add'));
+        // 3、使用闭包形式
+        function account() {
+            let money = 1000;
+            function fn(number, type = 'sale') {
+                if (type == 'sale') {
+                    money -= number;
+                } else {
+                    money += number;
+                }
+                return money;
+            }
+            // 返回fn 本质就是返回了一个内存地址  并且内存地址对应的堆区存储的是fn函数的代码
+            return fn;
+        }
+
+        // let xm = account();
+        // console.log('消费', xm(6000));
+        // console.log('发工资', xm(3800, 'add'));
+        // console.log(account()(1000,'sale'));//0
+        // console.log(account()(1800,'add'));//1800
+        let a = account();
+        console.log(a(1000,'sale'))
+        let b = account();
+        console.log(b(1800,'add'))
+
+        
+    </script>
+</body>
+
+</html>
