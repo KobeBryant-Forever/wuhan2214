@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="输入用户名" class="username">
+    <input type="text" placeholder="输入密码" class="password">
+    <button>注册</button>
+    <script src="../common.js"></script>
+    <script>
+        document.querySelector('button').onclick = function () {
+            // 获取输入的账号密码
+            let username = document.querySelector('.username').value;
+            let password = document.querySelector('.password').value;
+            ajax({
+                url:'http://phpclub.org.cn/edu/server/regist.php',
+                type:'post',
+                data:{mobile:username,password},
+                success: function(backData){
+                    if(backData.code != 100){
+                        console.log(backData.msg);
+                        return;
+                    }
+                    // 跳转登录
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //多维数组转为一维数组
+        //先将数组转为字符串
+        function fn1(arr){
+            let str = arr.toString();
+            return str.split(',')
+        }
+        const arr = [1,2,[2,4,5],[7,3]]
+        // console.log(fn1(arr));
+        //方法二 展开运算符
+        function fn2(arr){
+            //some 判断是否还存在数组
+            while(arr.some(item =>Array.isArray(item))){
+                return arr = [].concat(...arr)
+            }
+        }
+        // console.log(fn2(arr));
+        //es6 flat()
+        const arr1 = arr.flat(Infinity)
+        console.log(arr1);
+    </script>
+</body>
+</html>

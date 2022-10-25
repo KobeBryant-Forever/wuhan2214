@@ -10,14 +10,10 @@
 
 <body>
     <script>
-        function fn(number) {
-            // let number = n
-            return number + 10;
-        }
-        let n = 20;
-        let a = fn(n);
-        console.log(a);
-
+        // 删除cookie就是将cookie的有效时间设置一个已经过期的时间
+        let d = new Date();
+        d.setTime(d.getTime() - 8 * 3600 * 1000 - 1000);
+        document.cookie = 'age=20;path=/;expires=' + d;
     </script>
 </body>
 

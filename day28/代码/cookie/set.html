@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../common.js"></script>
+    <script>
+        //document.cookie = '名称=值;path=/;expires=有效时间'
+        // 设置cookie  cookie为键值对格式 名称任意设置，值只能是字符串
+        // path 表示有效路径 建议不管 直接设置/
+        // expires表示有效时间 默认是关闭浏览器失效
+        // 1、设置不带有效时间的cookie
+        // document.cookie = 'nickname=cookies;path=/'
+        // // 2设置有效时间
+        // // 有效时间 需求为一个格林威治的时间  一旦达到这个时间浏览器会自动将cookie删除掉
+        // let d = new Date();
+        // // d.getTime() 获取到当前时间戳毫秒 +3600*100 是因为需要控制cookie1小时后过期，由于当前是北京时间 所以需要减掉8小时的时间戳
+        // d.setTime(d.getTime() + 3600 * 1000 - 8 * 3600 * 1000)
+        // document.cookie = 'age=20;path=/;expires=' + d;
+        setCookie('name','李四')
+        console.log(getCookie('name'))
+        removeCookie('name')
+    </script>
+</body>
+
+</html>

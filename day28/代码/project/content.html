@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="title">标题</h1>
+    <div class="content">内容</div>
+
+    <script src="../common.js"></script>
+    <script>
+        // 1、获取URL中id参数
+        let newsId = getUrlParam('id')
+        // 2、显示新闻详情
+        ajax({
+            url:'http://phpclub.org.cn/edu/server/getContent.php',
+            data:{id:newsId},
+            success: function(backData){
+                document.querySelector('.title').innerHTML=backData.data.title;
+                document.querySelector('.content').innerHTML=backData.data.content;
+            }
+        });
+    </script>
+</body>
+</html>

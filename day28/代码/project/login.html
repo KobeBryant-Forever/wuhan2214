@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="输入用户名" class="username">
+    <input type="text" placeholder="输入密码" class="password">
+    <button>登录</button>
+    <script src="../common.js"></script>
+    <script>
+        document.querySelector('button').onclick = function () {
+            // 获取输入的账号密码
+            let username = document.querySelector('.username').value;
+            let password = document.querySelector('.password').value;
+            // 发送请求验证信息是否正确
+            ajax({
+                type:'post',
+                url:'http://phpclub.org.cn/edu/server/login.php',
+                data:{ mobile:username,password},
+                success:function(response){
+                    if(response.code !=100){
+                        alert(response.msg);
+                    }else{
+                        // 就需要将用户的身份信息保存起来方便下次使用
+                        setCookie('mobile',username);
+                        setCookie('userId',response.data.id);
+                        window.location.href = 'index.html';
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

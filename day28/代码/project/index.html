@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="nav">
+        <h1><span>XXX</span>欢迎！</h1>
+    </div>
+    <ul class="app"></ul>
+    <script src="../common.js"></script>
+    <script>
+        // 获取到热点新闻
+        ajax({
+            url:'http://phpclub.org.cn/edu/server/news.php',
+            success:function(response){
+                let html = '';
+                response.data.forEach(item=>html+=`<li><a href="content.html?id=${item.id}">${item.title}</a></li>`)
+                document.querySelector('.app').innerHTML = html;
+            }
+        })
+
+        // 判断当前用户是否已经登录
+        let mobile = getCookie('mobile');
+        if(mobile){
+            // 证明用户已经登录
+            document.querySelector('.nav').innerHTML = `<strong>${mobile}欢迎！</strong><a href="">退出</a>`
+        }else{
+            document.querySelector('.nav').innerHTML = `<a href="login.html">登录</a>`
+        }
+    </script>
+</body>
+
+</html>
