@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
+</head>
+
+<body>
+    <!-- <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">网站设置</li>
+            <li>用户管理</li>
+            <li>权限分配</li>
+            <li>商品管理</li>
+            <li>订单管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                1. 高度默认自适应，也可以随意固宽。
+                <br>2. Tab进行了响应式处理，所以无需担心数量多少。
+            </div>
+            <div class="layui-tab-item">内容2</div>
+            <div class="layui-tab-item">内容3</div>
+            <div class="layui-tab-item">内容4</div>
+            <div class="layui-tab-item">内容5</div>
+        </div>
+    </div>
+
+    <div class="layui-carousel" id="test1" lay-filter="test1">
+        <div carousel-item="">
+            <div>条目1</div>
+            <div>条目2</div>
+            <div>条目3</div>
+            <div>条目4</div>
+            <div>条目5</div>
+        </div>
+    </div> -->
+    <style>
+        .layui-row>div {
+            height: 100px
+        }
+    </style>
+    <div class="layui-container">
+        <div class="layui-row" style="height: 100px; background-color: seagreen;">
+            <div class="layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4" style="background-color: seashell;">
+                left</div>
+            <div class="layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4" style="background-color:green;">center
+            </div>
+            <div class="layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"
+                style="background-color:palegoldenrod;">right</div>
+        </div>
+    </div>
+
+    <button>弹出</button>
+    <button class="login">登录</button>
+</body>
+
+</html>
+<script>
+    var carousel = layui.carousel,
+        form = layui.form;
+
+    //常规轮播
+    carousel.render({
+        elem: '#test1',
+        arrow: 'always'
+    });
+    document.querySelector('button').onclick = function () {
+        //prompt层
+
+        // layer.prompt({
+        //     title: '体现金额',
+        //     formType: 0
+        // }, function (pass, index) {
+        //     layer.close(index);
+        //     layer.msg('体现成功',{icon:2})
+        // });
+
+        var index = layer.open({
+            type:2,
+            content: 'https://dev.dcloud.net.cn/mui/',
+            area:['800px','500px'],
+            anim:6
+        });
+    }
+
+    document.querySelector('.login').onclick = function(){
+        layer.open({
+            type:2,
+            content: 'login_layer.html',
+            area:['800px','500px'],
+            anim:6
+        })
+    }
+</script>

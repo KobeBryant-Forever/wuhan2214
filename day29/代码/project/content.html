@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <h1 class="title">标题</h1>
+    <div class="content">内容</div>
+    <hr />
+    <div class="addComment">
+        <textarea style="width: 100%; height: 200px;"></textarea>
+        <button class="add">发布评论</button>
+
+    </div>
+    <hr />
+    <div class="comment_list">
+
+    </div>
+
+    <script src="../common.js"></script>
+    <script>
+        // 1、获取URL中id参数
+        let newsId = getUrlParam('id');
+        // 获取用户ID
+        let userId = getCookie('userId');
+        // 2、显示新闻详情
+        ajax({
+            url: 'http://phpclub.org.cn/edu/server/getContent.php',
+            data: {
+                id: newsId
+            },
+            success: function (backData) {
+                document.querySelector('.title').innerHTML = backData.data.title;
+                document.querySelector('.content').innerHTML = backData.data.content;
+            }
+        });
+        // 显示准备发布的内容
+        document.querySelector('.addComment>textarea').value = localStorage.getItem('content_' + newsId);
+        // 3、发布评论
+        document.querySelector('.addComment>button').onclick = function () {
+            // 获取到现在打算发布的内容
+            let content = document.querySelector('.addComment>textarea').value;
+            if (userId) {
+                // 用户已经登录
+                ajax({
+                    url: 'http://phpclub.org.cn/edu/server/addComment.php',
+                    type: 'post',
+                    data: {
+                        userId,
+                        newsId,
+                        content
+                    },
+                    success: function (backData) {
+                        console.log('ok')
+                    }
+                });
+            } else {
+                localStorage.setItem('content_' + newsId, content)
+                // 获取到登录完成之后要跳转的地址
+                // encodeURIComponent 内置的函数将字符串进行URL编码转换 将特殊内容转换为%的形式
+                let back = encodeURIComponent(location.href)
+                location.href = 'login.html?back=' + back;
+            }
+        }
+        // 获取评论列表
+        let data = {
+            newsId
+        };
+        // 根据用户是否登录是否添加用户标识
+        userId && (data.userId = userId);
+        ajax({
+            url: 'http://phpclub.org.cn/edu/server/getComment.php',
+            data,
+            success: function (backData) {
+                let html = '';
+                backData.data.forEach(item => {
+                    html += `<div class="comment" data-userid="${item.user_id}" data-commentid="${item.id}">
+                        <div class="user"> ${formatTime(item.created_at*1000)}：<strong>${item.user.mobile}:说：</strong>
+                            ${item.hasLike?'':'<button class="good"">赞成</button>'}
+                            ${userId && userId == item.user_id?'<button class="delete">删除</button>':''} 
+                        </div>
+                        <div class="comment_content">${item.content}</div>
+                    </div>`
+                })
+                document.querySelector('.comment_list').innerHTML = html;
+            }
+        });
+
+        document.querySelector('.comment_list').onclick = function (event) {
+            let commentId = event.target.parentNode.parentNode.getAttribute('data-commentid');
+            if (event.target.className == 'good') {
+                // 点击的赞成
+                if (!userId) {
+                    // 没登录跳转到登录
+                    location.href = 'login.html?back=' + encodeURIComponent(location.href);
+                } else {
+                    ajax({
+                        url: 'http://phpclub.org.cn/edu/server/commentLike.php',
+                        type: 'post',
+                        data: {
+                            userId,
+                            commentId
+                        },
+                        success: function (backData) {
+                            if (backData.code == 100) {
+                                event.target.parentNode.removeChild(event.target)
+                            }
+                        }
+                    });
+                }
+            } else if (event.target.className == 'delete') {
+                // 删除
+                if (!userId) {
+                    location.href = 'login.html?back=' + encodeURIComponent(location.href);
+                } else {
+                    if (userId != event.target.parentNode.parentNode.getAttribute('data-userid')) {
+                        alert('非法操作！IP地址已进入黑名单！等着查门');
+                    } else {
+                        ajax({
+                            url: 'http://phpclub.org.cn/edu/server/deleteComment.php',
+                            data: {userId,commentId},
+                            success: function (backData) {
+                                if (backData.code == 100) {
+                                    document.querySelector('.comment_list').removeChild(event.target
+                                        .parentNode.parentNode);
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
